@@ -1,0 +1,95 @@
+<%= form_with(model: member, local: true, class: "form-horizontal") do |f| %>
+  <%= resource_error_messages!(member) %>
+
+  <div>
+    <%= f.label :name, class: "control-label col-sm-2" %>
+    <div class="col-sm-10">
+      <%= f.text_field :name, class: "form-control" %> <br />
+    </div>
+  </div>
+
+  <div>
+    <%= f.label :block, class: "control-label col-sm-2" %>
+    <div class="col-sm-10">
+      <%= f.select(:block, ["A","B"], {prompt: 'Select'}, {class: "form-control"}) %> <br />
+    </div>
+  </div>
+
+  <div>
+    <%= f.label :floor, class: "control-label col-sm-2" %>
+    <div class="col-sm-10">
+      <%= f.select(:floor, [["GF",0],["FF",1],["SF",2],["TF",3],["FOF",4]], {prompt: 'Select'}, {class: "form-control"}) %> <br />
+    </div>
+  </div>
+
+  <div>
+    <%= f.label :flat, class: "control-label col-sm-2" %>
+    <div class="col-sm-10">
+      <%= f.select(:flat, (1..12).to_a.map{|x| [('%02d' % x),x]}, {prompt: 'Select'}, {class: "form-control"}) %> <br />
+    </div>
+  </div>
+
+  <div>
+    <%= f.label :owner, 'Ownership', class: "control-label col-sm-2" %>
+    <div class="col-sm-10">
+      <%= f.select(:owner, [['Owner', true], ['Tenant', false]], {}, {class: "form-control"}) %> <br />
+    </div>
+  </div>
+
+  <div>
+    <%= f.label :active, 'Resident?', class: "control-label col-sm-2" %>
+    <div class="col-sm-10">
+      <%= f.check_box :active, class: "form-control", style: "width:34px" %> <br />
+    </div>
+  </div>
+
+  <div>
+    <%= f.label :email, class: "control-label col-sm-2" %>
+    <div class="col-sm-10">
+      <%= f.text_field :email, class: "form-control" %> <br />
+    </div>
+  </div>
+
+  <div>
+    <%= f.label :sec_email, 'Secondary Email', class: "control-label col-sm-2" %>
+    <div class="col-sm-10">
+      <%= f.text_field :sec_email, class: "form-control" %> <br />
+    </div>
+  </div>
+
+  <div>
+    <%= f.label :phone, class: "control-label col-sm-2" %>
+    <div class="col-sm-10">
+      <%= f.text_field :phone, class: "form-control" %> <br />
+    </div>
+  </div>
+
+  <div>
+    <%= f.label :sec_phone, 'Secondary Phone', class: "control-label col-sm-2" %>
+    <div class="col-sm-10">
+      <%= f.text_field :sec_phone, class: "form-control" %> <br />
+    </div>
+  </div>
+
+  <% if member.new_record? %>
+    <div>
+      <%= f.label :password, class: "control-label col-sm-2" %>
+      <div class="col-sm-10">
+        <%= f.password_field :password, class: "form-control" %> <br />
+      </div>
+    </div>
+
+    <div>
+      <%= f.label :password_confirmation, 'Confirm Password', class: "control-label col-sm-2" %>
+      <div class="col-sm-10">
+        <%= f.password_field :password_confirmation, class: "form-control" %> <br />
+      </div>
+    </div>
+  <% end %>
+
+  <div>
+    <div class="col-sm-12" style="text-align: center;">
+      <%= f.submit "Submit", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

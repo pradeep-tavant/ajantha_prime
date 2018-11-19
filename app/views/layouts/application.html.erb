@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AjanthaPrime</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div id="wrapper">
+      <%= render 'layouts/header' %>
+      <div class="container-fluid">
+        <div style="height: 50px;">
+          <%= render 'layouts/flash_message' %>
+        </div>
+        <%= yield %>
+      </div>
+    </div>
+    <!-- Footer -->
+    <footer class="page-footer font-small blue">
+
+      <!-- Copyright -->
+      <div class="footer-copyright text-center py-3">© 2018 Copyright:
+        <a href="https://ajanthaprime.org/"> ajanthaprime.org</a>
+      </div>
+      <!-- Copyright -->
+
+    </footer>
+    <!-- Footer -->
+  </body>
+</html>

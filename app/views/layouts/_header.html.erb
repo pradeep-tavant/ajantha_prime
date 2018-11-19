@@ -1,0 +1,45 @@
+<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+  <div class="navbar-header">
+    <%= link_to "APOWA", root_path, class: "navbar-brand", style: "color: black;" %>
+  </div>
+  <!-- /.navbar-header -->
+
+  <% if current_member %>
+    <div>
+      <ul class = "nav navbar-nav">
+         <li class = "<%= (controller_name=='members' && action_name=='index') ? 'active' : ''%>"><%= link_to "Members", members_path, style: "color:black;" %></li>
+      </ul>
+    </div>
+    <ul class="nav navbar-top-links navbar-right">
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+          Welcome <b><%=current_member.name%>(<%=current_member.login%>)</b> <i class="fa fa-caret-down"></i>
+        </a>
+        <ul class="dropdown-menu dropdown-user">
+          <li>
+            <%= link_to member_path(current_member) do %>
+              <i class="fa fa-user fa-fw"></i>
+              Profile
+            <% end %>
+          </li>
+          <li>
+            <%= link_to change_password_path(current_member) do %>
+              <i class="fa fa-key fa-fw"></i>
+              Change Password
+            <% end %>
+          </li>
+          <li class="divider"></li>
+          <li>
+            <%= link_to destroy_member_session_path, method: :delete do %>
+              <i class="fa fa-sign-out fa-fw"></i>
+              Logout
+            <% end %>
+          </li>
+        </ul>
+        <!-- /.dropdown-user -->
+      </li>
+      <!-- /.dropdown -->
+    </ul>
+    <!-- /.navbar-top-links -->
+  <% end %>
+</nav>
