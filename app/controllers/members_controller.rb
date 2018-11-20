@@ -1,7 +1,7 @@
 class MembersController < ApplicationController
   before_action :authenticate_member!
   before_action :set_member, only: [:show, :edit, :update, :destroy, :change_password, :update_password]
-  before_action :check_admin, except: [:show, :index]
+  before_action :check_admin, except: [:show, :index, :change_password, :update_password]
 
   # GET /members
   # GET /members.json
