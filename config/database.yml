@@ -1,41 +1,23 @@
-# 
-# Install the MYSQL driver
-#   gem install mysql2
-#
-# Ensure the MySQL gem is defined in your Gemfile
-#   gem 'mysql2'
-#
-# And be sure to use new-style password hashing:
-#   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
-development:
-  adapter: mysql2
-  encoding: utf8
-  reconnect: false
-  database: ajantha_prime_development
-  pool: 5
-  username: root
-  password: root
-  # socket: /tmp/mysql.sock
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV['USER'] == 'root' ? ENV['SUDO_USER'] : ENV['USER'] %>
+  password: 
 
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
+development:
+  <<: *default
+  database: ajantha_prime_development
+  host: localhost
+
 test:
-  adapter: mysql2
-  encoding: utf8
-  reconnect: false
+  <<: *default
   database: ajantha_prime_test
-  pool: 5
-  username: root
-  password: root
-  # socket: /tmp/mysql.sock
 
 production:
-  adapter: mysql2
-  encoding: utf8
-  reconnect: false
+  <<: *default
   database: ajantha_prime_production
-  pool: 5
-  username: root
-  password:
-  # socket: /tmp/mysql.sock
+  username: ajantha_prime
+  password: <%= ENV['AJANTHA_PRIME_DATABASE_PASSWORD'] %>
