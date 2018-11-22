@@ -3,11 +3,13 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3><%= @member.name %>
-          <span class="pull-right">
-            <%= link_to edit_member_path(@member) do %>
-              <i class="fa fa-pencil-square-o fa-fw" title="Edit"></i>
-            <% end %>
-          </span>
+          <% if current_member.admin? or current_member == @member %>
+            <span class="pull-right">
+              <%= link_to edit_member_path(@member) do %>
+                <i class="fa fa-pencil-square-o fa-fw" title="Edit"></i>
+              <% end %>
+            </span>
+          <% end %>
         </h3>
       </div>
 
@@ -61,6 +63,6 @@
         <dd><%= @member.sec_phone %></dd>
       </dl>
     </div>
-    <%= link_to 'Members', members_path, class: "btn btn-default" %>
+    <%= link_to '<< Members', members_path, class: "btn btn-default" %>
   </div>
 </div>

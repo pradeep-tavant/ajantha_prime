@@ -86,7 +86,7 @@ class MembersController < ApplicationController
     end
 
     def check_admin
-      unless current_member.admin?
+      unless current_member.admin? or current_member == @member
         flash[:error] = "You do not have access for this operation"
         redirect_to root_path
       end

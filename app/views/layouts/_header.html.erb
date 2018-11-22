@@ -1,18 +1,18 @@
 <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
   <div class="navbar-header">
-    <%= link_to "APOWA", root_path, class: "navbar-brand", style: "color: black;", title: "Ajantha Prime Owners Welfare Association" %>
+    <%= link_to "APOWA", root_path, class: "navbar-brand navbar-link", title: "Ajantha Prime Owners Welfare Association" %>
   </div>
   <!-- /.navbar-header -->
 
   <% if current_member %>
     <div>
       <ul class = "nav navbar-nav">
-         <li class = "<%= (controller_name=='members' && action_name=='index') ? 'active' : ''%>"><%= link_to "Members", members_path, style: "color:black;" %></li>
+         <li class = "<%= (controller_name=='members' && action_name=='index') ? '' : ''%>"><%= link_to "Members", members_path, class: "navbar-link" %></li>
       </ul>
     </div>
     <ul class="nav navbar-top-links navbar-right">
       <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <a class="dropdown-toggle navbar-link" data-toggle="dropdown" href="#">
           Welcome <b><%=current_member.name%>(<%=current_member.login%>)</b> <i class="fa fa-caret-down"></i>
         </a>
         <ul class="dropdown-menu dropdown-user">
