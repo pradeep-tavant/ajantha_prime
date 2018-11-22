@@ -13,7 +13,7 @@ body {
 }
 
 .form-signin {
-    max-width: 330px;
+    max-width: 500px;
     padding: 15px;
     margin: 0 auto;
 }
@@ -43,11 +43,14 @@ body {
   padding: 30px;
 }
 
+.flash-container { height: 50px; }
+
 .page-header {
   margin-top: 0px;
 }
 
 .mtop20 { margin-top: 20px; }
+.mleft20 { margin-left: 20px; }
 
 .footer {
   position: absolute;

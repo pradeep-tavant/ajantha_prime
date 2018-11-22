@@ -7,8 +7,8 @@ class Member < ApplicationRecord
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
 
   validates :login, uniqueness: true
-  validates :password_confirmation, presence: true, on: :create
   validates :name, :block, :floor, :flat, :owner, :phone, presence: true
+  validates :password_confirmation, presence: true, on: :create
   validates_uniqueness_of :flat, scope: %i[floor block], message: "is already registered"
 
   def floor_name
@@ -23,11 +23,13 @@ class Member < ApplicationRecord
       'TF'
     when 4
       'FOF'
+    else
+      ""
     end
   end
 
   def flat_name
-    ('%02d' % self.flat)
+    ('%02d' % self.flat.to_i)
   end
 
   def custom_slug

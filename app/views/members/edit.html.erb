@@ -1,6 +1,6 @@
-<h1>Editing Member</h1>
+<div class="col-lg-12">
+  <h2 class="page-header">Editing Member</h2>
+  <%= render 'form', member: @member %>
+</div>
 
-<%= render 'form', member: @member %>
-
-<%= link_to '<< Show', @member, class: "btn btn-default" %>
-<%= link_to '<< Members', members_path, class: "btn btn-default" %>
+<%= link_to "<< #{@member.name}'s  Profile", @member, class: "btn btn-default" %>

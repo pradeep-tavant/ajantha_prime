@@ -1,19 +1,12 @@
 <div class="row">
-    <div class="col-lg-12">
-        <h1 class="page-header">Members</h1>
-    </div>
-    <!-- /.col-lg-12 -->
-</div>
-
-<div class="row">
   <div class="col-lg-12">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h4>List of Members
+        <h3>List of Members
           <% if current_member.admin? %>
             <%= link_to 'Add Member', new_member_path, class: "btn btn-default pull-right" %>
           <% end %>
-        </h4>
+        </h3>
       </div>
       <!-- /.panel-heading -->
       <div class="panel-body panel30">
@@ -34,7 +27,7 @@
             <% @members && @members.each do |member| %>
               <tr>
                 <td><%= link_to member.name, member_path(member) %></td>
-                <td><%= member.floor_name %><%= member.flat %> - <%= member.block %></td>
+                <td><%= member.floor_name %><%= member.flat_name %> - <%= member.block %></td>
                 <td><%= member.phone %></td>
                 <td><%= member.email %></td>
                 <td><%= member.active? ? 'Yes' : 'No' %></td>
@@ -43,7 +36,7 @@
                     <%= link_to edit_member_path(member) do %>
                       <i class="fa fa-pencil fa-fw" title="Edit"></i>
                     <% end %>
-                    <%= link_to member_path(member), method: :delete do %>
+                    <%= link_to member_path(member), method: :delete, data: {confirm: "Are you sure want to remove this member?"} do %>
                       <i class="fa fa-trash-o fa-fw" title="Delete"></i>
                     <% end %>
                   </td>
