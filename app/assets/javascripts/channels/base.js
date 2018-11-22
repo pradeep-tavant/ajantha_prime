@@ -11,7 +11,12 @@ $.fn.dataTable.ext.search.push(
 );
 
 $(document).ready(function() {
-  var table = $('.dataTable').DataTable();
+  var table = $('.dataTable').DataTable({
+    dom: 'lfBrtip',
+    buttons: [
+            'excel', 'pdf'
+        ]
+  });
   
   $('<label class="pull-right mleft20">' +
         'Block:&nbsp;&nbsp;'+
