@@ -1,29 +1,100 @@
-<h2>Sign up</h2>
+<div class="col-lg-12">
+  <h2 class="page-header">New Member</h2>
+  <%= form_for(resource, as: resource_name, url: member_registration_path) do |f| %>
+    <%= devise_error_messages! %>
+    <%#= resource_error_messages!(resource) %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+    <div>
+      <%= f.label :name, class: "control-label col-sm-2" %>
+      <div class="col-sm-10">
+        <%= f.text_field :name, class: "form-control" %> <br />
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    <div>
+      <%= f.label :block, class: "control-label col-sm-2" %>
+      <div class="col-sm-10">
+        <%= f.select(:block, ["A","B"], {prompt: 'Select'}, {class: "form-control"}) %> <br />
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+    <div>
+      <%= f.label :floor, class: "control-label col-sm-2" %>
+      <div class="col-sm-10">
+        <%= f.select(:floor, [["GF",0],["FF",1],["SF",2],["TF",3],["FOF",4]], {prompt: 'Select'}, {class: "form-control"}) %> <br />
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    <div>
+      <%= f.label :flat, class: "control-label col-sm-2" %>
+      <div class="col-sm-10">
+        <%= f.select(:flat, (1..12).to_a.map{|x| [('%02d' % x),x]}, {prompt: 'Select'}, {class: "form-control"}) %> <br />
+      </div>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+    <div>
+      <%= f.label :owner, 'Ownership', class: "control-label col-sm-2" %>
+      <div class="col-sm-10">
+        <%= f.select(:owner, [['Owner', true], ['Tenant', false]], {}, {class: "form-control"}) %> <br />
+      </div>
+    </div>
+
+    <div>
+      <%= f.label :active, 'Resident?', class: "control-label col-sm-2" %>
+      <div class="col-sm-10">
+        <%= f.check_box :active, class: "form-control", style: "width:34px" %> <br />
+      </div>
+    </div>
+
+    <div>
+      <%= f.label :email, class: "control-label col-sm-2" %>
+      <div class="col-sm-10">
+        <%= f.text_field :email, class: "form-control" %> <br />
+      </div>
+    </div>
+
+    <div>
+      <%= f.label :sec_email, 'Secondary Email', class: "control-label col-sm-2" %>
+      <div class="col-sm-10">
+        <%= f.text_field :sec_email, class: "form-control" %> <br />
+      </div>
+    </div>
+
+    <div>
+      <%= f.label :phone, class: "control-label col-sm-2" %>
+      <div class="col-sm-10">
+        <%= f.text_field :phone, class: "form-control" %> <br />
+      </div>
+    </div>
+
+    <div>
+      <%= f.label :sec_phone, 'Secondary Phone', class: "control-label col-sm-2" %>
+      <div class="col-sm-10">
+        <%= f.text_field :sec_phone, class: "form-control" %> <br />
+      </div>
+    </div>
+
+    <div>
+      <%= f.label :password, class: "control-label col-sm-2" %>
+      <div class="col-sm-10">
+        <%= f.password_field :password, class: "form-control" %> <br />
+      </div>
+    </div>
+
+    <div>
+      <%= f.label :password_confirmation, 'Confirm Password', class: "control-label col-sm-2" %>
+      <div class="col-sm-10">
+        <%= f.password_field :password_confirmation, class: "form-control" %> <br />
+      </div>
+    </div>
+
+    <div>
+      <div class="col-sm-12" style="text-align: center;">
+        <%= link_to 'Cancel', new_member_session_path, class: "btn btn-default" %>
+        <%= f.submit "Sign Up", class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>
 
 <%= render "devise/shared/links" %>

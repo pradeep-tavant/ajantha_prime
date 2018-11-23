@@ -44,7 +44,7 @@ class MembersController < ApplicationController
   def update
     respond_to do |format|
       if @member.update(member_params)
-        format.html { redirect_to @member, notice: 'Member profile successfully updated.' }
+        format.html { redirect_to @member, notice: "#{current_member == @member ? 'Your' : 'Member'} profile successfully updated." }
         format.json { render :show, status: :ok, location: @member }
       else
         format.html { render :edit }

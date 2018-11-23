@@ -4,7 +4,7 @@ class Member < ApplicationRecord
 
   before_save :create_login
 
-  devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
   validates :login, uniqueness: true
   validates :name, :block, :floor, :flat, :owner, :phone, presence: true
@@ -33,7 +33,7 @@ class Member < ApplicationRecord
   end
 
   def custom_slug
-    self.floor_name + self.flat_name + "-" + self.block
+    self.floor_name.to_s + self.flat_name.to_s + "-" + self.block.to_s
   end
 
   # // Override devise method to accept lower case login //

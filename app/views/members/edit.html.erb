@@ -3,4 +3,4 @@
   <%= render 'form', member: @member %>
 </div>
 
-<%= link_to "<< #{@member.name}'s  Profile", @member, class: "btn btn-default" %>
+<%= link_to (current_member != @member ? "<< #{@member.name}'s Profile" : "<< Profile"), @member, class: "btn btn-default" %>
