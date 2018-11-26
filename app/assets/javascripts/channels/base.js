@@ -43,4 +43,13 @@ $(document).ready(function() {
   $('#block, #floor').change( function() {
     table.draw();
   });
+
+  $('.rented:checkbox').change(function() {
+    // use the :checked selector to find any that are checked
+    if ($('.rented:checkbox:checked').length) {
+        $('.tenant-section').slideDown('slow');
+    } else {
+        $('.tenant-section').slideUp('slow');
+    }
+ });
 });

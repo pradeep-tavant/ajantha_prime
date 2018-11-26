@@ -2,6 +2,11 @@ class Member < ApplicationRecord
   extend FriendlyId
   friendly_id :custom_slug, use: [:slugged, :finders]
 
+  has_one :tenant, dependent: :destroy
+  accepts_nested_attributes_for :tenant, allow_destroy: true
+
+  validates_associated :tenant, if: Proc.new { |m| p m; p "----------"; m.rented? }
+
   before_save :create_login
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable

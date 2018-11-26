@@ -33,15 +33,32 @@
         <dd><%= @member.flat_name %></dd>
       </dl>
 
-      <dl class="dl-horizontal">
+      <!-- <dl class="dl-horizontal">
         <dt>Owner?:</dt>
-        <dd><%= @member.owner ? 'Yes' : 'No' %></dd>
-      </dl>
+        <dd><%#= @member.owner ? 'Yes' : 'No' %></dd>
+      </dl> -->
 
       <dl class="dl-horizontal">
-        <dt>Resident?:</dt>
-        <dd><%= @member.active ? 'Yes' : 'No' %></dd>
+        <dt>Rented to someone?:</dt>
+        <dd><%= @member.rented? ? 'Yes' : 'No' %></dd>
       </dl>
+
+      <% if @member.rented? %>
+        <dl class="dl-horizontal mtop20">
+          <dt>Tenant Name:</dt>
+          <dd><%= @tenant.try(:name) %></dd>
+        </dl>
+
+        <dl class="dl-horizontal">
+          <dt>Tenant Email:</dt>
+          <dd><%= @tenant.try(:email) %></dd>
+        </dl>
+
+        <dl class="dl-horizontal">
+          <dt>Tenant Phone:</dt>
+          <dd><%= @tenant.try(:phone) %></dd>
+        </dl>
+      <% end %>
 
       <dl class="dl-horizontal">
         <dt>Email:</dt>
