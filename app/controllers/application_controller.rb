@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def configure_permitted_parameters
-    attributes = [:name, :block, :floor, :flat, :owner, :active, :email, :sec_email, :phone, :sec_phone]
+    attributes = [:name, :block, :floor, :flat, :owner, :active, :rented, :email, :sec_email, :phone, :sec_phone, tenant_attributes: [:name, :email, :phone]]
     devise_parameter_sanitizer.permit(:sign_up, keys: attributes)
     devise_parameter_sanitizer.permit(:account_update, keys: attributes)
  end
