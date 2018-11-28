@@ -5,7 +5,7 @@ class Member < ApplicationRecord
   has_one :tenant, dependent: :destroy
   accepts_nested_attributes_for :tenant, allow_destroy: true
 
-  validates_associated :tenant, if: Proc.new { |m| p m; p "----------"; m.rented? }
+  validates_associated :tenant, if: Proc.new { |m| m.rented? }
 
   before_save :create_login
 

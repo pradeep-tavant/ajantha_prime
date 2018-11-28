@@ -13,7 +13,7 @@
     <ul class="nav navbar-top-links navbar-right">
       <li class="dropdown">
         <a class="dropdown-toggle navbar-link" data-toggle="dropdown" href="#">
-          Welcome <b><%=current_member.name%>(<%=current_member.login%>)</b> <i class="fa fa-caret-down"></i>
+          Welcome <b><%=current_member.name%></b> <i class="fa fa-caret-down"></i>
         </a>
         <ul class="dropdown-menu dropdown-user">
           <li>
@@ -41,5 +41,6 @@
       <!-- /.dropdown -->
     </ul>
     <!-- /.navbar-top-links -->
+    <p class='fwhite pull-right mright20 mtop10'> <b>Login :</b> <%= current_member.login %> </p>
   <% end %>
 </nav>
