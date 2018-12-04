@@ -18,12 +18,10 @@ class MembersController < ApplicationController
   # GET /members/new
   def new
     @member = Member.new
-    @tenant = @member.tenant || @member.build_tenant
   end
 
   # GET /members/1/edit
   def edit
-    @tenant = @member.tenant || @member.build_tenant
   end
 
   # POST /members
@@ -45,7 +43,6 @@ class MembersController < ApplicationController
   # PATCH/PUT /members/1
   # PATCH/PUT /members/1.json
   def update
-    @tenant = @member.tenant || @member.build_tenant
     respond_to do |format|
       if @member.update(member_params)
         @member.tenant = nil unless @member.rented?
