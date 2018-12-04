@@ -26,6 +26,7 @@ gem 'font-awesome-sass', '~> 4.7.0'
 
 gem 'devise'
 gem 'friendly_id', '~> 5.2.0'
+gem 'acts_as_commentable_with_threading'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

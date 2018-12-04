@@ -51,5 +51,12 @@ $(document).ready(function() {
     } else {
         $('.tenant-section').slideUp('slow');
     }
- });
+  });
+
+  $('.postsTable').DataTable();
+
+  $('.comment-reply').on('click', function() {
+    $(this).closest('.comment').find('.reply-form').toggle();
+    return false;
+  });    
 });

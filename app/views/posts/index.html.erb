@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>Posts
+        <%= link_to 'Add Post', new_post_path, class: "btn btn-default pull-right" %>
+        </h3>
+      </div>
+      <!-- /.panel-heading -->
+
+      <div class="panel-body panel30">
+        <table class="postsTable table table-striped table-bordered" cellspacing="0" width="100%">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Author</th>
+              <th>Private</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @posts.each do |post| %>
+              <tr>
+                <td><%= link_to post.title, post_path(post) %></td>
+                <td><%= post.description %></td>
+                <td><%= post.member.try(:name) %></td>
+                <td><%= post.private? ? 'Yes' : 'No' %></td>
+                <td>
+                  <%= link_to edit_post_path(post) do %>
+                    <i class="fa fa-pencil fa-fw" title="Edit"></i>
+                  <% end %>
+                  <%= link_to post, method: :delete, data: {confirm: "Are you sure want to remove this post?"} do %>
+                    <i class="fa fa-trash-o fa-fw" title="Delete"></i>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
