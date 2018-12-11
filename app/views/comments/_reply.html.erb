@@ -1,10 +1,11 @@
 <% comments.each do |comment| %>
   <div class="comments-show">
     <div class="row">
-      <div class="comment col-sm-5">
+      <div class="comment col-sm-12">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <strong><%= comment.member.name %></strong> <span class="text-muted"><%= comment.created_at.strftime("Commented on %d/%m/%Y %I:%M%p") %></span>
+            <i class="fa fa-user fa-fw"></i>
+            <strong><%= comment.member.name %></strong> <span class="text-muted"><%= comment.created_at.strftime("commented on %d/%m/%Y %I:%M%p") %></span>
           </div>
           <div class="panel-body">
             <%= comment.body %>

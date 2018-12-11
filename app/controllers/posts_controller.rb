@@ -1,11 +1,12 @@
 class PostsController < ApplicationController
   before_action :authenticate_member!
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :check_admin, except: [:show, :index]
 
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = current_member.admin? ? Post.all : Post.where(private: false)
   end
 
   # GET /posts/1
@@ -67,6 +68,13 @@ class PostsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.find(params[:id])
+    end
+
+    def check_admin
+      unless current_member.admin? || current_member == @post.member
+        flash[:error] = "You do not have access for this operation"
+        redirect_to root_path
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

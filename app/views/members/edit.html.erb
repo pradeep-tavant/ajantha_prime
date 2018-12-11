@@ -1,6 +1,10 @@
-<div class="col-lg-12">
-  <h2 class="page-header">Editing Member</h2>
-  <%= render 'form', member: @member %>
-</div>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <h2 class="page-header">Editing Member</h2>
+      <%= render 'form', member: @member %>
+    </div>
 
-<%= link_to (current_member != @member ? "<< #{@member.name}'s Profile" : "<< Profile"), @member, class: "btn btn-default" %>
+    <%= link_to (current_member != @member ? "<< #{@member.name}'s Profile" : "<< Profile"), @member, class: "btn btn-default" %>
+  </div>
+</div>
