@@ -18,10 +18,14 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :private, class: "control-label col-sm-2" %>
+    <%= f.label :private, class: "control-label col-sm-2" do%>
+      <span>
+        Label
+        <i class="fa fa-info-circle fa-fw" title="Private posts will be visible only to you and the governing members"></i>
+      </span>
+    <% end %>
     <div class="col-sm-10">
-      <%= f.check_box :private, class: "form-control", style: "width:34px" %>
-      <span style="color:blue;">(private posts will be visible only to you and the governing members)</span>
+      <%= f.check_box :private, {class: "form-control", style: "width:34px"} %>
     </div>
   </div>
 

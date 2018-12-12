@@ -7,8 +7,14 @@
   <% if current_member %>
     <div>
       <ul class = "nav navbar-nav">
-         <li class = "<%= (controller_name=='members' && action_name=='index') ? '' : ''%>"><%= link_to "Members", members_path, class: "navbar-link" %></li>
-         <!-- <li class = "<%#= (controller_name=='posts' && action_name=='index') ? '' : ''%>"><%#= link_to "Posts", posts_path, class: "navbar-link" %></li> -->
+        <li>
+          <%= link_to "Members", members_path, class: "#{(controller_name=='members') ? 'active' : ''} navbar-link" %>
+        </li>
+        <% if current_member.admin? %>
+          <li class = "<%= (controller_name=='posts') ? '' : ''%>">
+            <%= link_to "Posts", posts_path, class: "#{(controller_name=='posts') ? 'active' : ''} navbar-link" %>
+          </li>
+        <% end %>
       </ul>
     </div>
     <ul class="nav navbar-top-links navbar-right">

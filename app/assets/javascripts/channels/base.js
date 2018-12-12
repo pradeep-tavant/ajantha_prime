@@ -56,6 +56,7 @@ $(document).ready(function() {
   $('.postsTable').DataTable();
 
   $('.comment-reply').on('click', function() {
+    $(this).text($(this).text() == 'Reply' ? 'Close' : 'Reply');
     $(this).closest('.comment').find('.reply-form').toggle();
     return false;
   });    
