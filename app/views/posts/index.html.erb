@@ -3,7 +3,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3>Posts
-        <%= link_to 'Add Post', new_post_path, class: "btn btn-default pull-right" %>
+        <%= link_to 'New Post', new_post_path, class: "btn btn-default pull-right" %>
         </h3>
       </div>
       <!-- /.panel-heading -->
@@ -16,9 +16,9 @@
               <th>Author</th>
               <th>Posted Date</th>
               <th>Status</th>
+              <th>Approved?</th>
               <% if current_member.admin? %>
                 <th>Private</th>
-                <th>Visible to All</th>
                 <th>Actions</th>
               <% end %>
             </tr>
@@ -31,9 +31,9 @@
                 <td><%= post.member.try(:name) %></td>
                 <td><%= post.created_at.strftime("%d/%b/%Y") %></td>
                 <td><%= post.active? ? 'Open' : 'Closed' %></td>
+                <td><%= post.visible? ? 'Yes' : 'No' %></td>
                 <% if current_member.admin? %>
                   <td><%= post.private? ? 'Yes' : 'No' %></td>
-                  <td><%= post.visible? ? 'Yes' : 'No' %></td>
                   <td>
                     <%= link_to post_path(post) do %>
                       <i class="fa fa-bell fa-fw" title="Open"></i>
