@@ -9,16 +9,18 @@
       <!-- /.panel-heading -->
 
       <div class="panel-body panel30">
-        <table class="postsTable table table-striped table-bordered" cellspacing="0" width="100%">
+        <table class="postsTable table table-striped table-bordered table-hover" cellspacing="0" width="100%">
           <thead>
             <tr>
               <th>Title</th>
               <th>Author</th>
               <th>Posted Date</th>
+              <th>Status</th>
               <% if current_member.admin? %>
                 <th>Private</th>
-              <% end %> 
-              <th>Actions</th>
+                <th>Visible to All</th>
+                <th>Actions</th>
+              <% end %>
             </tr>
           </thead>
 
@@ -27,24 +29,23 @@
               <tr>
                 <td><%= link_to post.title, post_path(post) %></td>
                 <td><%= post.member.try(:name) %></td>
-                <td><%= post.created_at.strftime("%d/%m/%Y %I:%M%p") %></td>
+                <td><%= post.created_at.strftime("%d/%b/%Y") %></td>
+                <td><%= post.active? ? 'Open' : 'Closed' %></td>
                 <% if current_member.admin? %>
                   <td><%= post.private? ? 'Yes' : 'No' %></td>
-                <% end %>
+                  <td><%= post.visible? ? 'Yes' : 'No' %></td>
                   <td>
                     <%= link_to post_path(post) do %>
                       <i class="fa fa-bell fa-fw" title="Open"></i>
                     <% end %>
-                    <% if current_member.admin? %>
-                      <%= link_to edit_post_path(post) do %>
-                        <i class="fa fa-pencil fa-fw" title="Edit"></i>
-                      <% end %>
-                      <%= link_to post, method: :delete, data: {confirm: "Are you sure want to remove this post?"} do %>
-                        <i class="fa fa-trash-o fa-fw" title="Delete"></i>
-                      <% end %>
+                    <%= link_to edit_post_path(post) do %>
+                      <i class="fa fa-pencil fa-fw" title="Edit"></i>
+                    <% end %>
+                    <%= link_to post, method: :delete, data: {confirm: "Are you sure want to remove this post?"} do %>
+                      <i class="fa fa-trash-o fa-fw" title="Delete"></i>
                     <% end %>
                   </td>
-                
+                <% end %>
               </tr>
             <% end %>
           </tbody>

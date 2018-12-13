@@ -59,5 +59,5 @@ $(document).ready(function() {
     $(this).text($(this).text() == 'Reply' ? 'Close' : 'Reply');
     $(this).closest('.comment').find('.reply-form').toggle();
     return false;
-  });    
+  });
 });

@@ -5,11 +5,13 @@
         <div class="panel panel-default">
           <div class="panel-heading">
             <i class="fa fa-user fa-fw"></i>
-            <strong><%= comment.member.name %></strong> <span class="text-muted"><%= comment.created_at.strftime("commented on %d/%m/%Y %I:%M%p") %></span>
+            <strong><%= comment.member.name %></strong> <span class="text-muted"><%= comment.created_at.strftime("commented on %d/%b/%Y %I:%M%p") %></span>
           </div>
           <div class="panel-body">
             <%= comment.body %>
-            <a href="#" class="comment-reply pull-right">Reply</a>
+            <% if @post.active? %>
+              <a href="#" class="comment-reply pull-right">Reply</a>
+            <% end %>
             <div class="reply-form">
               <%= form_for @new_comment do |f| %>
                 <%= f.hidden_field :commentable_id, value: @new_comment.commentable_id %>

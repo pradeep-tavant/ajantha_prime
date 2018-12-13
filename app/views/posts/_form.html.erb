@@ -20,7 +20,7 @@
   <div class="form-group">
     <%= f.label :private, class: "control-label col-sm-2" do%>
       <span>
-        Label
+        Private
         <i class="fa fa-info-circle fa-fw" title="Private posts will be visible only to you and the governing members"></i>
       </span>
     <% end %>
@@ -28,6 +28,22 @@
       <%= f.check_box :private, {class: "form-control", style: "width:34px"} %>
     </div>
   </div>
+
+  <% if current_member.admin? %>
+    <div class="form-group">
+      <%= f.label :active, "Status", class: "control-label col-sm-2" %>
+      <div class="col-sm-10">
+        <%= f.select(:active, [["Open",true],["Close",false]], {}, {class: "form-control"}) %> <br />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :visible, class: "control-label col-sm-2" %>
+      <div class="col-sm-10">
+        <%= f.check_box :visible, {class: "form-control", style: "width:34px"} %>
+      </div>
+    </div>
+  <% end %>
 
   <div>
     <div class="col-sm-12" style="text-align: center;">

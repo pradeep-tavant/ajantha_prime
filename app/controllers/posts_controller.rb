@@ -1,12 +1,12 @@
 class PostsController < ApplicationController
   before_action :authenticate_member!
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :check_admin, except: [:show, :index]
+  before_action :check_admin, except: [:new, :create, :show, :index]
 
   # GET /posts
   # GET /posts.json
   def index
-    @posts = current_member.admin? ? Post.all : Post.where(private: false)
+    @posts = current_member.admin? ? Post.unscoped : Post.where(private: false).or(Post.unscoped.where(member: current_member))
   end
 
   # GET /posts/1
@@ -28,6 +28,7 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
+    @post.visible = false unless current_member.admin?
 
     respond_to do |format|
       if @post.save
@@ -67,7 +68,7 @@ class PostsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      @post = Post.find(params[:id])
+      @post = Post.unscoped.find(params[:id])
     end
 
     def check_admin
@@ -79,6 +80,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :description, :private, :member_id)
+      params.require(:post).permit(:title, :description, :private, :member_id, :visible, :active)
     end
 end

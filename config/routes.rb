@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   match '/members/:id/change_password', to: 'members#change_password', via: :get, as: :change_password
   match '/members/:id/update_password', to: 'members#update_password', via: :put, as: :update_password
+  match '/members/:id/toggle_admin', to: 'members#toggle_admin', via: :put, as: :toggle_admin
 
   root to: 'members#index'
 

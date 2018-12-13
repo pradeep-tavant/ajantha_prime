@@ -18,7 +18,9 @@
               <th>Phone</th>
               <th>Email</th>
               <th>Rented?</th>
-              <th>Actions</th>
+              <% if current_member.admin? %>
+                <th>Actions</th>
+              <% end %>
             </tr>
           </thead>
           <tbody>
@@ -29,19 +31,19 @@
                 <td><%= member.phone %></td>
                 <td><%= member.email %></td>
                 <td><%= member.rented? ? 'Yes' : 'No' %></td>
-                <td>
-                  <%= link_to member_path(member) do %>
-                    <i class="fa fa-user fa-fw" title="Open"></i>
-                  <% end %>
-                  <% if current_member.admin? %>
+                <% if current_member.admin? %>
+                  <td>
+                    <%= link_to member_path(member) do %>
+                      <i class="fa fa-user fa-fw" title="Open"></i>
+                    <% end %>
                     <%= link_to edit_member_path(member) do %>
                       <i class="fa fa-pencil fa-fw" title="Edit"></i>
                     <% end %>
                     <%#= link_to member_path(member), method: :delete, data: {confirm: "Are you sure want to remove this member?"} do %>
                       <!-- <i class="fa fa-trash-o fa-fw" title="Delete"></i> -->
                     <%# end %>
-                  <% end %>
-                </td>
+                  </td>
+                <% end %>
               </tr>
             <% end %>
           </tbody>

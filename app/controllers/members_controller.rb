@@ -1,7 +1,7 @@
 class MembersController < ApplicationController
   before_action :authenticate_member!
   before_action :set_member, only: [:show, :edit, :update, :destroy, :change_password, :update_password]
-  before_action :check_admin, except: [:show, :index, :change_password, :update_password]
+  before_action :check_admin, except: [:show, :index, :change_password, :update_password, :toggle_admin]
 
   # GET /members
   # GET /members.json
@@ -81,6 +81,18 @@ class MembersController < ApplicationController
     end
   end
 
+  def toggle_admin
+    respond_to do |format|
+      if current_member.update(member_params)
+        format.html { redirect_back(fallback_location: root_path, notice: "Admin view successfully #{current_member.admin? ? 'enabled' : 'disabled'}") }
+        format.json { render :show, status: :ok, location: current_member }
+      else
+        format.html { redirect_to root_path, notice: 'Something went wrong.' }
+        format.json { render json: current_member.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_member
@@ -96,6 +108,6 @@ class MembersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def member_params
-      params.require(:member).permit(:name, :block, :floor, :flat, :owner, :active, :rented, :email, :sec_email, :phone, :sec_phone, :password, :password_confirmation, :current_password, tenant_attributes: [:name, :email, :phone])
+      params.require(:member).permit(:name, :block, :floor, :flat, :owner, :active, :rented, :email, :sec_email, :phone, :sec_phone, :password, :password_confirmation, :current_password, :admin, tenant_attributes: [:name, :email, :phone])
     end
 end

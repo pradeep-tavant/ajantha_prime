@@ -49,5 +49,17 @@
     </ul>
     <!-- /.navbar-top-links -->
     <p class='fwhite pull-right mright20 mtop10'> <b>Login :</b> <%= current_member.login %> </p>
+    <% if current_member.admin_toggle? %>
+      <span class='fwhite pull-right mright20 mtop10' style="width: 85px;">
+        <b class="pull-left">Admin :</b> 
+        <%= form_tag(toggle_admin_path(current_member), method: :put) do %>
+          <label class="switch pull-right">
+            <%= hidden_field_tag "member[admin]", "0" %>
+            <%= check_box_tag "member[admin]", "1", current_member.admin?, onchange: "this.form.submit();" %>
+            <span class="slider round"></span>
+          </label>
+        <% end %>
+      </span>
+    <% end %>
   <% end %>
 </nav>

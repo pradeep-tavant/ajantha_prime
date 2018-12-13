@@ -3,7 +3,7 @@
   <head>
     <title>AjanthaPrime</title>
     <%= csrf_meta_tags %>
-
+    <%= favicon_link_tag asset_path('favicon.ico'), :rel => 'icon', :type => "image/x-icon" %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -22,7 +22,7 @@
     <footer class="footer">
       <div class="container text-center">
         <span class="text-muted">© 2018 Copyright:
-          <a href="https://ajanthaprime.org/"> ajanthaprime.org</a>
+          <a href="https://ajanthaprime.herokuapp.com"> ajanthaprime.herokuapp.com</a>
         </span>
       </div>
     </footer>
