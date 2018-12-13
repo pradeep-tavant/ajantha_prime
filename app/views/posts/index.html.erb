@@ -18,10 +18,13 @@
               <th>Status</th>
               <th>
                 Published?
-                <i class="fa fa-lightbulb-o fa-fw" title="Posts will be published only if approved by governing members"></i>
+                <i class="fa fa-lightbulb-o fa-fw" title="Posts will be visible to everyone only if published by governing members"></i>
               </th>
               <% if current_member.admin? %>
-                <th>Private</th>
+                <th>
+                  Private
+                  <i class="fa fa-lightbulb-o fa-fw" title="Private posts will be visible only to its author and the governing members"></i>
+                </th>
                 <th>Actions</th>
               <% end %>
             </tr>
