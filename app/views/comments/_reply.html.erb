@@ -8,7 +8,7 @@
             <strong><%= comment.member.name %></strong> <span class="text-muted"><%= comment.created_at.strftime("commented on %d/%b/%Y %I:%M%p") %></span>
           </div>
           <div class="panel-body">
-            <%= comment.body %>
+            <%= simple_format(comment.body) %>
             <% if @post.active? %>
               <a href="#" class="comment-reply pull-right">Reply</a>
             <% end %>

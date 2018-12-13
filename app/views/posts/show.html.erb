@@ -17,7 +17,7 @@
           <b>Published:</b> <%= @post.visible? ? 'Yes' : 'No' %>
         </div>
         <div class="panel-body">
-          <%= @post.description %>
+          <%= simple_format(@post.description) %>
         </div>
       </div>
 
