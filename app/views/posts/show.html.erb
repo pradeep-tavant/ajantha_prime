@@ -14,7 +14,7 @@
           </h3>
           <b>Status:</b> <%= @post.active? ? 'Open' : 'Closed' %>
           &nbsp;&nbsp;|&nbsp;&nbsp;
-          <b>Approved:</b> <%= @post.visible? ? 'Yes' : 'No' %>
+          <b>Published:</b> <%= @post.visible? ? 'Yes' : 'No' %>
         </div>
         <div class="panel-body">
           <%= @post.description %>

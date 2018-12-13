@@ -16,7 +16,10 @@
               <th>Author</th>
               <th>Posted Date</th>
               <th>Status</th>
-              <th>Approved?</th>
+              <th>
+                Published?
+                <i class="fa fa-lightbulb-o fa-fw" title="Posts will be published only if approved by governing members"></i>
+              </th>
               <% if current_member.admin? %>
                 <th>Private</th>
                 <th>Actions</th>
