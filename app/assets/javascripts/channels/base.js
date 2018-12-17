@@ -13,12 +13,18 @@ $.fn.dataTable.ext.search.push(
 );
 
 $(document).ready(function() {
-  var table = $('.dataTable').DataTable({
-    dom: 'lfBrtip',
-    buttons: [
-            'excel', 'pdf'
-        ]
-  });
+  var table;
+  if ($('.admin-view').length > 0) {
+    table = $('.dataTable.admin-view').DataTable({
+      dom: 'lfBrtip',
+      buttons: [
+              'excel', 'pdf'
+          ]
+    });
+  }
+  else {
+    table = $('.dataTable').DataTable();
+  }
   
   $('<label class="pull-right mleft20">' +
         'Floor:&nbsp;&nbsp;'+

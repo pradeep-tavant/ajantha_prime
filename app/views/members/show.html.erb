@@ -30,6 +30,11 @@
         </dl> -->
 
         <dl class="dl-horizontal">
+          <dt>Available for Rent?:</dt>
+          <dd><%= @member.available_for_rent? ? 'Yes' : 'No' %></dd>
+        </dl>
+
+        <dl class="dl-horizontal">
           <dt>Rented to someone?:</dt>
           <dd><%= @member.rented? ? 'Yes' : 'No' %></dd>
         </dl>

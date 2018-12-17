@@ -34,7 +34,24 @@
 </div> -->
 
 <div class="form-group">
-  <%= f.label :rented, 'Rented to someone?', class: "control-label col-sm-2" %>
+  <%= f.label :available_for_rent, class: "control-label col-sm-2" do %>
+    <span>
+      Available for Rent?:
+      <i class="fa fa-lightbulb-o fa-fw" title="Check this only when the flat is unoccupied or when tenant stays in notice period"></i>
+    </span>
+  <% end %>
+  <div class="col-sm-10">
+    <%= f.check_box :available_for_rent, class: "form-control", style: "width:34px" %> <br />
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :rented, class: "control-label col-sm-2" do %>
+  <span>
+    Rented to someone?:
+    <i class="fa fa-lightbulb-o fa-fw" title="Check this only when the flat is occupied by tenant"></i>
+  </span>
+  <% end %>
   <div class="col-sm-10">
     <%= f.check_box :rented, class: "form-control rented", style: "width:34px" %> <br />
   </div>
