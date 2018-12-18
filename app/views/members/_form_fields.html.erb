@@ -133,3 +133,12 @@
     </div>
   </div>
 <% end %>
+
+<% if current_member.admin_toggle? %>
+  <div class="form-group">
+    <%= f.label :admin, class: "control-label col-sm-2" %>
+    <div class="col-sm-10">
+      <%= f.check_box :admin, class: "form-control", style: "width:34px" %> <br />
+    </div>
+  </div>
+<% end %>
