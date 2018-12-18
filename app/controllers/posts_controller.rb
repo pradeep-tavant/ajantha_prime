@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_member!
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :publish]
   before_action :check_admin, except: [:new, :create, :show, :index]
 
   # GET /posts
@@ -53,6 +53,11 @@ class PostsController < ApplicationController
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def publish
+    @post.update_attribute(:visible, !@post.visible)
+    redirect_back(fallback_location: root_path, notice: "Post was successfully #{@post.visible? ? 'Published' : 'Unpublished'}")
   end
 
   # DELETE /posts/1

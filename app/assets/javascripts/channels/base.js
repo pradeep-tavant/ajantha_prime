@@ -1,12 +1,20 @@
 /* Custom filtering function which will filter based on block */
 $.fn.dataTable.ext.search.push(
   function( settings, data, dataIndex ) {
-    var block = $('#block').val();
-    var floor = $('#floor').val();
-    var flat = data[1];
-    console.log(floor);
-    if ( (block == undefined || block == "" || flat.indexOf(block) != -1) && (floor == undefined || floor == "" || flat.indexOf(floor) != -1) ) {
-      return true;
+    if ($('.members-wrapper').length > 0) {
+      var block = $('#block').val();
+      var floor = $('#floor').val();
+      var flat = data[1];
+      if ( (block == undefined || block == "" || flat.indexOf(block) != -1) && (floor == undefined || floor == "" || flat.indexOf(floor) != -1) ) {
+        return true;
+      }
+    }
+    else if ($('.posts-wrapper').length > 0) {
+      var active = $('#active').val();
+      var visible = $('#visible').val();
+      if ((active == undefined || active == "" || active == data[3]) && (visible == undefined || visible == "" || visible == data[4])) {
+        return true;
+      }
     }
     return false;
   }
@@ -44,7 +52,7 @@ $(document).ready(function() {
         '<option>A</option>'+
         '<option>B</option>'+
         '</select>'+
-        '</label>').appendTo(".dataTables_wrapper .dataTables_filter");
+        '</label>').appendTo(".members-wrapper .dataTables_wrapper .dataTables_filter");
 
   $('#block, #floor').change( function() {
     table.draw();
@@ -59,7 +67,26 @@ $(document).ready(function() {
     }
   });
 
-  $('.postsTable').DataTable();
+  $('<label class="pull-right mleft20">' +
+        'Published?:&nbsp;&nbsp;'+
+        '<select class="form-control" id="visible">'+
+        '<option value="">All</option>'+
+        '<option value="Yes">Published</option>'+
+        '<option value="No">Unpublished</option>'+
+        '</select>'+
+        '</label>'+
+        '<label class="pull-right mleft20">'+
+        'Status:&nbsp;&nbsp;'+
+        '<select class="form-control" id="active">'+
+        '<option value="">All</option>'+
+        '<option>Open</option>'+
+        '<option>Closed</option>'+
+        '</select>'+
+        '</label>').appendTo(".posts-wrapper .dataTables_wrapper .dataTables_filter");
+
+  $('#visible, #active').change( function() {
+    table.draw();
+  });
 
   $('.comment-reply').on('click', function() {
     $(this).text($(this).text() == 'Reply' ? 'Close' : 'Reply');

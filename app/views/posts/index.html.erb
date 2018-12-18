@@ -8,8 +8,8 @@
       </div>
       <!-- /.panel-heading -->
 
-      <div class="panel-body panel30">
-        <table class="postsTable table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+      <div class="panel-body panel30 posts-wrapper">
+        <table class="dataTable table table-striped table-bordered table-hover" cellspacing="0" width="100%">
           <thead>
             <tr>
               <th>Title</th>
@@ -18,13 +18,13 @@
               <th>Status</th>
               <th>
                 Published?
-                <i class="fa fa-lightbulb-o fa-fw" title="Posts will be visible to everyone only if published by governing members"></i>
+                <i class="fa fa-lightbulb-o fa-fw" title="Posts will be published to everyone only if approved by governing members"></i>
+              </th>
+              <th>
+                Private
+                <i class="fa fa-lightbulb-o fa-fw" title="Private posts will be visible only to its author and the governing members"></i>
               </th>
               <% if current_member.admin? %>
-                <th>
-                  Private
-                  <i class="fa fa-lightbulb-o fa-fw" title="Private posts will be visible only to its author and the governing members"></i>
-                </th>
                 <th>Actions</th>
               <% end %>
             </tr>
@@ -38,8 +38,8 @@
                 <td><%= post.created_at.strftime("%d/%b/%Y") %></td>
                 <td><%= post.active? ? 'Open' : 'Closed' %></td>
                 <td><%= post.visible? ? 'Yes' : 'No' %></td>
+                <td><%= post.private? ? 'Yes' : 'No' %></td>
                 <% if current_member.admin? %>
-                  <td><%= post.private? ? 'Yes' : 'No' %></td>
                   <td>
                     <%= link_to post_path(post) do %>
                       <i class="fa fa-bell fa-fw" title="Open"></i>
@@ -47,9 +47,14 @@
                     <%= link_to edit_post_path(post) do %>
                       <i class="fa fa-pencil fa-fw" title="Edit"></i>
                     <% end %>
-                    <%= link_to post, method: :delete, data: {confirm: "Are you sure want to remove this post?"} do %>
-                      <i class="fa fa-trash-o fa-fw" title="Delete"></i>
+                    <% unless post.private? %>
+                      <%= link_to publish_post_path(post), method: :put do %>
+                        <i class="fa <%=post.visible? ? 'fa-stop' : 'fa-play'%> fa-fw" title="<%= post.visible? ? 'Unpublish' : 'Publish'%>"></i>
+                      <% end %>
                     <% end %>
+                    <%#= link_to post, method: :delete, data: {confirm: "Are you sure want to remove this post?"} do %>
+                      <!-- <i class="fa fa-trash-o fa-fw" title="Delete"></i> -->
+                    <%# end %>
                   </td>
                 <% end %>
               </tr>

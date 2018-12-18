@@ -4,6 +4,13 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3><%= @post.title %>
+            <% if current_member.admin? && !@post.private? %>
+              <span class="pull-right">
+                <%= link_to publish_post_path(@post), method: :put do %>
+                  <i class="fa <%=@post.visible? ? 'fa-stop' : 'fa-play'%> fa-fw" title="<%= @post.visible? ? 'Unpublish' : 'Publish'%>"></i>
+                <% end %>
+              </span>
+            <% end %>
             <% if @post.member == current_member || current_member.admin? %>
               <span class="pull-right">
                 <%= link_to edit_post_path(@post) do %>
@@ -15,6 +22,8 @@
           <b>Status:</b> <%= @post.active? ? 'Open' : 'Closed' %>
           &nbsp;&nbsp;|&nbsp;&nbsp;
           <b>Published:</b> <%= @post.visible? ? 'Yes' : 'No' %>
+          &nbsp;&nbsp;|&nbsp;&nbsp;
+          <b>Author:</b> <%= @post.member.name %>
         </div>
         <div class="panel-body">
           <%= simple_format(@post.description) %>
