@@ -134,7 +134,7 @@
   </div>
 <% end %>
 
-<% if current_member.admin_toggle? %>
+<% if current_member && current_member.admin_toggle? %>
   <div class="form-group">
     <%= f.label :admin, class: "control-label col-sm-2" %>
     <div class="col-sm-10">
