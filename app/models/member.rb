@@ -3,8 +3,10 @@ class Member < ApplicationRecord
   friendly_id :custom_slug, use: [:slugged, :finders]
 
   has_one :tenant, dependent: :destroy
+  has_many :vehicles, dependent: :destroy
   has_many :posts
   accepts_nested_attributes_for :tenant, allow_destroy: true
+  accepts_nested_attributes_for :vehicles, allow_destroy: true
 
   validates_associated :tenant, if: Proc.new { |m| m.rented? }
 

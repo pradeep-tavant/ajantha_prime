@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>
+          <% if params[:all].present? %>
+            All Vehicles
+          <% else %>
+            My Vehicle(s)
+          <% end %>
+          <%= link_to 'Add Your Vehicle', new_vehicle_path, class: "btn btn-default pull-right" %>
+        </h3>
+      </div>
+      <!-- /.panel-heading -->
+
+      <div class="panel-body panel30 vehicles-wrapper">
+        <table class="dataTable table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+          <thead>
+            <tr>
+              <th>Vehicle Name</th>
+              <th>Reg Number</th>
+              <th>Category</th>
+              <th>
+                <% if params[:all].present? %>
+                  Flat
+                <% else %>
+                  Actions
+                <% end %>
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @vehicles.each do |vehicle| %>
+              <tr>
+                <td><%= vehicle.name %></td>
+                <td><%= vehicle.number %></td>
+                <td><%= vehicle.category %></td>
+                <td>
+                  <% if params[:all].present? %>
+                    <%= link_to vehicle.member.login, member_path(vehicle.member) %>
+                  <% else %>
+                    <%= link_to edit_vehicle_path(vehicle) do %>
+                      <i class="fa fa-pencil fa-fw" title="Edit"></i>
+                    <% end %>
+                    <%= link_to vehicle, method: :delete, data: {confirm: "Are you sure?"} do %>
+                      <i class="fa fa-trash-o fa-fw" title="Delete"></i>
+                    <% end %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

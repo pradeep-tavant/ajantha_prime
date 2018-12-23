@@ -16,6 +16,15 @@ $.fn.dataTable.ext.search.push(
         return true;
       }
     }
+    else if ($('.vehicles-wrapper').length > 0) {
+      var category = $('#category').val();
+      if (category == undefined || category == "" || category == data[2]) {
+        return true;
+      }
+    }
+    else {
+      return true;
+    }
     return false;
   }
 );
@@ -93,4 +102,19 @@ $(document).ready(function() {
     $(this).closest('.comment').find('.reply-form').toggle();
     return false;
   });
+
+  $('<label class="pull-right mleft20">'+
+        'Category:&nbsp;&nbsp;'+
+        '<select class="form-control" id="category">'+
+        '<option value="">All</option>'+
+        '<option>Bike/Scooter</option>'+
+        '<option>Car</option>'+
+        '</select>'+
+        '</label>').appendTo(".vehicles-wrapper .dataTables_wrapper .dataTables_filter");
+
+  $('#category').change( function() {
+    table.draw();
+  });
+
+
 });
