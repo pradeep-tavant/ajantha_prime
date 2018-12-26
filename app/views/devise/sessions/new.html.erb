@@ -2,8 +2,12 @@
   <h2 class="page-header">Please Login</h2>
   <div>
     <%= f.label :login, "Flat / Login" %><br />
-    <%#= f.text_field :login, autofocus: true, class: "form-control",placeholder: "eg. FOF03-B or tf11-a", autocomplete: :off %>
-    <%= f.select(:login, flats_list, {prompt: 'Select your flat'}, {class: "form-control"}) %> <br />
+    <%= f.text_field :login, autofocus: true, class: "form-control",placeholder: "eg. FOF03-B or tf11-a", autocomplete: :off, list: "flats-list" %>
+    <datalist id="flats-list">
+      <% flats_list.each do |flat| %>
+        <option value="<%= flat %>" />
+      <% end %>
+    </datalist> <br />
   </div>
 
   <div>
