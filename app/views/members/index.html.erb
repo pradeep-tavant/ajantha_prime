@@ -44,6 +44,11 @@
                     <%#= link_to member_path(member), method: :delete, data: {confirm: "Are you sure want to remove this member?"} do %>
                       <!-- <i class="fa fa-trash-o fa-fw" title="Delete"></i> -->
                     <%# end %>
+                    <% if current_member.admin_toggle? %>
+                      <%= link_to reset_password_path(member), method: :put do %>
+                        <i class="fa fa-refresh fa-fw" title="Reset Password"></i>
+                      <% end %>
+                    <% end %>
                   </td>
                 <% end %>
               </tr>

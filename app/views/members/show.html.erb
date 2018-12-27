@@ -4,10 +4,17 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3><%= @member.name %>
-            <% if current_member.admin? or current_member == @member %>
+            <% if current_member.admin? || current_member == @member %>
               <span class="pull-right">
                 <%= link_to edit_member_path(@member) do %>
                   <i class="fa fa-pencil-square-o fa-fw" title="Edit"></i>
+                <% end %>
+              </span>
+            <% end %>
+            <% if current_member.admin? && current_member.admin_toggle? %>
+              <span class="pull-right">
+                <%= link_to reset_password_path(@member), method: :put do %>
+                  <i class="fa fa-refresh fa-fw" title="Reset Password"></i>
                 <% end %>
               </span>
             <% end %>

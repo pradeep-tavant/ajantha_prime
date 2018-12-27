@@ -39,6 +39,8 @@
                 <td>
                   <% if params[:all].present? %>
                     <%= link_to vehicle.member.login, member_path(vehicle.member) %>
+                    &nbsp;-&nbsp;
+                    <%= vehicle.member.name %>
                   <% else %>
                     <%= link_to edit_vehicle_path(vehicle) do %>
                       <i class="fa fa-pencil fa-fw" title="Edit"></i>

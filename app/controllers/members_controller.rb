@@ -1,6 +1,6 @@
 class MembersController < ApplicationController
   before_action :authenticate_member!
-  before_action :set_member, only: [:show, :edit, :update, :destroy, :change_password, :update_password]
+  before_action :set_member, only: [:show, :edit, :update, :destroy, :change_password, :update_password, :reset_password]
   before_action :check_admin, except: [:show, :index, :change_password, :update_password, :toggle_admin]
 
   # GET /members
@@ -85,13 +85,20 @@ class MembersController < ApplicationController
   def toggle_admin
     respond_to do |format|
       if current_member.update(member_params)
-        format.html { redirect_back(fallback_location: root_path, notice: "Admin view successfully #{current_member.admin? ? 'enabled' : 'disabled'}") }
+        format.html { redirect_back(fallback_location: root_path, notice: "Admin view successfully #{current_member.admin? ? 'enabled' : 'disabled'}.") }
         format.json { render :show, status: :ok, location: current_member }
       else
         format.html { redirect_to root_path, notice: 'Something went wrong.' }
         format.json { render json: current_member.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def reset_password
+    @member.password = "ajanthaprime"
+    @member.password_confirmation = "ajanthaprime"
+    @member.save!
+    redirect_back(fallback_location: root_path, notice: "Password reset done for #{@member.name}.")
   end
 
   private
