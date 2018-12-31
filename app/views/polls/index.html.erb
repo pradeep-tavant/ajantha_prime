@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>Polls
+        <%= link_to 'Add New Poll', new_poll_path, class: "btn btn-default pull-right" %>
+        </h3>
+      </div>
+    </div>
+  </div>
+</div>
+<% content_for(:page_header) {"Participate in our polls right now!"} %>
+
+<% @polls.each do |poll| %>
+  <div class="well">
+    <h2><%= poll.topic %><small>(voted: <%= poll.votes_summary %>)</small></h2>
+    <p><%= link_to 'Participate!', poll_path(poll), class: 'btn btn-primary btn-lg block' %></p>
+
+    <div class="btn-group">
+      <%= link_to 'Edit', edit_poll_path(poll), class: 'btn btn-default' %>
+      <%= link_to 'Delete', poll_path(poll),
+                  method: :delete,
+                  class: 'btn btn-danger', data: {confirm: 'Are you sure?'} %>
+    </div>
+  </div>
+<% end %>

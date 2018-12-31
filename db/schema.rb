@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181223183257) do
+ActiveRecord::Schema.define(version: 20181231120033) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,12 @@ ActiveRecord::Schema.define(version: 20181223183257) do
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
   end
 
+  create_table "polls", force: :cascade do |t|
+    t.text "topic"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -108,4 +114,25 @@ ActiveRecord::Schema.define(version: 20181223183257) do
     t.index ["member_id"], name: "index_vehicles_on_member_id"
   end
 
+  create_table "vote_options", force: :cascade do |t|
+    t.string "title"
+    t.bigint "poll_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["poll_id"], name: "index_vote_options_on_poll_id"
+  end
+
+  create_table "votes", force: :cascade do |t|
+    t.bigint "member_id"
+    t.bigint "vote_option_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id"], name: "index_votes_on_member_id"
+    t.index ["vote_option_id", "member_id"], name: "index_votes_on_vote_option_id_and_member_id", unique: true
+    t.index ["vote_option_id"], name: "index_votes_on_vote_option_id"
+  end
+
+  add_foreign_key "vote_options", "polls"
+  add_foreign_key "votes", "members"
+  add_foreign_key "votes", "vote_options"
 end

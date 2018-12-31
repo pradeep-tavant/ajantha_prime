@@ -95,6 +95,19 @@
           <% end %>
         <% end %>
 
+        <div class="panel-heading mbottom20">
+          Participation in polls
+        </div>
+
+
+        <% @member.vote_options.each do |option| %>
+          <div class="panel panel-default">
+            <div class="panel-heading"><%= link_to option.poll.topic, poll_path(option.poll) %></div>
+            <div class="panel-body">
+              <%= option.title %>
+            </div>
+          </div>
+        <% end %>
       </div>
 
       <%= link_to '<< Members', members_path, class: "btn btn-default" %>

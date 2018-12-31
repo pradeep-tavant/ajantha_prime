@@ -5,6 +5,9 @@ class Member < ApplicationRecord
   has_one :tenant, dependent: :destroy
   has_many :vehicles, dependent: :destroy
   has_many :posts
+  has_many :votes, dependent: :destroy
+  has_many :vote_options, through: :votes
+
   accepts_nested_attributes_for :tenant, allow_destroy: true
   accepts_nested_attributes_for :vehicles, allow_destroy: true
 
@@ -18,6 +21,10 @@ class Member < ApplicationRecord
   validates :name, :block, :floor, :flat, :owner, :phone, presence: true
   validates :password_confirmation, presence: true, on: :create
   validates_uniqueness_of :flat, scope: %i[floor block], message: "is already registered"
+
+  def voted_for?(poll)
+    votes.any? {|v| v.vote_option.poll == poll}
+  end
 
   def floor_name
     case floor

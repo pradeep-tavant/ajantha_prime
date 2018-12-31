@@ -14,8 +14,13 @@
           <%= link_to "Vehicles", vehicles_path(all: true), class: "#{(controller_name=='vehicles' && params[:all].present?) ? 'active' : ''} navbar-link" %>
         </li>
         <% if current_member.admin? %>
-          <li class = "<%= (controller_name=='posts') ? '' : ''%>">
+          <li>
             <%= link_to "Posts", posts_path, class: "#{(controller_name=='posts') ? 'active' : ''} navbar-link" %>
+          </li>
+        <% end %>
+        <% if current_member.admin_toggle? %>
+          <li>
+            <%= link_to "Polls", polls_path, class: "#{(controller_name=='polls') ? 'active' : ''} navbar-link" %>
           </li>
         <% end %>
       </ul>

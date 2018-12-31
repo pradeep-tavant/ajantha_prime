@@ -54,6 +54,7 @@ GEM
       sass (>= 3.3.4)
     builder (3.2.3)
     byebug (10.0.2)
+    cocoon (1.2.12)
     concurrent-ruby (1.0.5)
     crass (1.0.4)
     devise (4.5.0)
@@ -187,6 +188,7 @@ DEPENDENCIES
   acts_as_commentable_with_threading
   bootstrap-sass
   byebug
+  cocoon
   devise
   font-awesome-sass (~> 4.7.0)
   friendly_id (~> 5.2.0)
