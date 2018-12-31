@@ -39,6 +39,11 @@ $(document).ready(function() {
           ]
     });
   }
+  else if ($('.vehicles-wrapper').length > 0) {
+    table = $('.dataTable').DataTable({
+      "order": [[ 3, 'asc' ]]
+    })
+  }
   else {
     table = $('.dataTable').DataTable();
   }
