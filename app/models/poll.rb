@@ -1,4 +1,7 @@
 class Poll < ApplicationRecord
+  extend FriendlyId
+  friendly_id :topic, use: [:slugged, :finders]
+
   has_many :vote_options, dependent: :destroy
   accepts_nested_attributes_for :vote_options, :reject_if => :all_blank, :allow_destroy => true
 

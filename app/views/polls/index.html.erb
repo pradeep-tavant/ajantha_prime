@@ -2,25 +2,57 @@
   <div class="col-lg-12">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3>Polls
+        <h3>Opinon Polls
         <%= link_to 'Add New Poll', new_poll_path, class: "btn btn-default pull-right" %>
         </h3>
+      </div>
+      <!-- /.panel-heading -->
+
+      <div class="panel-body panel30 polls-wrapper">
+        <table class="dataTable table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+          <thead>
+            <tr>
+              <th>Topic</th>
+              <th>Votes Count</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Status</th>
+              <% if current_member.admin? %>
+                <th>Actions</th>
+              <% end %>
+            </tr>
+          </thead>
+          <tbody>
+            <% @polls.each do |poll| %>
+              <tr>
+                <td><%= poll.topic %></td>
+                <td><%= poll.votes_summary %></td>
+                <td><%= poll.start_date.strftime("%d/%b/%Y") %></td>
+                <td><%= poll.end_date.strftime("%d/%b/%Y") %></td>
+                <td>
+                  <% if poll.end_date < Date.today %>
+                    Closed
+                  <% elsif !poll.active? %>
+                    Inactive
+                  <% else %>
+                    <%= link_to (current_member.voted_for?(poll) ? 'Voted' : 'Participate!'), poll_path(poll), class: 'btn btn-default' %>
+                  <% end %>
+                </td>
+                <% if current_member.admin? %>
+                  <td>
+                    <%= link_to edit_poll_path(poll) do %>
+                      <i class="fa fa-pencil fa-fw" title="Edit"></i>
+                    <% end %>
+                    <%= link_to poll_path(poll), method: :delete, data: {confirm: 'Are you sure want to remove this opinion poll?'} do %>
+                      <i class="fa fa-trash-o fa-fw" title="Delete"></i>
+                    <% end %>
+                  </td>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
 </div>
-<% content_for(:page_header) {"Participate in our polls right now!"} %>
-
-<% @polls.each do |poll| %>
-  <div class="well">
-    <h2><%= poll.topic %><small>(voted: <%= poll.votes_summary %>)</small></h2>
-    <p><%= link_to 'Participate!', poll_path(poll), class: 'btn btn-primary btn-lg block' %></p>
-
-    <div class="btn-group">
-      <%= link_to 'Edit', edit_poll_path(poll), class: 'btn btn-default' %>
-      <%= link_to 'Delete', poll_path(poll),
-                  method: :delete,
-                  class: 'btn btn-danger', data: {confirm: 'Are you sure?'} %>
-    </div>
-  </div>
-<% end %>

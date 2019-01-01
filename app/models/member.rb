@@ -26,6 +26,10 @@ class Member < ApplicationRecord
     votes.any? {|v| v.vote_option.poll == poll}
   end
 
+  def voted_option(poll)
+    vote_options.where(poll: poll).first
+  end
+
   def floor_name
     case floor
     when 0

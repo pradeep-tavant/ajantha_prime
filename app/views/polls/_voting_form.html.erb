@@ -1,13 +1,17 @@
-<%= form_tag votes_path, method: :post, id: 'voting_form' do %>
+<%= form_tag votes_path, method: :post, id: 'voting_form', class: "form-horizontal" do %>
   <%= hidden_field_tag 'poll[id]', @poll.id %>
 
   <%= render partial: 'polls/vote_option', collection: @poll.vote_options, as: :option %>
 
   <p><b>Total votes: <%= @poll.votes_summary %></b></p>
 
-  <% if current_member.voted_for?(@poll) %>
-    <p>You have already voted!</p>
-  <% else %>
-    <%= submit_tag 'Vote', class: 'btn btn-lg btn-primary' %>
-  <% end %>
+  <div>
+    <div class="col-sm-12" style="text-align: center;">
+      <% if current_member.voted_for?(@poll) %>
+        <p>You have already voted for this opinion poll !</b></p>
+      <% else %>
+        <%= submit_tag 'Vote', class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
 <% end %>

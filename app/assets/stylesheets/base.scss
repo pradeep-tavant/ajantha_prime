@@ -162,5 +162,6 @@ input:checked + .slider:before {
 }
 
 .progress {
-  background-image: linear-gradient(to bottom, #bbb 0%, #ccc 100%)
+  background-image: linear-gradient(to bottom, #bbb 0%, #ccc 100%);
+  .progress-bar { background-color: black; }
 }

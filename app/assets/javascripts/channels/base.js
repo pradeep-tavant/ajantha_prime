@@ -30,18 +30,37 @@ $.fn.dataTable.ext.search.push(
 );
 
 $(document).ready(function() {
+
+  $('.datepicker').datepicker({
+    autoclose: true,
+    format: 'dd/M/yyyy',
+    startDate: new Date()
+  });
+
   var table;
   if ($('.admin-view').length > 0) {
     table = $('.dataTable.admin-view').DataTable({
+      columnDefs: [{ orderable: false, "targets": 6 }],
       dom: 'lfBrtip',
       buttons: [
               'excel', 'pdf'
           ]
     });
   }
+  else if ($('.posts-wrapper').length > 0) {
+    table = $('.dataTable').DataTable({
+      columnDefs: [{ orderable: false, "targets": 6 }]
+    })
+  }
   else if ($('.vehicles-wrapper').length > 0) {
     table = $('.dataTable').DataTable({
-      "order": [[ 3, 'asc' ]]
+      order: [[ 3, 'asc' ]]
+    })
+  }
+  else if ($('.polls-wrapper').length > 0) {
+    table = $('.dataTable').DataTable({
+      order: [[ 2, 'desc' ]],
+      columnDefs: [{ orderable: false, "targets": [4,5] }]
     })
   }
   else {

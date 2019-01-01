@@ -1,7 +1,13 @@
 <div class="nested-fields">
   <div class="form-group">
-    <%= f.label :title %>
-    <%= f.text_field :title, class: 'form-control', required: true %>
+    <%= f.label :title, "Option", class: "control-label col-sm-2" %>
+    <div class="col-sm-8">
+      <%= f.text_field :title, class: 'form-control' %>
+    </div>
+    <div class="col-sm-2">
+      <%= link_to_remove_association f do %>
+        <i class="fa fa-window-close fa-fw" title="Remove Option"></i>
+      <% end %>
+    </div>
   </div>
-  <%= link_to_remove_association "remove option", f %>
 </div>

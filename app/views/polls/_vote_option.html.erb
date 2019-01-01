@@ -1,9 +1,12 @@
 <div class="form-group">
-  <%= content_tag(:label) do %>
-    <% unless current_member.voted_for?(@poll) %>
-      <%= radio_button_tag 'vote_option[id]', option.id %>
-    <% end %>
-    <%= option.title %>
-  <% end %>
-  <%= visualize_votes_for option %>
+  <dl class="dl-horizontal">
+    <dt>
+      <%= radio_button_tag 'vote_option[id]', option.id, (current_member.voted_option(@poll).try(:id).to_i == option.id), disabled: current_member.voted_for?(@poll) %>
+    </dt>
+    <dd>
+      <%= label_tag option.title %>
+      <% if current_member.voted_for?(@poll) %>
+        <%= visualize_votes_for option %>
+      <% end %>
+    </dd>
 </div>

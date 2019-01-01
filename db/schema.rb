@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181231120033) do
+ActiveRecord::Schema.define(version: 20190101085608) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,11 @@ ActiveRecord::Schema.define(version: 20181231120033) do
     t.text "topic"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "active", default: true
+    t.date "start_date"
+    t.date "end_date"
+    t.string "slug", null: false
+    t.index ["slug"], name: "index_polls_on_slug", unique: true
   end
 
   create_table "posts", force: :cascade do |t|
@@ -90,7 +95,9 @@ ActiveRecord::Schema.define(version: 20181231120033) do
     t.datetime "updated_at", null: false
     t.boolean "active", default: true
     t.boolean "visible", default: false
+    t.string "slug", null: false
     t.index ["member_id"], name: "index_posts_on_member_id"
+    t.index ["slug"], name: "index_posts_on_slug", unique: true
   end
 
   create_table "tenants", force: :cascade do |t|

@@ -20,7 +20,7 @@
         <% end %>
         <% if current_member.admin_toggle? %>
           <li>
-            <%= link_to "Polls", polls_path, class: "#{(controller_name=='polls') ? 'active' : ''} navbar-link" %>
+            <%= link_to "Opinion Polls", polls_path, class: "#{(controller_name=='polls') ? 'active' : ''} navbar-link" %>
           </li>
         <% end %>
       </ul>

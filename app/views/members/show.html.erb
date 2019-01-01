@@ -95,18 +95,16 @@
           <% end %>
         <% end %>
 
-        <div class="panel-heading mbottom20">
-          Participation in polls
-        </div>
-
-
-        <% @member.vote_options.each do |option| %>
-          <div class="panel panel-default">
-            <div class="panel-heading"><%= link_to option.poll.topic, poll_path(option.poll) %></div>
-            <div class="panel-body">
-              <%= option.title %>
-            </div>
+        <% if @member.votes.length > 0 %>
+          <div class="panel-heading mbottom20">
+            Participation in Opinion Polls:
           </div>
+          <% @member.vote_options.each do |option| %>
+            <dl class="dl-horizontal">
+              <dt><%= link_to option.poll.topic, poll_path(option.poll) %></dt>
+              <dd><%= option.title %></dd>
+            </dl>
+          <% end %>
         <% end %>
       </div>
 
