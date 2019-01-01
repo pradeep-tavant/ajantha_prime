@@ -63,6 +63,11 @@ $(document).ready(function() {
       columnDefs: [{ orderable: false, "targets": [4,5] }]
     })
   }
+  else if ($('.facilities-wrapper').length > 0) {
+    table = $('.dataTable').DataTable({
+      columnDefs: [{ orderable: false, "targets": 8 }]
+    })
+  }
   else {
     table = $('.dataTable').DataTable();
   }

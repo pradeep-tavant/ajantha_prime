@@ -17,6 +17,9 @@
           <li>
             <%= link_to "Posts", posts_path, class: "#{(controller_name=='posts') ? 'active' : ''} navbar-link" %>
           </li>
+          <li>
+            <%= link_to "Facilities", facilities_path, class: "#{(controller_name=='facilities') ? 'active' : ''} navbar-link" %>
+          </li>
         <% end %>
         <% if current_member.admin_toggle? %>
           <li>
