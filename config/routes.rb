@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   match '/members/:id/reset_password', to: 'members#reset_password', via: :put, as: :reset_password
 
   match '/posts/:id/publish', to: 'posts#publish', via: :put, as: :publish_post
+  match '/all_transactions', to: 'transactions#all', via: :get, as: :all_transactions
 
   root to: 'members#index'
 

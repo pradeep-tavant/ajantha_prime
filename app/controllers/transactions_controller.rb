@@ -8,6 +8,16 @@ class TransactionsController < ApplicationController
     @transactions = current_member.transactions
   end
 
+  def all
+    unless current_member.admin?
+      flash[:error] = "You do not have access for this operation"
+      redirect_to root_path
+    else
+      @transactions = Transaction.all
+      render action: 'index'
+    end
+  end
+
   # GET /transactions/1
   # GET /transactions/1.json
   def show
@@ -78,6 +88,6 @@ class TransactionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transaction_params
-      params.require(:transaction).permit(:transaction_id, :amount_paid, :on_date, :category, :description, :member_id)
+      params.require(:transaction).permit(:transaction_id, :amount_paid, :on_date, :category, :description, :member_id, :status)
     end
 end

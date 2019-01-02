@@ -15,6 +15,9 @@
         </li>
         <% if current_member.admin? %>
           <li>
+            <%= link_to "Transactions", all_transactions_path, class: "#{(controller_name=='transactions') ? 'active' : ''} navbar-link" %>
+          </li>
+          <li>
             <%= link_to "Posts", posts_path, class: "#{(controller_name=='posts') ? 'active' : ''} navbar-link" %>
           </li>
           <li>

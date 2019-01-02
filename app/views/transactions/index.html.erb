@@ -3,7 +3,11 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3>
+          <% if params[:action] == 'all' %>
+            Transactions
+          <% else %>
             My Transaction(s)
+          <% end %>
           <%= link_to 'Add My Transaction', new_transaction_path, class: "btn btn-default pull-right" %>
         </h3>
       </div>
@@ -17,6 +21,10 @@
               <th>Amount Paid(Rs.)</th>
               <th>Date Paid</th>
               <th>Category</th>
+              <th>Payment Status</th>
+              <% if current_member.admin? %>
+                <th>Flat</th>
+              <% end %>
               <th>Actions</th>
             </tr>
           </thead>
@@ -28,13 +36,17 @@
                 <td><%= transaction.amount_paid %></td>
                 <td><%= transaction.on_date.strftime("%d/%b/%Y") %></td>
                 <td><%= transaction.category %></td>
+                <td><%= transaction.status %></td>
+                <% if current_member.admin? %>
+                  <td><%= link_to transaction.member.login, member_path(transaction.member) %></td>
+                <% end %>
                 <td>
                   <%= link_to edit_transaction_path(transaction) do %>
                     <i class="fa fa-pencil fa-fw" title="Edit"></i>
                   <% end %>
-                  <%= link_to transaction, method: :delete, data: { confirm: 'Are you sure want to delate this transaction entry?' } do %>
-                    <i class="fa fa-trash-o fa-fw" title="Delete"></i>
-                  <% end %>
+                  <%#= link_to transaction, method: :delete, data: { confirm: 'Are you sure want to delate this transaction entry?' } do %>
+                    <!-- <i class="fa fa-trash-o fa-fw" title="Delete"></i> -->
+                  <%# end %>
                 </td>
               </tr>
             <% end %>
