@@ -34,7 +34,8 @@ $(document).ready(function() {
   $('.datepicker').datepicker({
     autoclose: true,
     format: 'dd/M/yyyy',
-    startDate: new Date()
+    orientation: "bottom left"
+    // startDate: new Date()
   });
 
   var table;
@@ -75,6 +76,11 @@ $(document).ready(function() {
     })
   }
   else if ($('.facilities-wrapper .admin-view').length > 0) {
+    table = $('.dataTable').DataTable({
+      columnDefs: [{ orderable: false, "targets": -1 }]
+    })
+  }
+  else if ($('.transactions-wrapper').length > 0) {
     table = $('.dataTable').DataTable({
       columnDefs: [{ orderable: false, "targets": -1 }]
     })

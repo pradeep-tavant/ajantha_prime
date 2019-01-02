@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>
+          <% if params[:all].present? %>
+            All Tranasctions
+          <% else %>
+            My Tranasction(s)
+          <% end %>
+          <%= link_to 'Add My Transaction', new_transaction_path, class: "btn btn-default pull-right" %>
+        </h3>
+      </div>
+      <!-- /.panel-heading -->
+
+      <div class="panel-body panel30 transactions-wrapper">
+        <table class="dataTable table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+          <thead>
+            <tr>
+              <th>Transaction</th>
+              <th>Amount Paid(Rs.)</th>
+              <th>Date Paid</th>
+              <th>Category</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @transactions.each do |transaction| %>
+              <tr>
+                <td><%= link_to transaction.transaction_id, transaction %></td>
+                <td><%= transaction.amount_paid %></td>
+                <td><%= transaction.on_date.strftime("%d/%b/%Y") %></td>
+                <td><%= transaction.category %></td>
+                <td>
+                  <%= link_to edit_transaction_path(transaction) do %>
+                    <i class="fa fa-pencil fa-fw" title="Edit"></i>
+                  <% end %>
+                  <%= link_to transaction, method: :delete, data: { confirm: 'Are you sure want to delate this transaction entry?' } do %>
+                    <i class="fa fa-trash-o fa-fw" title="Delete"></i>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

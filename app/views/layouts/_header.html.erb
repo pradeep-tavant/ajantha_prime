@@ -45,6 +45,12 @@
             <% end %>
           </li>
           <li>
+            <%= link_to transactions_path do %>
+              <i class="fa fa-money fa-fw"></i>
+              My Transaction(s)
+            <% end %>
+          </li>
+          <li>
             <%= link_to change_password_path(current_member) do %>
               <i class="fa fa-key fa-fw"></i>
               Change Password
