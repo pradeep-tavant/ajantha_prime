@@ -9,7 +9,7 @@
       <!-- /.panel-heading -->
 
       <div class="panel-body panel30 posts-wrapper">
-        <table class="dataTable table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+        <table class="dataTable table table-striped table-bordered table-hover <%= current_member.admin? ? 'admin-view' : '' %>" cellspacing="0" width="100%">
           <thead>
             <tr>
               <th>Title</th>

@@ -38,18 +38,23 @@ $(document).ready(function() {
   });
 
   var table;
-  if ($('.admin-view').length > 0) {
-    table = $('.dataTable.admin-view').DataTable({
-      columnDefs: [{ orderable: false, "targets": 6 }],
+  if ($('.members-wrapper .admin-view').length > 0) {
+    table = $('.dataTable').DataTable({
+      columnDefs: [{ orderable: false, "targets": -1 }],
       dom: 'lfBrtip',
       buttons: [
               'excel', 'pdf'
           ]
     });
   }
-  else if ($('.posts-wrapper').length > 0) {
+  else if ($('.posts-wrapper .admin-view').length > 0) {
     table = $('.dataTable').DataTable({
-      columnDefs: [{ orderable: false, "targets": 6 }]
+      columnDefs: [{ orderable: false, "targets": -1 }]
+    })
+  }
+  else if ($('.vehicles-wrapper').length > 0 && window.location.search == '') {
+    table = $('.dataTable').DataTable({
+      columnDefs: [{ orderable: false, "targets": -1 }]
     })
   }
   else if ($('.vehicles-wrapper').length > 0) {
@@ -57,15 +62,21 @@ $(document).ready(function() {
       order: [[ 3, 'asc' ]]
     })
   }
+  else if ($('.polls-wrapper .admin-view').length > 0) {
+    table = $('.dataTable').DataTable({
+      order: [[ 2, 'desc' ]],
+      columnDefs: [{ orderable: false, "targets": [-1,-2] }]
+    })
+  }
   else if ($('.polls-wrapper').length > 0) {
     table = $('.dataTable').DataTable({
       order: [[ 2, 'desc' ]],
-      columnDefs: [{ orderable: false, "targets": [4,5] }]
+      columnDefs: [{ orderable: false, "targets": [-1] }]
     })
   }
-  else if ($('.facilities-wrapper').length > 0) {
+  else if ($('.facilities-wrapper .admin-view').length > 0) {
     table = $('.dataTable').DataTable({
-      columnDefs: [{ orderable: false, "targets": 8 }]
+      columnDefs: [{ orderable: false, "targets": -1 }]
     })
   }
   else {

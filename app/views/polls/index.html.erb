@@ -3,13 +3,15 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3>Opinon Polls
-        <%= link_to 'Add New Poll', new_poll_path, class: "btn btn-default pull-right" %>
+          <% if current_member.admin? %>
+            <%= link_to 'Add New Poll', new_poll_path, class: "btn btn-default pull-right" %>
+          <% end %>
         </h3>
       </div>
       <!-- /.panel-heading -->
 
       <div class="panel-body panel30 polls-wrapper">
-        <table class="dataTable table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+        <table class="dataTable table table-striped table-bordered table-hover <%= current_member.admin? ? 'admin-view' : '' %>" cellspacing="0" width="100%">
           <thead>
             <tr>
               <th>Topic</th>

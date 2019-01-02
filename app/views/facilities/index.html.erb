@@ -9,8 +9,8 @@
         </h3>
       </div>
       <!-- /.panel-heading -->
-      <div class="panel-body panel30 members-wrapper">
-        <table class="dataTable table table-striped table-bordered facilities-wrapper" cellspacing="0" width="100%">
+      <div class="panel-body panel30 facilities-wrapper">
+        <table class="dataTable table table-striped table-bordered table-hover <%= current_member.admin? ? 'admin-view' : '' %>" cellspacing="0" width="100%">
           <thead>
             <tr>
               <th>Name</th>
@@ -18,10 +18,11 @@
               <th>Designation</th>
               <th>Phone</th>
               <th>Email</th>
-              <th>Address</th>
               <th>Shift</th>
               <th>Active</th>
-              <th>Actions</th>
+              <% if current_member.admin? %>
+                <th>Actions</th>
+              <% end %>
             </tr>
           </thead>
 
@@ -29,13 +30,12 @@
             <% @facilities.each do |facility| %>
               <tr>
                 <td><%= link_to facility.name, facility_path(facility) %></td>
-                <td><%= facility.category %></td>
+                <td><%= facility.category.titleize %></td>
                 <td><%= facility.designation %></td>
                 <td><%= facility.phone %></td>
                 <td><%= facility.email %></td>
-                <td><%= facility.address %></td>
-                <td><%= facility.shift %></td>
-                <td><%= facility.active %></td>
+                <td><%= facility.shift? ? 'Day' : 'Night' %></td>
+                <td><%= facility.active? ? 'Yes' : 'No' %></td>
                 <% if current_member.admin? %>
                   <td>
                     <%= link_to edit_facility_path(facility) do %>

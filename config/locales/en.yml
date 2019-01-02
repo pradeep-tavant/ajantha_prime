@@ -31,3 +31,11 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    attributes:
+      member:
+        password_confirmation: "Confirm Password"
+      vehicle:
+        name: "Vehicle Name"
+        number: "Reg Number"
+        category: "Vehicle Type"
