@@ -3,11 +3,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3>
-          <% if params[:all].present? %>
-            All Tranasctions
-          <% else %>
-            My Tranasction(s)
-          <% end %>
+            My Transaction(s)
           <%= link_to 'Add My Transaction', new_transaction_path, class: "btn btn-default pull-right" %>
         </h3>
       </div>
