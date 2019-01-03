@@ -3,5 +3,5 @@ class Transaction < ApplicationRecord
 
   validates :transaction_id, :amount_paid, :on_date, :category, presence: true
   enum category: ["Maintenance"]
-  enum status: ["NotVerified", "Verified", "Failed"]
+  enum status: ["NotVerified", "Verified", "NotReceived", "Failed"]
 end
