@@ -50,6 +50,7 @@ $(document).ready(function() {
   }
   else if ($('.posts-wrapper .admin-view').length > 0) {
     table = $('.dataTable').DataTable({
+      order: [[ 2, 'desc' ]],
       columnDefs: [{ orderable: false, "targets": -1 }]
     })
   }

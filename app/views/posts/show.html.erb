@@ -24,6 +24,8 @@
           <b>Published:</b> <%= @post.visible? ? 'Yes' : 'No' %>
           &nbsp;&nbsp;|&nbsp;&nbsp;
           <b>Author:</b> <%= @post.member.name %>
+          &nbsp;&nbsp;|&nbsp;&nbsp;
+          <b>Posted Date:</b> <%= @post.on_date.strftime("%d/%b/%Y") %>
         </div>
         <div class="panel-body">
           <%= simple_format(@post.description) %>

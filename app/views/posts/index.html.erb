@@ -35,7 +35,7 @@
               <tr>
                 <td><%= link_to post.title, post_path(post) %></td>
                 <td><%= post.member.try(:name) %></td>
-                <td><%= post.created_at.strftime("%d/%b/%Y") %></td>
+                <td><%= post.on_date.strftime("%d/%b/%Y") %></td>
                 <td><%= post.active? ? 'Open' : 'Closed' %></td>
                 <td><%= post.visible? ? 'Yes' : 'No' %></td>
                 <td><%= post.private? ? 'Yes' : 'No' %></td>
