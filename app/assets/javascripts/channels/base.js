@@ -83,7 +83,11 @@ $(document).ready(function() {
   }
   else if ($('.transactions-wrapper').length > 0) {
     table = $('.dataTable').DataTable({
-      columnDefs: [{ orderable: false, "targets": -1 }]
+      columnDefs: [{ orderable: false, "targets": -1 }],
+      dom: 'lfBrtip',
+      buttons: [
+              'excel', 'pdf'
+          ]
     })
   }
   else {
