@@ -50,16 +50,17 @@ $(document).ready(function() {
                 extend: 'excelHtml5',
                 title: 'AjanthaPrime-Members-'+today,
                 exportOptions: {
-                    columns: 'th:not(:last-child)'
+                    columns: ':visible'
                 }
             },
             {
                 extend: 'pdfHtml5',
                 title: 'AjanthaPrime-Members-'+today,
                 exportOptions: {
-                    columns: 'th:not(:last-child)'
+                    columns: ':visible'
                 }
-            }
+            },
+            'colvis'
         ]
     });
   }
@@ -106,16 +107,17 @@ $(document).ready(function() {
                 extend: 'excelHtml5',
                 title: 'AjanthaPrime-Transactions-'+today,
                 exportOptions: {
-                    columns: 'th:not(:last-child)'
+                    columns: ':visible'
                 }
             },
             {
                 extend: 'pdfHtml5',
                 title: 'AjanthaPrime-Transactions-'+today,
                 exportOptions: {
-                    columns: 'th:not(:last-child)'
+                    columns: ':visible'
                 }
-            }
+            },
+            'colvis'
         ]
     })
   }
