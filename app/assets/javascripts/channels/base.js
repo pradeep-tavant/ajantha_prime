@@ -31,6 +31,8 @@ $.fn.dataTable.ext.search.push(
 
 $(document).ready(function() {
 
+  var today = new Date().toLocaleDateString().replace(/\//g,'-');
+
   $('.datepicker').datepicker({
     autoclose: true,
     format: 'dd/M/yyyy',
@@ -44,8 +46,21 @@ $(document).ready(function() {
       columnDefs: [{ orderable: false, "targets": -1 }],
       dom: 'lfBrtip',
       buttons: [
-              'excel', 'pdf'
-          ]
+            {
+                extend: 'excelHtml5',
+                title: 'AjanthaPrime-Members-'+today,
+                exportOptions: {
+                    columns: 'th:not(:last-child)'
+                }
+            },
+            {
+                extend: 'pdfHtml5',
+                title: 'AjanthaPrime-Members-'+today,
+                exportOptions: {
+                    columns: 'th:not(:last-child)'
+                }
+            }
+        ]
     });
   }
   else if ($('.posts-wrapper .admin-view').length > 0) {
@@ -81,13 +96,31 @@ $(document).ready(function() {
       columnDefs: [{ orderable: false, "targets": -1 }]
     })
   }
-  else if ($('.transactions-wrapper').length > 0) {
+  else if ($('.transactions-wrapper .admin-view').length > 0) {
     table = $('.dataTable').DataTable({
       columnDefs: [{ orderable: false, "targets": -1 }],
       dom: 'lfBrtip',
       buttons: [
-              'excel', 'pdf'
-          ]
+            {
+                extend: 'excelHtml5',
+                title: 'AjanthaPrime-Transactions-'+today,
+                exportOptions: {
+                    columns: 'th:not(:last-child)'
+                }
+            },
+            {
+                extend: 'pdfHtml5',
+                title: 'AjanthaPrime-Transactions-'+today,
+                exportOptions: {
+                    columns: 'th:not(:last-child)'
+                }
+            }
+        ]
+    })
+  }
+  else if ($('.transactions-wrapper').length > 0) {
+    table = $('.dataTable').DataTable({
+      columnDefs: [{ orderable: false, "targets": -1 }]
     })
   }
   else {

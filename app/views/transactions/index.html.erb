@@ -14,7 +14,7 @@
       <!-- /.panel-heading -->
 
       <div class="panel-body panel30 transactions-wrapper">
-        <table class="dataTable table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+        <table class="dataTable table table-striped table-bordered table-hover <%= current_member.admin? ? 'admin-view' : '' %>" cellspacing="0" width="100%">
           <thead>
             <tr>
               <th>Transaction ID</th>
@@ -24,6 +24,8 @@
               <th>Payment Status</th>
               <% if current_member.admin? %>
                 <th>Flat</th>
+                <th>Name</th>
+                <th>Phone</th>
               <% end %>
               <th>Actions</th>
             </tr>
@@ -39,6 +41,8 @@
                 <td><%= transaction.status %></td>
                 <% if current_member.admin? %>
                   <td><%= link_to transaction.member.login, member_path(transaction.member) %></td>
+                  <td><%= transaction.member.name %></td>
+                  <td><%= transaction.member.phone %></td>
                 <% end %>
                 <td>
                   <%= link_to edit_transaction_path(transaction) do %>
