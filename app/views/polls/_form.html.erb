@@ -11,7 +11,7 @@
   <div class="form-group">
     <%= f.label :start_date, class: "control-label col-sm-2" %>
     <div class="col-sm-10 input-group">
-      <%= f.text_field :start_date, class: 'form-control datepicker' %>
+      <%= f.text_field :start_date, class: 'form-control datepicker', autocomplete: :off %>
       <span class="input-group-addon">
         <span class="glyphicon glyphicon-calendar"></span>
       </span>
@@ -21,7 +21,7 @@
   <div class="form-group">
     <%= f.label :end_date, class: "control-label col-sm-2" %>
     <div class="col-sm-10 input-group">
-      <%= f.text_field :end_date, class: 'form-control datepicker' %>
+      <%= f.text_field :end_date, class: 'form-control datepicker', autocomplete: :off %>
       <span class="input-group-addon">
         <span class="glyphicon glyphicon-calendar"></span>
       </span>

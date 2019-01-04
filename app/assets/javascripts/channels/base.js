@@ -48,7 +48,6 @@ $(document).ready(function() {
       buttons: [
             {
                 extend: 'excelHtml5',
-                autoFilter: true,
                 title: 'AjanthaPrime-Members-'+today,
                 exportOptions: {
                     columns: 'th:not(:last-child)'
@@ -100,11 +99,11 @@ $(document).ready(function() {
   else if ($('.transactions-wrapper .admin-view').length > 0) {
     table = $('.dataTable').DataTable({
       columnDefs: [{ orderable: false, "targets": -1 }],
+      order: [[ 2, 'desc' ]],
       dom: 'lfBrtip',
       buttons: [
             {
                 extend: 'excelHtml5',
-                autoFilter: true,
                 title: 'AjanthaPrime-Transactions-'+today,
                 exportOptions: {
                     columns: 'th:not(:last-child)'
@@ -122,7 +121,8 @@ $(document).ready(function() {
   }
   else if ($('.transactions-wrapper').length > 0) {
     table = $('.dataTable').DataTable({
-      columnDefs: [{ orderable: false, "targets": -1 }]
+      columnDefs: [{ orderable: false, "targets": -1 }],
+      order: [[ 2, 'desc' ]],
     })
   }
   else {
