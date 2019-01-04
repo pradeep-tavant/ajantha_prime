@@ -48,6 +48,7 @@ $(document).ready(function() {
       buttons: [
             {
                 extend: 'excelHtml5',
+                autoFilter: true,
                 title: 'AjanthaPrime-Members-'+today,
                 exportOptions: {
                     columns: 'th:not(:last-child)'
@@ -103,6 +104,7 @@ $(document).ready(function() {
       buttons: [
             {
                 extend: 'excelHtml5',
+                autoFilter: true,
                 title: 'AjanthaPrime-Transactions-'+today,
                 exportOptions: {
                     columns: 'th:not(:last-child)'
