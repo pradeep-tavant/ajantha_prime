@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-lg-12">
+    <h3 class="lpad20">Welcome <%= current_member.name %> <span class="label label-default">(<%= current_member.login %>)</span></h3>
+    <div class="panel panel-info col-lg-2 mtop10">
+      <div class="panel-heading">
+        <h3 class="panel-title">Quick Links</h3>
+      </div>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <%= link_to member_path(current_member) do %>
+            <i class="fa fa-user fa-fw"></i>
+            My Profile
+          <% end %>
+        </li>
+        <li class="list-group-item">
+          <%= link_to vehicles_path do %>
+            <i class="fa fa-user fa-fw"></i>
+            My Vehicle(s)
+          <% end %>
+        </li>
+        <li class="list-group-item">
+          <%= link_to transactions_path do %>
+            <i class="fa fa-money fa-fw"></i>
+            My Transaction(s)
+          <% end %>
+        </li>
+        <li class="list-group-item">
+          <%= link_to change_password_path(current_member) do %>
+            <i class="fa fa-key fa-fw"></i>
+            Change Password
+          <% end %>
+        </li>
+      </ul>
+    </div>
+    <div class="panel panel-info col-lg-10 mtop10">
+      <div class="panel-heading">
+        <h3 class="panel-title">News Feed</h3>
+      </div>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <% if current_member.transactions.length > 0 %>
+            Thanks for your maintenance payment for <b>Jan-Mar'2019 (Quarter 1)</b>. You can check the Payment Status <%= link_to 'here', transactions_path %>.
+          <% else %>
+            <span class="badge">Pending</span>
+            Kindly pay your maintenance payment for <b>Jan-Mar'2019 (Quarter 1)</b>. If already paid, update the transaction details <%= link_to 'here', new_transaction_path %>.
+          <% end %>
+        </li>
+        <li class="list-group-item">
+          <% if current_member.vehicles.length > 0 %>
+            Thanks for updating your Vehicle(s) information.
+          <% else %>
+            <span class="badge">Pending</span>
+            Kindly add your Vehicle(s) details <%= link_to 'here', new_vehicle_path %>.
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

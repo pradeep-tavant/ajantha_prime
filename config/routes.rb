@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :member
 
+  resources :home, only: [:index]
   resources :members
   resources :posts
   resources :comments
@@ -18,7 +19,7 @@ Rails.application.routes.draw do
   match '/posts/:id/publish', to: 'posts#publish', via: :put, as: :publish_post
   match '/all_transactions', to: 'transactions#all', via: :get, as: :all_transactions
 
-  root to: 'members#index'
+  root to: 'home#index'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
