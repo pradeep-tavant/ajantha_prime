@@ -22,6 +22,12 @@ $.fn.dataTable.ext.search.push(
         return true;
       }
     }
+    else if ($('.transactions-wrapper').length > 0) {
+      var status = $('#payment_status').val();
+      if (status == undefined || status == "" || status == data[4]) {
+        return true;
+      }
+    }
     else {
       return true;
     }
@@ -48,7 +54,15 @@ $(document).ready(function() {
       buttons: [
             {
                 extend: 'excelHtml5',
+                autoFilter: true,
                 title: 'AjanthaPrime-Members-'+today,
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+            {
+                extend: 'csvHtml5',
+                title: 'AjanthaPrime-Transactions-'+today,
                 exportOptions: {
                     columns: ':visible'
                 }
@@ -105,6 +119,14 @@ $(document).ready(function() {
       buttons: [
             {
                 extend: 'excelHtml5',
+                autoFilter: true,
+                title: 'AjanthaPrime-Transactions-'+today,
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+            {
+                extend: 'csvHtml5',
                 title: 'AjanthaPrime-Transactions-'+today,
                 exportOptions: {
                     columns: ':visible'
@@ -204,5 +226,17 @@ $(document).ready(function() {
     table.draw();
   });
 
+  $('<label class="pull-right mleft20">'+
+        'Payment Status:&nbsp;&nbsp;'+
+        '<select class="form-control" id="payment_status">'+
+        '<option value="">All</option>'+
+        '<option>Verified</option>'+
+        '<option>NotVerified</option>'+
+        '</select>'+
+        '</label>').appendTo(".transactions-wrapper .dataTables_wrapper .dataTables_filter");
+
+  $('#payment_status').change( function() {
+    table.draw();
+  });
 
 });
