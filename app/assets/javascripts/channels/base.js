@@ -89,6 +89,12 @@ $(document).ready(function() {
       columnDefs: [{ orderable: false, "targets": -1 }]
     })
   }
+  else if ($('.vehicles-wrapper .admin-view').length > 0) {
+    table = $('.dataTable').DataTable({
+      order: [[ 3, 'desc' ]],
+      columnDefs: [{ orderable: false, "targets": -1 }]
+    })
+  }
   else if ($('.vehicles-wrapper').length > 0) {
     table = $('.dataTable').DataTable({
       order: [[ 3, 'asc' ]]

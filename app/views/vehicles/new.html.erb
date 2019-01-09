@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-      <h2 class="page-header">Add Vehicle</h2>
+      <h2 class="page-header">Add <%= current_member.admin? && params[:me].present? ? "Other's" : "My" %> Vehicle</h2>
       <%= render 'form', vehicle: @vehicle %>
     </div>
   </div>

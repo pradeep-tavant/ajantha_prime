@@ -8,25 +8,25 @@
           <% else %>
             My Vehicle(s)
           <% end %>
+          <%= link_to "Add Other's Vehicle", new_vehicle_path(me: false), class: "btn btn-default pull-right mleft10" if current_member.admin? %>
           <%= link_to 'Add My Vehicle', new_vehicle_path, class: "btn btn-default pull-right" %>
         </h3>
       </div>
       <!-- /.panel-heading -->
 
       <div class="panel-body panel30 vehicles-wrapper">
-        <table class="dataTable table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+        <table class="dataTable table table-striped table-bordered table-hover <%= current_member.admin? ? 'admin-view' : '' %>" cellspacing="0" width="100%">
           <thead>
             <tr>
               <th>Vehicle Name</th>
               <th>Reg Number</th>
               <th>Category</th>
-              <th>
-                <% if params[:all].present? %>
-                  Flat
-                <% else %>
-                  Actions
-                <% end %>
-              </th>
+              <% if params[:all].present? %>
+                <th>Flat</th>
+              <% end %>
+              <% if current_member.admin? || params[:all].blank? %>
+                <th>Actions</th>
+              <% end %>
             </tr>
           </thead>
 
@@ -36,20 +36,24 @@
                 <td><%= vehicle.name %></td>
                 <td><%= vehicle.number %></td>
                 <td><%= vehicle.category %></td>
-                <td>
-                  <% if params[:all].present? %>
+                <% if params[:all].present? %>
+                  <td>
                     <%= link_to vehicle.member.login, member_path(vehicle.member) %>
                     &nbsp;-&nbsp;
                     <%= vehicle.member.name %>
-                  <% else %>
+                  </td>
+                <% end %>
+                
+                <% if current_member.admin? || params[:all].blank? %>
+                  <td>
                     <%= link_to edit_vehicle_path(vehicle) do %>
                       <i class="fa fa-pencil fa-fw" title="Edit"></i>
                     <% end %>
                     <%= link_to vehicle, method: :delete, data: {confirm: "Are you sure?"} do %>
                       <i class="fa fa-trash-o fa-fw" title="Delete"></i>
                     <% end %>
-                  <% end %>
-                </td>
+                  </td>
+                <% end %>
               </tr>
             <% end %>
           </tbody>
