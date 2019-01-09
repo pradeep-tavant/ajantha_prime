@@ -5,7 +5,7 @@ class FacilitiesController < ApplicationController
   # GET /facilities
   # GET /facilities.json
   def index
-    @facilities = Facility.all
+    @facilities = current_member.admin? ? Facility.all : Facility.where(active: true)
   end
 
   # GET /facilities/1
