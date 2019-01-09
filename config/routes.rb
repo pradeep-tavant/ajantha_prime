@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :vehicles
   resources :polls
   resources :votes, only: [:create]
-  resources :facilities
+  resources :facilities, path: :contacts
   resources :transactions
 
   match '/members/:id/change_password', to: 'members#change_password', via: :get, as: :change_password

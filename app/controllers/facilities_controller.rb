@@ -1,6 +1,7 @@
 class FacilitiesController < ApplicationController
   before_action :authenticate_member!
   before_action :set_facility, only: [:show, :edit, :update, :destroy]
+  before_action :check_admin, only: [:new, :create, :edit, :update, :destroy]
 
   # GET /facilities
   # GET /facilities.json
@@ -11,6 +12,7 @@ class FacilitiesController < ApplicationController
   # GET /facilities/1
   # GET /facilities/1.json
   def show
+    check_admin unless @facility.active?
   end
 
   # GET /facilities/new
@@ -66,6 +68,13 @@ class FacilitiesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_facility
       @facility = Facility.find(params[:id])
+    end
+
+    def check_admin
+      unless current_member.admin?
+        flash[:error] = "You do not have access for this operation"
+        redirect_to root_path
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
