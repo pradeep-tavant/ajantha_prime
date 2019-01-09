@@ -37,12 +37,12 @@
           <dt>Address:</dt>
           <dd><%= simple_format(@facility.address) %></dd>
         </dl>
-        <dl class="dl-horizontal mtop20">
+        <!-- <dl class="dl-horizontal mtop20">
           <dt>Shift:</dt>
-          <dd><%= @facility.shift? ? 'Day' : 'Night' %></dd>
-        </dl>
+          <dd><%#= @facility.shift? ? 'Day' : 'Night' %></dd>
+        </dl> -->
         <dl class="dl-horizontal mtop20">
-          <dt>Active:</dt>
+          <dt>Public:</dt>
           <dd><%= @facility.active? ? 'Yes' : 'No' %></dd>
         </dl>
       </div>

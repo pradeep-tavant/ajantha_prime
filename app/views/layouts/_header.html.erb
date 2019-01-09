@@ -13,15 +13,15 @@
         <li>
           <%= link_to "Vehicles", vehicles_path(all: true), class: "#{(controller_name=='vehicles' && params[:all].present?) ? 'active' : ''} navbar-link" %>
         </li>
+        <li>
+          <%= link_to "Contacts", facilities_path, class: "#{(controller_name=='facilities') ? 'active' : ''} navbar-link" %>
+        </li>
         <% if current_member.admin? %>
           <li>
             <%= link_to "Transactions", all_transactions_path, class: "#{(controller_name=='transactions') ? 'active' : ''} navbar-link" %>
           </li>
           <li>
             <%= link_to "Posts", posts_path, class: "#{(controller_name=='posts') ? 'active' : ''} navbar-link" %>
-          </li>
-          <li>
-            <%= link_to "Facilities", facilities_path, class: "#{(controller_name=='facilities') ? 'active' : ''} navbar-link" %>
           </li>
           <li>
             <%= link_to "Opinion Polls", polls_path, class: "#{(controller_name=='polls') ? 'active' : ''} navbar-link" %>

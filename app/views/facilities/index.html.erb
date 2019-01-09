@@ -2,9 +2,9 @@
   <div class="col-lg-12">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3>Facilities
+        <h3>Contacts
           <% if current_member.admin? %>
-            <%= link_to 'Add New Facility', new_facility_path, class: "btn btn-default pull-right" %>
+            <%= link_to 'Add New Contact', new_facility_path, class: "btn btn-default pull-right" %>
           <% end %>
         </h3>
       </div>
@@ -18,9 +18,9 @@
               <th>Designation</th>
               <th>Phone</th>
               <th>Email</th>
-              <th>Shift</th>
-              <th>Active</th>
+              <!-- <th>Shift</th> -->
               <% if current_member.admin? %>
+                <th>Public</th>
                 <th>Actions</th>
               <% end %>
             </tr>
@@ -34,14 +34,14 @@
                 <td><%= facility.designation %></td>
                 <td><%= facility.phone %></td>
                 <td><%= facility.email %></td>
-                <td><%= facility.shift? ? 'Day' : 'Night' %></td>
-                <td><%= facility.active? ? 'Yes' : 'No' %></td>
+                <!-- <td><%#= facility.shift? ? 'Day' : 'Night' %></td> -->
                 <% if current_member.admin? %>
+                  <td><%= facility.active? ? 'Yes' : 'No' %></td>
                   <td>
                     <%= link_to edit_facility_path(facility) do %>
                       <i class="fa fa-pencil fa-fw" title="Edit"></i>
                     <% end %>
-                    <%= link_to facility, method: :delete, data: { confirm: 'Are you sure want to remove this facility member?' } do %>
+                    <%= link_to facility, method: :delete, data: { confirm: 'Are you sure want to remove this Contact?' } do %>
                       <i class="fa fa-trash-o fa-fw" title="Delete"></i>
                     <% end %>
                   </td>

@@ -20,7 +20,7 @@
   <div class="form-group">
     <%= f.label :Category, "Vehicle Type *", class: "control-label col-sm-2" %>
     <div class="col-sm-10">
-      <%= f.select(:category, ["Bike/Scooter","Car"], {prompt: 'Select'}, {class: "form-control"}) %>
+      <%= f.select(:category, Vehicle.categories.keys, {prompt: 'Select'}, {class: "form-control"}) %>
     </div>
   </div>
 
