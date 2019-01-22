@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190103062246) do
+ActiveRecord::Schema.define(version: 20190122074046) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "comments", force: :cascade do |t|
     t.integer "commentable_id"
@@ -33,7 +39,7 @@ ActiveRecord::Schema.define(version: 20190103062246) do
 
   create_table "facilities", force: :cascade do |t|
     t.string "name"
-    t.integer "category"
+    t.integer "category_id"
     t.string "designation"
     t.string "phone"
     t.string "email"
@@ -86,6 +92,14 @@ ActiveRecord::Schema.define(version: 20190103062246) do
     t.boolean "available_for_rent", default: false
     t.index ["email"], name: "index_members_on_email", unique: true
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
+  end
+
+  create_table "moves", force: :cascade do |t|
+    t.string "name"
+    t.boolean "active"
+    t.integer "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "polls", force: :cascade do |t|

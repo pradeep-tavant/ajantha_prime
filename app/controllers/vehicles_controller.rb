@@ -1,16 +1,11 @@
 class VehiclesController < ApplicationController
   before_action :authenticate_member!
-  before_action :set_vehicle, only: [:show, :edit, :update, :destroy]
+  before_action :set_vehicle, only: [:edit, :update, :destroy]
 
   # GET /vehicles
   # GET /vehicles.json
   def index
     @vehicles = params[:all].present? ? Vehicle.all : current_member.vehicles
-  end
-
-  # GET /vehicles/1
-  # GET /vehicles/1.json
-  def show
   end
 
   # GET /vehicles/new

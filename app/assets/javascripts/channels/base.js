@@ -155,6 +155,11 @@ $(document).ready(function() {
       order: [[ 2, 'desc' ]],
     })
   }
+  else if ($('.categories-wrapper').length > 0) {
+    table = $('.dataTable').DataTable({
+      columnDefs: [{ visible: false, searchable: false, "targets": 0 }]
+    })
+  }
   else {
     table = $('.dataTable').DataTable();
   }

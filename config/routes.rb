@@ -5,10 +5,11 @@ Rails.application.routes.draw do
   resources :members
   resources :posts
   resources :comments
-  resources :vehicles
+  resources :vehicles, except: [:show]
   resources :polls
   resources :votes, only: [:create]
   resources :facilities, path: :contacts
+  resources :categories, except: [:show]
   resources :transactions
 
   match '/members/:id/change_password', to: 'members#change_password', via: :get, as: :change_password

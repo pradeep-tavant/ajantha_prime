@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>
+          Categories
+          <%= link_to 'Add Category', new_category_path, class: "btn btn-default pull-right" %>
+        </h3>
+      </div>
+      <!-- /.panel-heading -->
+
+      <div class="panel-body panel30 categories-wrapper">
+        <table class="dataTable table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+          <thead>
+            <tr>
+              <th># ID</th>
+              <th>Name</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @categories.each do |category| %>
+              <tr>
+                <td><%= category.id %></td>
+                <td><%= category.name %></td>
+                <td>
+                  <%= link_to edit_category_path(category) do %>
+                    <i class="fa fa-pencil fa-fw" title="Edit"></i>
+                  <% end %>
+                  <%= link_to category, method: :delete, data: {confirm: "Are you sure?"} do %>
+                    <i class="fa fa-trash-o fa-fw" title="Delete"></i>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
