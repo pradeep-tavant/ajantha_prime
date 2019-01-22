@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :facilities, path: :contacts
   resources :categories, except: [:show]
   resources :transactions
+  resources :bookings
 
   match '/members/:id/change_password', to: 'members#change_password', via: :get, as: :change_password
   match '/members/:id/update_password', to: 'members#update_password', via: :put, as: :update_password
@@ -19,6 +20,7 @@ Rails.application.routes.draw do
 
   match '/posts/:id/publish', to: 'posts#publish', via: :put, as: :publish_post
   match '/all_transactions', to: 'transactions#all', via: :get, as: :all_transactions
+  match '/all_bookings', to: 'bookings#all', via: :get, as: :all_bookings
 
   root to: 'home#index'
 

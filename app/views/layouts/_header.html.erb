@@ -21,6 +21,9 @@
             <%= link_to "Transactions", all_transactions_path, class: "#{(controller_name=='transactions') ? 'active' : ''} navbar-link" %>
           </li>
           <li>
+            <%= link_to "Bookings", all_bookings_path, class: "#{(controller_name=='bookings') ? 'active' : ''} navbar-link" %>
+          </li>
+          <li>
             <%= link_to "Posts", posts_path, class: "#{(controller_name=='posts') ? 'active' : ''} navbar-link" %>
           </li>
           <li>
@@ -61,6 +64,14 @@
               My Transaction(s)
             <% end %>
           </li>
+          <% if current_member.admin? %>
+            <li>
+              <%= link_to bookings_path do %>
+                <i class="fa fa-birthday-cake fa-fw"></i>
+                My Booking(s)
+              <% end %>
+            </li>
+          <% end %>
           <li>
             <%= link_to change_password_path(current_member) do %>
               <i class="fa fa-key fa-fw"></i>

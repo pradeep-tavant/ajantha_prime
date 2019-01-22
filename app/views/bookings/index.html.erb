@@ -1,0 +1,64 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>
+          <% if params[:action] == 'all' %>
+            Party Hall Bookings
+          <% else %>
+            My Party Hall Booking(s)
+          <% end %>
+          <%= link_to 'Book Party Hall', new_booking_path, class: "btn btn-default pull-right" %>
+        </h3>
+      </div>
+      <!-- /.panel-heading -->
+
+      <div class="panel-body panel30 bookings-wrapper">
+        <table class="dataTable table table-striped table-bordered table-hover <%= current_member.admin? ? 'admin-view' : '' %>" cellspacing="0" width="100%">
+          <thead>
+            <tr>
+              <% if current_member.admin? %>
+                <th>Name</th>
+              <% end %>
+              <th>Reason</th>
+              <th>On Date</th>
+              <th>Start Time</th>
+              <th>End Time</th>
+              <th>Notes/th>
+              <th>Approved?</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @bookings.each do |booking| %>
+              <tr>
+                <% if current_member.admin? %>
+                  <td><%= link_to (booking.member.try(:name)+'('+booking.member.try(:login)+')'), member_path(booking.member) %></td>
+                <% end %>
+                <td><%= link_to booking.reason, booking_path(booking) %></td>
+                <td><%= booking.on_date.strftime("%d/%b/%Y") %></td>
+                <td><%= booking.start_time.strftime("%l:%M %p") %></td>
+                <td><%= booking.end_time.strftime("%l:%M %p") %></td>
+                <td><%= booking.notes %></td>
+                <td><%= booking.approved? ? 'Yes' : 'No' %></td>
+                <td>
+                  <% if current_member.admin? || !booking.approved? %>
+                    <%= link_to edit_booking_path(booking) do %>
+                      <i class="fa fa-pencil fa-fw" title="Edit"></i>
+                    <% end %>
+                    <%= link_to booking, method: :delete, data: { confirm: 'Are you sure want to delate this booking entry?' } do %>
+                      <i class="fa fa-trash-o fa-fw" title="Delete"></i>
+                    <% end %>
+                  <% else %>
+                    NA
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

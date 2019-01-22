@@ -19,7 +19,7 @@
         </dl>
         <dl class="dl-horizontal mtop20">
           <dt>Category:</dt>
-          <dd><%= @facility.category.try(:name).try(:titleize) %></dd>
+          <dd><%= @facility.category.try(:name) %></dd>
         </dl>
         <dl class="dl-horizontal mtop20">
           <dt>Designation:</dt>
@@ -41,10 +41,12 @@
           <dt>Shift:</dt>
           <dd><%#= @facility.shift? ? 'Day' : 'Night' %></dd>
         </dl> -->
-        <dl class="dl-horizontal mtop20">
-          <dt>Public:</dt>
-          <dd><%= @facility.active? ? 'Yes' : 'No' %></dd>
-        </dl>
+        <% if current_member.admin? %>
+          <dl class="dl-horizontal mtop20">
+            <dt>Public:</dt>
+            <dd><%= @facility.active? ? 'Yes' : 'No' %></dd>
+          </dl>
+        <% end %>
       </div>
 
       <%= link_to '<< Contacts', facilities_path, class: "btn btn-default" %>

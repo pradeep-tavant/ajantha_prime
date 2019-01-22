@@ -4,7 +4,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3><%= @transaction.transaction_id %> - <%= @transaction.status %>
-            <% if current_member.admin? %>
+            <% if current_member.admin? || current_member == @transaction.member %>
               <span class="pull-right">
                 <%= link_to edit_transaction_path(@transaction) do %>
                   <i class="fa fa-pencil-square-o fa-fw" title="Edit"></i>

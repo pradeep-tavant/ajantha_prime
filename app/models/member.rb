@@ -5,9 +5,10 @@ class Member < ApplicationRecord
   has_one :tenant, dependent: :destroy
   has_many :vehicles, dependent: :destroy
   has_many :transactions, dependent: :destroy
-  has_many :posts
+  has_many :posts, dependent: :destroy
   has_many :votes, dependent: :destroy
   has_many :vote_options, through: :votes
+  has_many :bookings, dependent: :destroy
 
   accepts_nested_attributes_for :tenant, allow_destroy: true
   accepts_nested_attributes_for :vehicles, allow_destroy: true

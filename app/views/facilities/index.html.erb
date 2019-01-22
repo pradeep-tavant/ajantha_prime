@@ -30,7 +30,7 @@
             <% @facilities.each do |facility| %>
               <tr>
                 <td><%= link_to facility.name, facility_path(facility) %></td>
-                <td><%= facility.category.try(:name).try(:titleize) %></td>
+                <td><%= facility.category.try(:name) %></td>
                 <td><%= facility.designation %></td>
                 <td><%= facility.phone %></td>
                 <td><%= facility.email %></td>
