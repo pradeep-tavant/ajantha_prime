@@ -19,7 +19,7 @@
         </dl>
         <dl class="dl-horizontal mtop20">
           <dt>Category:</dt>
-          <dd><%= @facility.category.titleize %></dd>
+          <dd><%= @facility.category.try(:name).try(:titleize) %></dd>
         </dl>
         <dl class="dl-horizontal mtop20">
           <dt>Designation:</dt>
