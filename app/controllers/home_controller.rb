@@ -4,7 +4,7 @@ class HomeController < ApplicationController
   before_action :check_admin, only: [:file_upload, :file_remove]
 
   def index
-    @documents = Dir.entries("public/documents")[2..-1]
+    @documents = Dir.entries("public/documents")
   end
 
   def file_upload
