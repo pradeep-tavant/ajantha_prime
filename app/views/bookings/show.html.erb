@@ -36,6 +36,10 @@
           <dd><%= @booking.end_time.strftime("%l:%M %p") %></dd>
         </dl>
         <dl class="dl-horizontal mtop20">
+          <dt>Guests Count:</dt>
+          <dd><%= @booking.guest_count.to_i %></dd>
+        </dl>
+        <dl class="dl-horizontal mtop20">
           <dt>Notes:</dt>
           <dd><%= simple_format(@booking.notes) %></dd>
         </dl>

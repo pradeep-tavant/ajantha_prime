@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   match '/posts/:id/publish', to: 'posts#publish', via: :put, as: :publish_post
   match '/all_transactions', to: 'transactions#all', via: :get, as: :all_transactions
   match '/all_bookings', to: 'bookings#all', via: :get, as: :all_bookings
+  match '/file_upload', to: 'home#file_upload', via: :post, as: :file_upload
+  match '/file_remove', to: 'home#file_remove', via: :delete, as: :file_remove
 
   root to: 'home#index'
 

@@ -88,6 +88,6 @@ class BookingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def booking_params
-      params.require(:booking).permit(:reason, :on_date, :start_time, :end_time, :notes, :approved, :member_id)
+      params.require(:booking).permit(:reason, :on_date, :start_time, :end_time, :notes, :approved, :guest_count, :member_id)
     end
 end

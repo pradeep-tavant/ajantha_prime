@@ -24,7 +24,7 @@
               <th>On Date</th>
               <th>Start Time</th>
               <th>End Time</th>
-              <th>Notes/th>
+              <th>Guests Count</th>
               <th>Approved?</th>
               <th>Actions</th>
             </tr>
@@ -40,7 +40,7 @@
                 <td><%= booking.on_date.strftime("%d/%b/%Y") %></td>
                 <td><%= booking.start_time.strftime("%l:%M %p") %></td>
                 <td><%= booking.end_time.strftime("%l:%M %p") %></td>
-                <td><%= booking.notes %></td>
+                <td><%= booking.guest_count.to_i %></td>
                 <td><%= booking.approved? ? 'Yes' : 'No' %></td>
                 <td>
                   <% if current_member.admin? || !booking.approved? %>

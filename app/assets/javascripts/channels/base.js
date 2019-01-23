@@ -45,6 +45,8 @@ $(document).ready(function() {
     orientation: "bottom left"
     // startDate: new Date()
   });
+  
+  $('input[type=file]').bootstrapFileInput();
 
   var table;
   if ($('.members-wrapper .admin-view').length > 0) {
