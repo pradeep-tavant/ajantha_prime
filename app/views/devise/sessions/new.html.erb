@@ -1,7 +1,7 @@
 <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "form-signin"}) do |f| %>
   <h2 class="page-header">Please Login</h2>
   <div>
-    <%= f.label :login, "Flat / Login" %><br />
+    <%= f.label :login, "Flat / Login" %>
     <%= f.text_field :login, autofocus: true, class: "form-control",placeholder: "eg. FOF03-B or tf11-a", autocomplete: :off, list: "flats-list" %>
     <datalist id="flats-list">
       <% flats_list.each do |flat| %>
@@ -11,7 +11,7 @@
   </div>
 
   <div>
-    <%= f.label :password %><br />
+    <%= f.label :password %>
     <%= f.password_field :password, class: "form-control" %>
   </div>
 
