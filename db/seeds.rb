@@ -3,5 +3,5 @@
 
 categories = ["Manager", "Security", "HouseKeeping", "STP", "WTP", "Lift", "Gym/PlayArea", "Pool", "Electrician", "Plumber", "Garbage", "Grills", "UPVC", "DG", "Garden", "Medical", "MosquitoFogging"]
 categories.each do |category_name|
-  Category.create(name: category_name)
+  Category.find_or_create_by(name: category_name)
 end

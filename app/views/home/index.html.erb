@@ -69,7 +69,7 @@
           <h3 class="panel-title">Documents</h3>
         </div>
         <div class="panel-body">
-          <% if current_member.admin? %>
+          <% if current_member.admin? && current_member.admin_toggle? %>
             <div style="text-align: right;" class="mbottom10">
               <%= form_tag :file_upload, multipart: true, class: "form-horizontal" do |f| %>
                 <%= file_field_tag :my_file %>
