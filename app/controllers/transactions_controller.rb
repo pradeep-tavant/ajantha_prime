@@ -1,6 +1,6 @@
 class TransactionsController < ApplicationController
   before_action :authenticate_member!
-  before_action :set_transaction, only: [:show, :edit, :update, :destroy]
+  before_action :set_transaction, only: [:show, :edit, :update, :destroy, :download_receipt]
 
   # GET /transactions
   # GET /transactions.json
@@ -69,6 +69,18 @@ class TransactionsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to transactions_url, notice: 'Transaction was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def download_receipt
+    respond_to do |format|
+      format.html
+      format.pdf {
+        render pdf: "APOWA-Transaction-Receipt-#{@transaction.member.login}-#{Time.now.strftime('%v-%H:%M').to_s}",
+        template: "transactions/download_receipt.html",
+        layout: 'pdf.html',
+        disposition: 'attachment'
+      }
     end
   end
 

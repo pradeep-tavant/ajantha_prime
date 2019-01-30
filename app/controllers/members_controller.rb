@@ -29,7 +29,7 @@ class MembersController < ApplicationController
   # POST /members.json
   def create
     @member = Member.new(member_params)
-
+    @member.tenant = nil unless @member.rented?
     respond_to do |format|
       if @member.save
         format.html { redirect_to @member, notice: 'Member profile successfully created.' }

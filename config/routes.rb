@@ -10,7 +10,11 @@ Rails.application.routes.draw do
   resources :votes, only: [:create]
   resources :facilities, path: :contacts
   resources :categories, except: [:show]
-  resources :transactions
+  resources :transactions do
+    member do
+      get 'download_receipt'
+    end
+  end
   resources :bookings
 
   match '/members/:id/change_password', to: 'members#change_password', via: :get, as: :change_password

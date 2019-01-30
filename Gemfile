@@ -27,6 +27,8 @@ gem 'bootstrap-datepicker-rails'
 
 gem 'devise'
 gem 'friendly_id', '~> 5.2.0'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 gem 'acts_as_commentable_with_threading'
 gem "cocoon"
 
