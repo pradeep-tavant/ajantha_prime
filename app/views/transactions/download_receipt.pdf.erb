@@ -76,16 +76,27 @@
       text-align: left;
   }
 
+  .paid {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -100px;
+  }
+
 </style>
 
 <div class="invoice-box">
+  <div class="center">
+    <h1><b>INVOICE</b></h1>
+  </div>
   <table cellpadding="0" cellspacing="0">
     <tr class="top bbottom2-gray">
       <td colspan="2">
         <table>
           <tr>
             <td class="title">
-                <%= wicked_pdf_image_tag("Ajantha-logo-xmedium.png") %>
+                <%= wicked_pdf_image_tag("Ajantha-logo-medium.png") %>
             </td>
             <td>
               <h2><b>Ajantha Prime</b></h2>
@@ -173,7 +184,10 @@
       </td>
     </tr>
   </table>
-  <div class="center mtop20">
+  <div class="center mtop30">
     <small>This is a system generated invoice hence does not require signature.</small>
+  </div>
+  <div class="paid">
+    <%= wicked_pdf_image_tag("paid-sm.png") %>
   </div>
 </div>

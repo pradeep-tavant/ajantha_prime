@@ -18,8 +18,9 @@ WickedPdf.config = {
   # Layout file to be used for all PDFs
   # (but can be overridden in `render :pdf` calls)
   layout: 'pdf.html',
-  disposition: 'inline',
+  disposition: 'attachment',
   title: "APOWA Transaction Receipt",
   margin: { top: 20, bottom: 40 },
-  page_size: 'A4'
+  page_size: 'A4',
+  show_as_html: false
 }
