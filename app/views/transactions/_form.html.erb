@@ -1,7 +1,7 @@
 <%= form_with(model: transaction, local: true, class: "form-horizontal") do |f| %>
   <%= resource_error_messages!(transaction) %>
 
-  <% disabled = (!transaction.new_record? && current_member != transaction.member) %>
+  <% disabled = (transaction.verified? || (!transaction.new_record? && current_member != transaction.member)) %>
 
   <%= f.hidden_field :member_id %>
 

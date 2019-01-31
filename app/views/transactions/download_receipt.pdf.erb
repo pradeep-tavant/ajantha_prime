@@ -1,0 +1,179 @@
+<style>
+  .invoice-box {
+      max-width: 800px;
+      margin: auto;
+      padding: 30px;
+      border: 1px solid #EEEEEE;
+      box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+      font-size: 16px;
+      line-height: 24px;
+      color: #555;
+  }
+
+  .invoice-box table {
+      width: 100%;
+      line-height: inherit;
+      text-align: left;
+  }
+
+  .invoice-box table td {
+      padding: 5px;
+      vertical-align: top;
+  }
+
+  .invoice-box table tr td:nth-child(2) {
+      text-align: right;
+  }
+
+  .invoice-box table tr.top table td {
+      padding-bottom: 20px;
+  }
+
+  .invoice-box table tr.top table td.title {
+      font-size: 45px;
+      line-height: 45px;
+      color: #333;
+  }
+
+  .invoice-box table tr.information table td {
+      padding-bottom: 40px;
+  }
+
+  .invoice-box table tr.heading td {
+      background: #EEEEEE;
+      border-bottom: 1px solid #ddd;
+      font-weight: bold;
+  }
+
+  .invoice-box table tr.details td {
+      padding-bottom: 20px;
+  }
+
+  .invoice-box table tr.item td{
+      border-bottom: 1px solid #EEEEEE;
+  }
+
+  .invoice-box table tr.item.last td {
+      border-bottom: none;
+  }
+
+  .invoice-box table tr.total td:nth-child(2) {
+      border-top: 2px solid #EEEEEE;
+      font-weight: bold;
+  }
+
+  /** RTL **/
+  .rtl {
+      direction: rtl;
+      font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+  }
+
+  .rtl table {
+      text-align: right;
+  }
+
+  .rtl table tr td:nth-child(2) {
+      text-align: left;
+  }
+
+</style>
+
+<div class="invoice-box">
+  <table cellpadding="0" cellspacing="0">
+    <tr class="top bbottom2-gray">
+      <td colspan="2">
+        <table>
+          <tr>
+            <td class="title">
+                <%= wicked_pdf_image_tag("Ajantha-logo-xmedium.png") %>
+            </td>
+            <td>
+              <h2><b>Ajantha Prime</b></h2>
+              <small>
+                No 43/SyNo 32/2, Beratana Agrahara, Hosur Road,<br />
+                Electronic City, Bangalore, Karnataka 560100<br />
+                Email #: <b><i>ajanthaprime@gmail.com</i></b><br />
+                Society Regn #: <b>DRB3/SOR/630/2018-2019</b><br />
+                PAN #: <b>AAIAA3303K</b>
+              </small>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    
+    <tr class="information mtop5">
+      <td colspan="2">
+        <table class="mtop20">
+          <tr>
+            <td>
+              To:<br>
+              <%= @transaction.member.name %><br>
+              <%= @transaction.member.login %> Block
+            </td>
+            <td>
+              Invoice #: <%= "%.4d" % @transaction.id %><br>
+              Invoice Date: <%= @transaction.on_date.strftime("%d/%b/%Y") %><br>
+              Due Date: 31/Jan/2019
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    
+    <tr class="heading">
+      <td>
+        Payment Method
+      </td>
+      <td>
+        Transaction #
+      </td>
+    </tr>
+    
+    <tr class="details">
+      <td>
+        Online
+      </td>
+      <td>
+        <%= @transaction.transaction_id %>
+      </td>
+    </tr>
+    
+    <tr class="heading">
+      <td>
+        Particulars
+      </td>
+      <td>
+        Price
+      </td>
+    </tr>
+
+    <tr class="item">
+      <td>
+        Maintenance Charge Jan-Mar'2019 (&#8377; 2500 x 3 months)
+      </td>
+      <td>
+        &#8377; <%= "%.2f" % 7500 %>
+      </td>
+    </tr>
+    
+    <tr class="item last">
+      <td>
+        Penalty
+      </td>
+      <td>
+        &#8377; <%= "%.2f" % (@transaction.amount_paid - 7500) %>
+      </td>
+    </tr>
+    
+    <tr class="total">
+      <td></td>
+      <td style="padding-top: 10px;">
+        Total: &#8377; <%= "%.2f" % @transaction.amount_paid %>
+      </td>
+    </tr>
+  </table>
+  <div class="center mtop20">
+    <small>This is a system generated invoice hence does not require signature.</small>
+  </div>
+</div>

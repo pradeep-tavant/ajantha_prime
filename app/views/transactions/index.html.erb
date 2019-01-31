@@ -45,11 +45,13 @@
                   <td><%= transaction.member.phone %></td>
                 <% end %>
                 <td>
-                  <%= link_to edit_transaction_path(transaction) do %>
-                    <i class="fa fa-pencil fa-fw" title="Edit"></i>
+                  <% unless transaction.verified? %>
+                    <%= link_to edit_transaction_path(transaction) do %>
+                      <i class="fa fa-pencil fa-fw" title="Edit"></i>
+                    <% end %>
                   <% end %>
-                  <% if current_member.admin_toggle? && current_member.admin? %>
-                    <%= link_to download_receipt_transaction_path(transaction, format: :pdf) do %>
+                  <% if current_member.admin? && transaction.verified? %>
+                    <%= link_to download_receipt_transaction_path(transaction, format: :pdf), target: "_blank" do %>
                       <i class="fa fa-download fa-fw" title="Download Receipt"></i>
                     <% end %>
                   <% end %>

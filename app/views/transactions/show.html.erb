@@ -4,10 +4,17 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3><%= @transaction.transaction_id %> - <%= @transaction.status %>
-            <% if current_member.admin? || current_member == @transaction.member %>
+            <% if !@transaction.verified? && (current_member.admin? || current_member == @transaction.member) %>
               <span class="pull-right">
                 <%= link_to edit_transaction_path(@transaction) do %>
                   <i class="fa fa-pencil-square-o fa-fw" title="Edit"></i>
+                <% end %>
+              </span>
+            <% end %>
+            <% if current_member.admin? && @transaction.verified? %>
+              <span class="pull-right">
+                <%= link_to download_receipt_transaction_path(@transaction, format: :pdf), target: "_blank" do %>
+                  <i class="fa fa-download fa-fw" title="Download Receipt"></i>
                 <% end %>
               </span>
             <% end %>
@@ -35,7 +42,7 @@
         </dl>
       </div>
 
-      <%= link_to '<< Transactions', :back, class: "btn btn-default" %>
+      <%= link_to '<< Transactions', transactions_path, class: "btn btn-default" %>
     </div>
   </div>
 </div>

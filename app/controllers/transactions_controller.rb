@@ -77,7 +77,7 @@ class TransactionsController < ApplicationController
       format.html
       format.pdf {
         render pdf: "APOWA-Transaction-Receipt-#{@transaction.member.login}-#{Time.now.strftime('%v-%H:%M').to_s}",
-        template: "transactions/download_receipt.html"
+        template: "transactions/download_receipt"
       }
     end
   end

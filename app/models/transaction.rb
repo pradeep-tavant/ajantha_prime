@@ -6,4 +6,8 @@ class Transaction < ApplicationRecord
 
   enum category: ["Maintenance", "PartyHall", "Penalty"]
   enum status: ["NotVerified", "Verified", "NotReceived", "Failed"]
+
+  def verified?
+    self.status == "Verified" && self.category == "Maintenance"
+  end
 end
