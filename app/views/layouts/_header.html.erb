@@ -64,14 +64,12 @@
               My Transaction(s)
             <% end %>
           </li>
-          <% if current_member.admin? %>
-            <li>
-              <%= link_to bookings_path do %>
-                <i class="fa fa-birthday-cake fa-fw"></i>
-                My Party Hall Booking(s)
-              <% end %>
-            </li>
-          <% end %>
+          <li>
+            <%= link_to bookings_path do %>
+              <i class="fa fa-birthday-cake fa-fw"></i>
+              My Party Hall Booking(s)
+            <% end %>
+          </li>
           <li>
             <%= link_to change_password_path(current_member) do %>
               <i class="fa fa-key fa-fw"></i>
