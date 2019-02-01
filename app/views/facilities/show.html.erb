@@ -6,8 +6,8 @@
           <h3><%= @facility.name %>
             <% if current_member.admin? %>
               <span class="pull-right">
-                <%= link_to edit_facility_path(@facility) do %>
-                  <i class="fa fa-pencil-square-o fa-fw" title="Edit"></i>
+                <%= link_to edit_facility_path(@facility), class: "btn btn-default" do %>
+                  <i class="fa fa-pencil-square-o fa-fw" title="Edit"></i>Edit
                 <% end %>
               </span>
             <% end %>

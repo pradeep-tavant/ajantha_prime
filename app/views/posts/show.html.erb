@@ -6,15 +6,16 @@
           <h3><%= @post.title %>
             <% if current_member.admin? && !@post.private? %>
               <span class="pull-right">
-                <%= link_to publish_post_path(@post), method: :put do %>
+                <%= link_to publish_post_path(@post), method: :put, class: "btn btn-default mleft10" do %>
                   <i class="fa <%=@post.visible? ? 'fa-stop' : 'fa-play'%> fa-fw" title="<%= @post.visible? ? 'Unpublish' : 'Publish'%>"></i>
+                  <%= @post.visible? ? 'Unpublish' : 'Publish'%>
                 <% end %>
               </span>
             <% end %>
             <% if @post.member == current_member || current_member.admin? %>
               <span class="pull-right">
-                <%= link_to edit_post_path(@post) do %>
-                  <i class="fa fa-pencil-square-o fa-fw" title="Edit"></i>
+                <%= link_to edit_post_path(@post), class: "btn btn-default" do %>
+                  <i class="fa fa-pencil-square-o fa-fw" title="Edit"></i>Edit
                 <% end %>
               </span>
             <% end %>

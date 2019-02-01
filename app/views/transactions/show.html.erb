@@ -6,15 +6,15 @@
           <h3><%= @transaction.transaction_id %> - <%= @transaction.status %>
             <% if !@transaction.verified? && (current_member.admin? || current_member == @transaction.member) %>
               <span class="pull-right">
-                <%= link_to edit_transaction_path(@transaction) do %>
-                  <i class="fa fa-pencil-square-o fa-fw" title="Edit"></i>
+                <%= link_to edit_transaction_path(@transaction), class: "btn btn-default" do %>
+                  <i class="fa fa-pencil-square-o fa-fw" title="Edit"></i>Edit
                 <% end %>
               </span>
             <% end %>
-            <% if current_member.admin? && @transaction.verified? %>
+            <% if @transaction.verified? %>
               <span class="pull-right">
-                <%= link_to download_receipt_transaction_path(@transaction, format: :pdf), target: "_blank" do %>
-                  <i class="fa fa-download fa-fw" title="Download Receipt"></i>
+                <%= link_to download_receipt_transaction_path(@transaction, format: :pdf), class: "btn btn-default" do %>
+                  <i class="fa fa-download fa-fw" title="Download Receipt"></i>Invoice
                 <% end %>
               </span>
             <% end %>

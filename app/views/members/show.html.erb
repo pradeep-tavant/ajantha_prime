@@ -6,15 +6,15 @@
           <h3><%= @member.name %>
             <% if current_member.admin? || current_member == @member %>
               <span class="pull-right">
-                <%= link_to edit_member_path(@member) do %>
-                  <i class="fa fa-pencil-square-o fa-fw" title="Edit"></i>
+                <%= link_to edit_member_path(@member), class: "btn btn-default mleft10" do %>
+                  <i class="fa fa-pencil-square-o fa-fw" title="Edit"></i>Edit
                 <% end %>
               </span>
             <% end %>
             <% if current_member.admin? && current_member.admin_toggle? %>
               <span class="pull-right">
-                <%= link_to reset_password_path(@member), method: :put do %>
-                  <i class="fa fa-refresh fa-fw" title="Reset Password"></i>
+                <%= link_to reset_password_path(@member), method: :put, class: "btn btn-default" do %>
+                  <i class="fa fa-refresh fa-fw" title="Reset Password"></i>Reset Password
                 <% end %>
               </span>
             <% end %>

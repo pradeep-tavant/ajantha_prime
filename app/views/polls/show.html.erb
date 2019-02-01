@@ -6,8 +6,8 @@
           <h3><%= @poll.topic %>
             <% if current_member.admin? %>
               <span class="pull-right">
-                <%= link_to edit_poll_path(@poll) do %>
-                  <i class="fa fa-pencil-square-o fa-fw" title="Edit"></i>
+                <%= link_to edit_poll_path(@poll), class: "btn btn-default" do %>
+                  <i class="fa fa-pencil-square-o fa-fw" title="Edit"></i>Edit
                 <% end %>
               </span>
             <% end %>
