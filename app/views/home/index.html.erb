@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-lg-12">
     <h3 class="lpad20">Welcome <%= current_member.name %> <span class="label label-default">(<%= current_member.login %>)</span></h3>
-    <div class="col-lg-2 mtop10">
+    <div class="col-lg-3 mtop10">
       <div class="panel panel-info">
         <div class="panel-heading">
           <h3 class="panel-title">Quick Links</h3>
@@ -42,7 +42,7 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-10 mtop10">
+    <div class="col-lg-9 mtop10">
       <div class="panel panel-info">
         <div class="panel-heading">
           <h3 class="panel-title">News Feed</h3>
@@ -50,8 +50,12 @@
         <div class="panel-body">
           <ul class="list-group">
             <li class="list-group-item">
+              <span class="badge">NEW</span>
+              You can do a Party Hall Booking <%= link_to 'here', new_booking_path %>.
+            </li>
+            <li class="list-group-item">
               <% if current_member.transactions.length > 0 %>
-                Thanks for your maintenance payment for <b>Jan-Mar'2019 (Quarter 1)</b>. You can check the Payment Status <%= link_to 'here', transactions_path %>.
+                Thanks for your maintenance payment for <b>Jan-Mar'2019</b>. You can check the Payment Status or download the invoice <%= link_to 'here', transactions_path %>.
               <% else %>
                 <span class="badge">Pending</span>
                 Kindly pay your maintenance charges for <b>Jan-Mar'2019 (Quarter 1)</b>. If already paid, update the transaction details <%= link_to 'here', new_transaction_path %>.
@@ -69,7 +73,7 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-10 mtop10">
+    <div class="col-lg-9 mtop10">
       <div class="panel panel-info">
         <div class="panel-heading">
           <h3 class="panel-title">Documents</h3>

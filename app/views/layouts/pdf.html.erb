@@ -1,13 +1,50 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset='utf-8' />
-  <title>APOWA</title>
-  <%= wicked_pdf_stylesheet_link_tag "application" -%>
-</head>
-<body>
-  <div class='container'>
-    <%= yield %>
-  </div>
-</body>
+  <head>
+    <meta charset='utf-8' />
+    <title>APOWA Transaction Receipt</title>
+    <%= wicked_pdf_stylesheet_link_tag "application" -%>
+    <%= wicked_pdf_stylesheet_link_tag "pdf" -%>
+  </head>
+  <body>
+    <div class='container'>
+      <div class="invoice-box">
+        <div class="center">
+          <h1><b>INVOICE</b></h1>
+        </div>
+        <div class="row" style="min-height: 630px;">
+          <table cellpadding="0" cellspacing="0">
+            <tr class="top bbottom2-gray">
+              <td colspan="2">
+                <table>
+                  <tr>
+                    <td class="title">
+                        <%= wicked_pdf_image_tag("Ajantha-logo-medium.png") %>
+                    </td>
+                    <td>
+                      <h2><b>Ajantha Prime</b></h2>
+                      <small>
+                        No 43/SyNo 32/2, Beratana Agrahara, Hosur Road,<br />
+                        Electronic City, Bangalore, Karnataka 560100<br />
+                        Email #: <b><i>ajanthaprime@gmail.com</i></b><br />
+                        Society Regn #: <b>DRB3/SOR/630/2018-2019</b><br />
+                        PAN #: <b>AAIAA3303K</b>
+                      </small>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <%= yield %>
+          </table>
+        </div>
+        <div class="center mtop30">
+          <small>This is a system generated invoice hence does not require signature.</small>
+        </div>
+        <div class="paid">
+          <%= wicked_pdf_image_tag("paid-sm.png") %>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
