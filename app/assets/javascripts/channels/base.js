@@ -162,6 +162,12 @@ $(document).ready(function() {
       columnDefs: [{ visible: false, searchable: false, "targets": 0 }]
     })
   }
+  else if ($('.feedbacks-wrapper').length > 0) {
+    table = $('.dataTable').DataTable({
+      columnDefs: [{ orderable: false, "targets": -1 }],
+      order: [[ 2, 'desc' ]],
+    })
+  }
   else {
     table = $('.dataTable').DataTable();
   }

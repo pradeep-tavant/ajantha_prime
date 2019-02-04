@@ -8,11 +8,13 @@
         </h3>
       </div>
       <!-- /.panel-heading -->
-      <div class="panel-body panel30 transactions-wrapper">
+      <div class="panel-body panel30 feedbacks-wrapper">
         <table class="dataTable table table-striped table-bordered table-hover" cellspacing="0" width="100%">
           <thead>
             <tr>
               <th>Subject</th>
+              <th>Sender</th>
+              <th>Sent Date</th>
               <th>Status</th>
               <th>Priority</th>
               <th>Actions</th>
@@ -22,6 +24,8 @@
             <% @feedbacks.each do |feedback| %>
               <tr>
                 <td><%= link_to feedback.subject, feedback %></td>
+                <td><%= link_to (feedback.member.name+"("+feedback.member.login+"}"), feedback.member %></td>
+                <td><%= feedback.created_at.strftime("%d/%b/%Y") %></td>
                 <td><%= feedback.status %></td>
                 <td><%= feedback.priority %></td>
                 <td>
