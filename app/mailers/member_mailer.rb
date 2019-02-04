@@ -3,6 +3,6 @@ class MemberMailer < ApplicationMailer
     @member = params[:member]
     @feedback = params[:feedback]
     @assignee = Member.find_by_email("pmsdeva@gmail.com")
-    mail(to: @assignee.email, subject: 'Ajantha Prime Feedback - #{@feedback.subject}')
+    mail(to: @assignee.email, subject: "Ajantha Prime Feedback - #{@feedback.subject}")
   end
 end
