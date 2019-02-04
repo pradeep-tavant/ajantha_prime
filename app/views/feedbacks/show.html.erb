@@ -16,6 +16,14 @@
           <dd><%= simple_format(@feedback.content) %></dd>
         </dl>
         <dl class="dl-horizontal mtop20">
+          <dt>Sender:</dt>
+          <dd><%= (@feedback.member.name+"("+@feedback.member.login+"}") %></dd>
+        </dl>
+        <dl class="dl-horizontal mtop20">
+          <dt>Send Date:</dt>
+          <dd><%= @feedback.created_at.strftime("%d/%b/%Y") %></dd>
+        </dl>
+        <dl class="dl-horizontal mtop20">
           <dt>Status:</dt>
           <dd><%= @feedback.status %></dd>
         </dl>
