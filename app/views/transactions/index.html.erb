@@ -17,7 +17,8 @@
         <table class="dataTable table table-striped table-bordered table-hover <%= current_member.admin? ? 'admin-view' : '' %>" cellspacing="0" width="100%">
           <thead>
             <tr>
-              <th>Transaction ID</th>
+              <th>Transaction #</th>
+              <th>Payment Mode</th>
               <th>Amount Paid(Rs.)</th>
               <th>Date Paid</th>
               <th>Category</th>
@@ -35,6 +36,7 @@
             <% @transactions.each do |transaction| %>
               <tr>
                 <td><%= link_to transaction.transaction_id, transaction %></td>
+                <td><%= transaction.payment_mode %></td>
                 <td><%= transaction.amount_paid %></td>
                 <td><%= transaction.on_date.strftime("%d/%b/%Y") %></td>
                 <td><%= transaction.category %></td>

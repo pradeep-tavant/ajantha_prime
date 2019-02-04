@@ -22,13 +22,13 @@
     Payment Method
   </td>
   <td>
-    Transaction #
+    <%= @transaction.payment_mode == "Cheque" ? "Cheque Number" : "Transaction #" %>
   </td>
 </tr>
 
 <tr class="details">
   <td>
-    Online
+    <%= @transaction.payment_mode %>
   </td>
   <td>
     <%= @transaction.transaction_id %>

@@ -261,4 +261,19 @@ $(document).ready(function() {
     }
   });
 
+  $('select[name="transaction[payment_mode]"]').on('change', function() {
+    if (this.value == 'Cheque') {
+      $(".transaction_label").text("Cheque Number *");
+    }
+    else {
+      $(".transaction_label").text("Transaction # *")
+    }
+    if (this.value == 'Cash') {
+      $('input[name="transaction[transaction_id]"]').val('NA').prop('readonly', true);
+    }
+    else {
+      $('input[name="transaction[transaction_id]"]').val('').prop('readonly', false);
+    }
+  })
+
 });
