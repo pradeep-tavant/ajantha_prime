@@ -252,4 +252,13 @@ $(document).ready(function() {
     table.draw();
   });
 
+  $('.modal-content input[name="feedback[subject]"]').on('input change', function () {
+    if ($(this).val() != '') {
+      $('button[type="submit"]').prop('disabled', false);
+    }
+    else {
+      $('button[type="submit"]').prop('disabled', true);
+    }
+  });
+
 });

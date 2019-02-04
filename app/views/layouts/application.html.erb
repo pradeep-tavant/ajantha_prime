@@ -20,6 +20,25 @@
         <%= yield %>
       </div>
     </div>
+
+
+    <% if current_member.present? %>
+      <!-- Feedback Modal Start -->
+      <div class="modal fade" id="feedbackForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <%= render "home/feedback" %>
+          </div>
+        </div>
+      </div>
+
+      <a href="javascript:void(0);" class="feedback-button btn btn-primary" data-toggle="modal" data-target="#feedbackForm">
+        <i class="fa fa-commenting fa-fw" title="Write to Us"></i>
+        Feedback
+      </a>
+      <!-- Feedback Modal End -->
+    <% end %>
+
     <!-- Footer -->
     <footer class="footer">
       <div class="container text-center">

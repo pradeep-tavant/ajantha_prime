@@ -179,3 +179,15 @@ input:checked + .slider:before {
 }
 
 .input-group { padding: 0 15px !important; }
+
+.feedback-button {
+  line-height: 32px;
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  position: fixed;
+  left: -33px;
+  top: 45%;
+  z-index: 999;
+}

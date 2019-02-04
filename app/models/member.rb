@@ -9,6 +9,7 @@ class Member < ApplicationRecord
   has_many :votes, dependent: :destroy
   has_many :vote_options, through: :votes
   has_many :bookings, dependent: :destroy
+  has_many :feedbacks, dependent: :destroy
 
   accepts_nested_attributes_for :tenant, allow_destroy: true
   accepts_nested_attributes_for :vehicles, allow_destroy: true
