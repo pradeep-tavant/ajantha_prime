@@ -9,6 +9,10 @@
   <%= simple_format(@booking.response) %>
 <% end %>
 
+<% if @booking.approved? %>
+  <p>Kindly pay Rs.500.00 before your party date and update the transaction details in 'My Transaction(s)' page.</p>
+<% end %>
+
 <p>
   To visit kindly login to the site and follow this link: <%= booking_url(@booking) %>.
 </p>
