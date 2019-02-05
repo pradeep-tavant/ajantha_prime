@@ -4,8 +4,8 @@
   Your Party Hall Booking request for <%= @booking.on_date.strftime("%d/%b/%Y") %> has been <%= @booking.approved? ? 'Approved' : 'Declined' %>.
 </p>
 
-<% unless @booking.approved? %>
-  <p><b>Declined Reason:</b></p>
+<% if @booking.response.to_s.length > 0 %>
+  <p><b>Response:</b></p>
   <%= simple_format(@booking.response) %>
 <% end %>
 
