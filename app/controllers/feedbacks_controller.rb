@@ -27,10 +27,12 @@ class FeedbacksController < ApplicationController
   # POST /feedbacks.json
   def create
     @feedback = Feedback.new(feedback_params)
+    @assignee = Member.find_by(email: "pmsdeva@gmail.com")
+    @feedback.assignee = @assignee
 
     respond_to do |format|
       if @feedback.save
-        MemberMailer.with(member: current_member, feedback: @feedback).assign_feedback.deliver_later
+        MemberMailer.with(member: current_member, feedback: @feedback, assignee: @assignee).assign_feedback.deliver_later
         format.html { 
           if current_member.admin?
             redirect_to @feedback, notice: 'Feedback was successfully created.'
@@ -51,6 +53,9 @@ class FeedbacksController < ApplicationController
   def update
     respond_to do |format|
       if @feedback.update(feedback_params)
+        if params[:button] == 'Send'
+          MemberMailer.with(member: @feedback.member, feedback: @feedback, assignee: @feedback.assignee).respond_feedback.deliver_later
+        end
         format.html { redirect_to @feedback, notice: 'Feedback was successfully updated.' }
         format.json { render :show, status: :ok, location: @feedback }
       else

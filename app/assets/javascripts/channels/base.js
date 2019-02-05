@@ -24,7 +24,13 @@ $.fn.dataTable.ext.search.push(
     }
     else if ($('.transactions-wrapper').length > 0) {
       var status = $('#payment_status').val();
-      if (status == undefined || status == "" || status == data[4]) {
+      if (status == undefined || status == "" || status == data[5]) {
+        return true;
+      }
+    }
+    else if ($('.feedbacks-wrapper').length > 0) {
+      var status = $('#feedback_status').val();
+      if (status == undefined || status == "" || status == data[3]) {
         return true;
       }
     }
@@ -172,25 +178,27 @@ $(document).ready(function() {
     table = $('.dataTable').DataTable();
   }
   
-  $('<label class="pull-right mleft20">' +
-        'Floor:&nbsp;&nbsp;'+
-        '<select class="form-control" id="floor">'+
-        '<option value="">All</option>'+
-        '<option>GF</option>'+
-        '<option>FF</option>'+
-        '<option>SF</option>'+
-        '<option>TF</option>'+
-        '<option>FOF</option>'+
-        '</select>'+
-        '</label>'+
-        '<label class="pull-right mleft20">'+
-        'Block:&nbsp;&nbsp;'+
-        '<select class="form-control" id="block">'+
-        '<option value="">All</option>'+
-        '<option>A</option>'+
-        '<option>B</option>'+
-        '</select>'+
-        '</label>').appendTo(".members-wrapper .dataTables_wrapper .dataTables_filter");
+  if ($(".members-wrapper").length > 0) {
+    $('<label class="pull-right mleft20">' +
+          'Floor:&nbsp;&nbsp;'+
+          '<select class="form-control" id="floor">'+
+          '<option value="">All</option>'+
+          '<option>GF</option>'+
+          '<option>FF</option>'+
+          '<option>SF</option>'+
+          '<option>TF</option>'+
+          '<option>FOF</option>'+
+          '</select>'+
+          '</label>'+
+          '<label class="pull-right mleft20">'+
+          'Block:&nbsp;&nbsp;'+
+          '<select class="form-control" id="block">'+
+          '<option value="">All</option>'+
+          '<option>A</option>'+
+          '<option>B</option>'+
+          '</select>'+
+          '</label>').appendTo(".members-wrapper .dataTables_wrapper .dataTables_filter");
+  }
 
   $('#block, #floor').change( function() {
     table.draw();
@@ -205,22 +213,24 @@ $(document).ready(function() {
     }
   });
 
-  $('<label class="pull-right mleft20">' +
-        'Published?:&nbsp;&nbsp;'+
-        '<select class="form-control" id="visible">'+
-        '<option value="">All</option>'+
-        '<option value="Yes">Published</option>'+
-        '<option value="No">Unpublished</option>'+
-        '</select>'+
-        '</label>'+
-        '<label class="pull-right mleft20">'+
-        'Status:&nbsp;&nbsp;'+
-        '<select class="form-control" id="active">'+
-        '<option value="">All</option>'+
-        '<option>Open</option>'+
-        '<option>Closed</option>'+
-        '</select>'+
-        '</label>').appendTo(".posts-wrapper .dataTables_wrapper .dataTables_filter");
+  if ($(".posts-wrapper").length > 0) {
+    $('<label class="pull-right mleft20">' +
+          'Published?:&nbsp;&nbsp;'+
+          '<select class="form-control" id="visible">'+
+          '<option value="">All</option>'+
+          '<option value="Yes">Published</option>'+
+          '<option value="No">Unpublished</option>'+
+          '</select>'+
+          '</label>'+
+          '<label class="pull-right mleft20">'+
+          'Status:&nbsp;&nbsp;'+
+          '<select class="form-control" id="active">'+
+          '<option value="">All</option>'+
+          '<option>Open</option>'+
+          '<option>Closed</option>'+
+          '</select>'+
+          '</label>').appendTo(".posts-wrapper .dataTables_wrapper .dataTables_filter");
+  }
 
   $('#visible, #active').change( function() {
     table.draw();
@@ -232,29 +242,51 @@ $(document).ready(function() {
     return false;
   });
 
-  $('<label class="pull-right mleft20">'+
-        'Category:&nbsp;&nbsp;'+
-        '<select class="form-control" id="category">'+
-        '<option value="">All</option>'+
-        '<option>Bike/Scooter</option>'+
-        '<option>Car</option>'+
-        '</select>'+
-        '</label>').appendTo(".vehicles-wrapper .dataTables_wrapper .dataTables_filter");
+  if ($(".vehicles-wrapper").length > 0) {
+    $('<label class="pull-right mleft20">'+
+          'Category:&nbsp;&nbsp;'+
+          '<select class="form-control" id="category">'+
+          '<option value="">All</option>'+
+          '<option>Bike/Scooter</option>'+
+          '<option>Car</option>'+
+          '</select>'+
+          '</label>').appendTo(".vehicles-wrapper .dataTables_wrapper .dataTables_filter");
+  }
 
   $('#category').change( function() {
     table.draw();
   });
 
-  $('<label class="pull-right mleft20">'+
-        'Payment Status:&nbsp;&nbsp;'+
-        '<select class="form-control" id="payment_status">'+
-        '<option value="">All</option>'+
-        '<option>Verified</option>'+
-        '<option>NotVerified</option>'+
-        '</select>'+
-        '</label>').appendTo(".transactions-wrapper .dataTables_wrapper .dataTables_filter");
+  if ($(".transactions-wrapper").length > 0) {
+    $('<label class="pull-right mleft20">'+
+          'Payment Status:&nbsp;&nbsp;'+
+          '<select class="form-control" id="payment_status">'+
+          '<option value="">All</option>'+
+          '<option>Verified</option>'+
+          '<option>NotVerified</option>'+
+          '</select>'+
+          '</label>').appendTo(".transactions-wrapper .dataTables_wrapper .dataTables_filter");
+  }
 
   $('#payment_status').change( function() {
+    table.draw();
+  });
+
+  if ($(".feedbacks-wrapper").length > 0) {
+    $('<label class="pull-right mleft20">'+
+          'Status:&nbsp;&nbsp;'+
+          '<select class="form-control" id="feedback_status">'+
+          '<option value="">All</option>'+
+          '<option>Open</option>'+
+          '<option>InProgress</option>'+
+          '<option>InAppropriate</option>'+
+          '<option>Duplicate</option>'+
+          '<option>Closed</option>'+
+          '</select>'+
+          '</label>').appendTo(".feedbacks-wrapper .dataTables_wrapper .dataTables_filter");
+  }
+
+  $('#feedback_status').change( function() {
     table.draw();
   });
 

@@ -17,7 +17,6 @@
               <th>Category</th>
               <th>Designation</th>
               <th>Phone</th>
-              <th>Email</th>
               <!-- <th>Shift</th> -->
               <% if current_member.admin? %>
                 <th>Public</th>
@@ -33,7 +32,6 @@
                 <td><%= facility.category.try(:name) %></td>
                 <td><%= facility.designation %></td>
                 <td><%= facility.phone %></td>
-                <td><%= facility.email %></td>
                 <!-- <td><%#= facility.shift? ? 'Day' : 'Night' %></td> -->
                 <% if current_member.admin? %>
                   <td><%= facility.active? ? 'Yes' : 'No' %></td>

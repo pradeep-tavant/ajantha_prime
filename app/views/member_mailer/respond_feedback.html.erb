@@ -1,0 +1,24 @@
+<p>Hello <%= @member.name %>,</p>
+<p>
+  Please find the response for your feedback below:<br>
+</p>
+
+<table>
+  <tr>
+    <th>Subject:</th>
+    <td><%= @feedback.subject %></td>
+  <tr>
+    <th>Content:</th>
+    <td><%= simple_format(@feedback.content) %></td>
+  </tr>
+  <tr>
+    <th>Ticket Status:</th>
+    <td><b><%= @feedback.status %></b></td>
+  </tr>
+  <tr>
+    <th>Response:</th>
+    <td><%= simple_format(@feedback.response) %></td>
+  </tr>
+</table>
+
+<p>Thanks for writing to us.</p>

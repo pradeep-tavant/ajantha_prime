@@ -41,7 +41,10 @@
   <div>
     <div class="col-sm-12" style="text-align: center;">
       <%= link_to 'Cancel', :back, class: "btn btn-default" %>
-      <%= f.submit "Submit", class: "mleft10 btn btn-primary" %>
+      <%= f.submit "Save", class: "mleft10 btn btn-primary" %>
+      <%= button_tag type: 'submit', value: 'Send', class: "mleft10 btn btn-primary" do %>
+        Save and Send Response<i class="fa fa-paper-plane-o fa-fw"></i>
+      <% end %>
     </div>
   </div>
 <% end %>
