@@ -307,7 +307,7 @@ $(document).ready(function() {
       $(".transaction_label").text("Transaction # *")
     }
     if (this.value == 'Cash') {
-      $('input[name="transaction[transaction_id]"]').val('NA').prop('readonly', true);
+      $('input[name="transaction[transaction_id]"]').val('N/A').prop('readonly', true);
     }
     else {
       $('input[name="transaction[transaction_id]"]').val('').prop('readonly', false);

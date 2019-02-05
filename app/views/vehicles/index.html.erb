@@ -22,7 +22,7 @@
               <th>Reg Number</th>
               <th>Category</th>
               <% if params[:all].present? %>
-                <th>Flat</th>
+                <th>Name & Flat</th>
               <% end %>
               <% if current_member.admin? || params[:all].blank? %>
                 <th>Actions</th>
@@ -38,9 +38,7 @@
                 <td><%= vehicle.category %></td>
                 <% if params[:all].present? %>
                   <td>
-                    <%= link_to vehicle.member.login, member_path(vehicle.member) %>
-                    &nbsp;-&nbsp;
-                    <%= vehicle.member.name %>
+                    <%= link_to (vehicle.member.name+"("+vehicle.member.login+")"), member_path(vehicle.member) %>
                   </td>
                 <% end %>
                 

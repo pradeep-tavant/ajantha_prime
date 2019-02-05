@@ -39,8 +39,8 @@ Rails.application.configure do
     address:              'smtp.gmail.com',
     port:                 587,
     domain:               'ajanthaprime.org',
-    user_name:            '',
-    password:             '',
+    user_name:            'pradeep.rubyonrails@gmail.com',
+    password:             'campusint',
     authentication:       'plain',
     enable_starttls_auto: true
   }

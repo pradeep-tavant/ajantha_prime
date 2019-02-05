@@ -12,4 +12,10 @@ class MemberMailer < ApplicationMailer
     @assignee = params[:assignee]
     mail(to: @member.email, subject: "Ajantha Prime Feedback - #{@feedback.subject}")
   end
+
+  def respond_booking
+    @member = params[:member]
+    @booking = params[:booking]
+    mail(to: @member.email, subject: "Ajantha Prime Party Hall Booking - #{@booking.reason}")
+  end
 end

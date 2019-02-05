@@ -3,7 +3,7 @@
     <div class="col-lg-12">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3><%= @booking.reason %> - <%= @booking.approved? ? 'Approved' : 'Pending Approval' %>
+          <h3><%= @booking.reason %> - <%= @booking.approved? ? 'Approved' : @booking.response.to_s.length > 0 ? 'Declined' : 'Pending Approval' %>
             <% if current_member.admin? || (current_member == @booking.member && !@booking.approved?) %>
               <span class="pull-right">
                 <%= link_to edit_booking_path(@booking), class: "btn btn-default" do %>
@@ -15,7 +15,7 @@
         </div>
         <% if current_member.admin? %>
           <dl class="dl-horizontal mtop20">
-            <dt>Name:</dt>
+            <dt>Name & Flat:</dt>
             <dd><%= link_to (@booking.member.try(:name)+'('+@booking.member.try(:login)+')'), member_path(@booking.member) %></dd>
           </dl>
         <% end %>
@@ -25,7 +25,7 @@
         </dl>
         <dl class="dl-horizontal mtop20">
           <dt>On Date:</dt>
-          <dd>Rs.<%= @booking.on_date.strftime("%d/%b/%Y") %></dd>
+          <dd><%= @booking.on_date.strftime("%d/%b/%Y") %></dd>
         </dl>
         <dl class="dl-horizontal mtop20">
           <dt>Start Time:</dt>
@@ -42,6 +42,10 @@
         <dl class="dl-horizontal mtop20">
           <dt>Notes:</dt>
           <dd><%= simple_format(@booking.notes) %></dd>
+        </dl>
+        <dl class="dl-horizontal mtop20">
+          <dt>Response:</dt>
+          <dd><%= simple_format(@booking.response) %></dd>
         </dl>
       </div>
 

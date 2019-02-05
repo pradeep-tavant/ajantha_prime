@@ -20,8 +20,12 @@
           <dd><%= (@feedback.member.name+"("+@feedback.member.login+"}") %></dd>
         </dl>
         <dl class="dl-horizontal mtop20">
-          <dt>Send Date:</dt>
+          <dt>Sent Date:</dt>
           <dd><%= @feedback.created_at.strftime("%d/%b/%Y") %></dd>
+        </dl>
+        <dl class="dl-horizontal mtop20">
+          <dt>Assigned To:</dt>
+          <dd><%= (@feedback.assignee.name+"("+@feedback.assignee.login+"}") %></dd>
         </dl>
         <dl class="dl-horizontal mtop20">
           <dt>Status:</dt>
