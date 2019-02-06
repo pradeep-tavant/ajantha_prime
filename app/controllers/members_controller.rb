@@ -4,13 +4,11 @@ class MembersController < ApplicationController
   before_action :check_admin, except: [:show, :index, :change_password, :update_password, :toggle_admin]
 
   # GET /members
-  # GET /members.json
   def index
     @members = Member.all
   end
 
   # GET /members/1
-  # GET /members/1.json
   def show
     @tenant = @member.tenant
     @vehicles = @member.vehicles
@@ -26,71 +24,49 @@ class MembersController < ApplicationController
   end
 
   # POST /members
-  # POST /members.json
   def create
     @member = Member.new(member_params)
     @member.tenant = nil unless @member.rented?
-    respond_to do |format|
-      if @member.save
-        format.html { redirect_to @member, notice: 'Member profile successfully created.' }
-        format.json { render :show, status: :created, location: @member }
-      else
-        format.html { render :new }
-        format.json { render json: @member.errors, status: :unprocessable_entity }
-      end
+    if @member.save
+      redirect_to @member, notice: 'Member profile successfully created.'
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /members/1
-  # PATCH/PUT /members/1.json
   def update
-    respond_to do |format|
-      if @member.update(member_params)
-        @member.tenant = nil unless @member.rented?
-        format.html { redirect_to @member, notice: "#{current_member == @member ? 'Your' : 'Member'} profile successfully updated." }
-        format.json { render :show, status: :ok, location: @member }
-      else
-        format.html { render :edit }
-        format.json { render json: @member.errors, status: :unprocessable_entity }
-      end
+    if @member.update(member_params)
+      @member.tenant = nil unless @member.rented?
+      redirect_to @member, notice: "#{current_member == @member ? 'Your' : 'Member'} profile successfully updated."
+    else
+      render :edit
     end
   end
 
   # DELETE /members/1
-  # DELETE /members/1.json
   def destroy
     @member.destroy
-    respond_to do |format|
-      format.html { redirect_to members_url, notice: 'Member profile successfully removed.' }
-      format.json { head :no_content }
-    end
+    redirect_to members_url, notice: 'Member profile successfully removed.'
   end
 
   def change_password
   end
 
   def update_password
-    respond_to do |format|
-      if @member.update_with_password(member_params)
-        bypass_sign_in @member
-        format.html { redirect_to @member, notice: 'Password successfully updated.' }
-        format.json { render :show, status: :ok, location: @member }
-      else
-        format.html { render :change_password }
-        format.json { render json: @member.errors, status: :unprocessable_entity }
-      end
+    if @member.update_with_password(member_params)
+      bypass_sign_in @member
+      redirect_to @member, notice: 'Password successfully updated.'
+    else
+      render :change_password
     end
   end
 
   def toggle_admin
-    respond_to do |format|
-      if current_member.update(member_params)
-        format.html { redirect_back(fallback_location: root_path, notice: "Admin view successfully #{current_member.admin? ? 'enabled' : 'disabled'}.") }
-        format.json { render :show, status: :ok, location: current_member }
-      else
-        format.html { redirect_to root_path, notice: 'Something went wrong.' }
-        format.json { render json: current_member.errors, status: :unprocessable_entity }
-      end
+    if current_member.update(member_params)
+      redirect_back(fallback_location: root_path, notice: "Admin view successfully #{current_member.admin? ? 'enabled' : 'disabled'}.")
+    else
+      redirect_to root_path, notice: 'Something went wrong.'
     end
   end
 

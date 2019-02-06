@@ -4,13 +4,11 @@ class FacilitiesController < ApplicationController
   before_action :check_admin, only: [:new, :create, :edit, :update, :destroy]
 
   # GET /facilities
-  # GET /facilities.json
   def index
     @facilities = current_member.admin? ? Facility.all : Facility.where(active: true)
   end
 
   # GET /facilities/1
-  # GET /facilities/1.json
   def show
     check_admin unless @facility.active?
   end
@@ -25,43 +23,28 @@ class FacilitiesController < ApplicationController
   end
 
   # POST /facilities
-  # POST /facilities.json
   def create
     @facility = Facility.new(facility_params)
-
-    respond_to do |format|
-      if @facility.save
-        format.html { redirect_to @facility, notice: 'Facility was successfully created.' }
-        format.json { render :show, status: :created, location: @facility }
-      else
-        format.html { render :new }
-        format.json { render json: @facility.errors, status: :unprocessable_entity }
-      end
+    if @facility.save
+      redirect_to @facility, notice: 'Facility was successfully created.'
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /facilities/1
-  # PATCH/PUT /facilities/1.json
   def update
-    respond_to do |format|
-      if @facility.update(facility_params)
-        format.html { redirect_to @facility, notice: 'Facility was successfully updated.' }
-        format.json { render :show, status: :ok, location: @facility }
-      else
-        format.html { render :edit }
-        format.json { render json: @facility.errors, status: :unprocessable_entity }
-      end
+    if @facility.update(facility_params)
+      redirect_to @facility, notice: 'Facility was successfully updated.'
+    else
+      render :edit
     end
   end
 
   # DELETE /facilities/1
-  # DELETE /facilities/1.json
   def destroy
     @facility.destroy
-    respond_to do |format|
-      format.html { redirect_to facilities_url, notice: 'Facility was successfully removed.' }
-      format.json { head :no_content }
-    end
+    redirect_to facilities_url, notice: 'Facility was successfully removed.'
   end
 
   private

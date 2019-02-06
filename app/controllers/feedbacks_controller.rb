@@ -4,13 +4,11 @@ class FeedbacksController < ApplicationController
   before_action :set_feedback, only: [:show, :edit, :update, :destroy]
 
   # GET /feedbacks
-  # GET /feedbacks.json
   def index
     @feedbacks = Feedback.all
   end
 
   # GET /feedbacks/1
-  # GET /feedbacks/1.json
   def show
   end
 
@@ -24,55 +22,39 @@ class FeedbacksController < ApplicationController
   end
 
   # POST /feedbacks
-  # POST /feedbacks.json
   def create
     @feedback = Feedback.new(feedback_params)
     @assignee = Member.find_by(email: "pmsdeva@gmail.com")
     @feedback.assignee = @assignee
 
-    respond_to do |format|
-      if @feedback.save
-        MemberMailer.with(member: current_member, feedback: @feedback, assignee: @assignee).assign_feedback.deliver_later
-        format.html { 
-          if current_member.admin?
-            redirect_to @feedback, notice: 'Feedback was successfully created.'
-          else
-            redirect_back(fallback_location: root_path, notice: "Thanks for writing to us. Your feedback was submitted successfully.")
-          end
-        }
-        format.json { render :show, status: :created, location: @feedback }
+    if @feedback.save
+      MemberMailer.with(member: current_member, feedback: @feedback, assignee: @assignee).assign_feedback.deliver_later
+      if current_member.admin?
+        redirect_to @feedback, notice: 'Feedback was successfully created.'
       else
-        format.html { render :new }
-        format.json { render json: @feedback.errors, status: :unprocessable_entity }
+        redirect_back(fallback_location: root_path, notice: "Thanks for writing to us. Your feedback was submitted successfully.")
       end
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /feedbacks/1
-  # PATCH/PUT /feedbacks/1.json
   def update
-    respond_to do |format|
-      if @feedback.update(feedback_params)
-        if params[:button] == 'Send'
-          MemberMailer.with(member: @feedback.member, feedback: @feedback, assignee: @feedback.assignee).respond_feedback.deliver_later
-        end
-        format.html { redirect_to @feedback, notice: 'Feedback was successfully updated.' }
-        format.json { render :show, status: :ok, location: @feedback }
-      else
-        format.html { render :edit }
-        format.json { render json: @feedback.errors, status: :unprocessable_entity }
+    if @feedback.update(feedback_params)
+      if params[:button] == 'Send'
+        MemberMailer.with(member: @feedback.member, feedback: @feedback, assignee: @feedback.assignee).respond_feedback.deliver_later
       end
+      redirect_to @feedback, notice: 'Feedback was successfully updated.'
+    else
+      render :edit
     end
   end
 
   # DELETE /feedbacks/1
-  # DELETE /feedbacks/1.json
   def destroy
     @feedback.destroy
-    respond_to do |format|
-      format.html { redirect_to feedbacks_url, notice: 'Feedback was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to feedbacks_url, notice: 'Feedback was successfully destroyed.'
   end
 
   private

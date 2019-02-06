@@ -5,13 +5,11 @@ class CommentsController < ApplicationController
     commentable = commentable_type.constantize.find(commentable_id)
     @comment = Comment.build_from(commentable, current_member.id, body)
 
-    respond_to do |format|
-      if @comment.save
-        make_child_comment
-        format.html  { redirect_back fallback_location: root_path, notice: 'Comment was successfully added.' }
-      else
-        format.html  { redirect_back fallback_location: root_path, alert: 'Cannot save blank comments.' }
-      end
+    if @comment.save
+      make_child_comment
+      redirect_back fallback_location: root_path, notice: 'Comment was successfully added.'
+    else
+      redirect_back fallback_location: root_path, alert: 'Cannot save blank comments.'
     end
   end
 
