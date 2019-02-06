@@ -1,7 +1,7 @@
 <p>Hello <%= @member.name %>,</p>
 
 <p>
-  Your Party Hall Booking request for <%= @booking.on_date.strftime("%d/%b/%Y") %> has been <%= @booking.approved? ? 'Approved' : 'Declined' %>.
+  Your Party Hall Booking request for <%= @booking.on_date.strftime("%d/%b/%Y") %> has been <%= @booking.approved %>.
 </p>
 
 <% if @booking.response.to_s.length > 0 %>
@@ -9,7 +9,7 @@
   <%= simple_format(@booking.response) %>
 <% end %>
 
-<% if @booking.approved? %>
+<% if @booking.approved == 'Approved' %>
   <p>Kindly pay &#8377; 500/- before your party date and update the transaction details in 'My Transaction(s)' page.</p>
 <% end %>
 

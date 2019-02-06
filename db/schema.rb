@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_05_081128) do
+ActiveRecord::Schema.define(version: 2019_02_06_051501) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2019_02_05_081128) do
     t.time "start_time"
     t.time "end_time"
     t.text "notes"
-    t.boolean "approved", default: false
+    t.integer "approved", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "guest_count"
