@@ -24,6 +24,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootstrap-sass'
 gem 'font-awesome-sass', '~> 4.7.0'
 gem 'bootstrap-datepicker-rails'
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
 
 gem 'devise'
 gem 'friendly_id', '~> 5.2.0'

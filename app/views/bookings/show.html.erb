@@ -15,8 +15,14 @@
         </div>
         <% if current_member.admin? %>
           <dl class="dl-horizontal mtop20">
-            <dt>Name & Flat:</dt>
-            <dd><%= link_to (@booking.member.try(:name)+'('+@booking.member.try(:login)+')'), member_path(@booking.member) %></dd>
+            <dt>Booked By:</dt>
+            <dd>
+              <% if @booking.private? %>
+                <%= link_to (@booking.member.try(:name)+'('+@booking.member.try(:login)+')'), member_path(@booking.member) %>
+              <% else %>
+                Association
+              <% end %>
+            </dd>
           </dl>
         <% end %>
         <dl class="dl-horizontal mtop20">

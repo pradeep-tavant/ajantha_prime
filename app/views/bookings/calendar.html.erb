@@ -1,0 +1,55 @@
+<style type="text/css">
+  .fc-day-grid-event > .fc-content {
+    white-space: inherit;
+  }
+</style>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3>
+              Booking Calendar
+            <%= link_to 'Book Party Hall', new_booking_path, class: "btn btn-default pull-right" %>
+          </h3>
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body panel30 bookings-wrapper">
+          <div id="calendar"></div>
+        </div>
+      </div>
+      <%= link_to '<< Bookings', bookings_path, class: "btn btn-default" %>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    //<![CDATA[
+    var bookings_list = $.parseJSON('<%=j @bookings_list.to_json.html_safe %>');
+    // ]]>
+    $('#calendar').fullCalendar({
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,listMonth'
+      },
+      views: {
+        month: { buttonText: 'Month' },
+        agendaWeek: { buttonText: 'Week' },
+        listMonth: { buttonText: 'List View' }
+      },
+      defaultDate: '<%= Date.today.to_s %>',
+      displayEventTime: true,
+      displayEventEnd: true,
+      eventBackgroundColor: "#999",
+      nowIndicator: true,
+      weekNumbers: false,
+      navLinks: true,
+      editable: false,
+      eventLimit: true, // allow "more" link when too many events
+      events: bookings_list
+    });
+  });
+</script>

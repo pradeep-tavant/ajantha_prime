@@ -25,4 +25,7 @@
 //= require buttons.html5.min
 //= require buttons.print.min
 //= require bootstrap.file-input
+//= require moment 
+//= require fullcalendar
+//= require fullcalendar/locale-all
 //= require_tree .

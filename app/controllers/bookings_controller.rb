@@ -17,6 +17,18 @@ class BookingsController < ApplicationController
     end
   end
 
+  def calendar
+    @bookings = Booking.all
+    @bookings_list = []
+    @bookings.each do |booking|
+      @bookings_list.push({
+        title: "#{booking.private? ? booking.member.login : 'Association'} - #{booking.reason}",
+        start: booking.on_date.to_s+booking.start_time.strftime("T%T"),
+        end: booking.on_date.to_s+booking.end_time.strftime("T%T")
+      })
+    end
+  end
+
   # GET /bookings/1
   def show
   end
@@ -74,6 +86,6 @@ class BookingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def booking_params
-      params.require(:booking).permit(:reason, :on_date, :start_time, :end_time, :notes, :approved, :guest_count, :member_id, :response)
+      params.require(:booking).permit(:reason, :on_date, :start_time, :end_time, :notes, :approved, :guest_count, :member_id, :response, :private)
     end
 end
