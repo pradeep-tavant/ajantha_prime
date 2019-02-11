@@ -314,4 +314,13 @@ $(document).ready(function() {
     }
   })
 
+  $("select.start_time:first, select.end_time:first").on('change', function(){
+    if (this.value == 22) { // No booking after 10PM
+      $(this).siblings('select').val("00").attr('readonly', true).css('pointer-events','none');
+    }
+    else {
+      $(this).siblings('select').attr('readonly', false).css('pointer-events','auto');
+    }
+  })
+
 });

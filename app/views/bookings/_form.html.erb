@@ -25,14 +25,14 @@
   <div class="form-group">
     <%= f.label :start_time, "Start Time *", class: "control-label col-sm-2" %>
     <div class="col-sm-10">
-      <%= f.time_select :start_time, {default: {hour: 6}, start_hour: 6, end_hour: 22, ampm: true, ignore_date: true, minute_step: 15}, {class: "form-control", disabled: disabled, style: "width:100px; display: inline"} %>
+      <%= f.time_select :start_time, {default: {hour: 6}, start_hour: 6, end_hour: 22, ampm: true, ignore_date: true, minute_step: 15}, {class: "form-control start_time", disabled: disabled, style: "width:100px; display: inline"} %>
     </div>
   </div>
 
   <div class="form-group">
     <%= f.label :end_time, "End Time *", class: "control-label col-sm-2" %>
     <div class="col-sm-10">
-      <%= f.time_select :end_time, {default: {hour: 6}, start_hour: 6, end_hour: 22, ampm: true, ignore_date: true, minute_step: 15}, {class: "form-control", disabled: disabled, style: "width:100px; display: inline"} %>
+      <%= f.time_select :end_time, {default: {hour: 6}, start_hour: 6, end_hour: 22, ampm: true, ignore_date: true, minute_step: 15}, {class: "form-control end_time", disabled: disabled, style: "width:100px; display: inline"} %>
     </div>
   </div>
 
