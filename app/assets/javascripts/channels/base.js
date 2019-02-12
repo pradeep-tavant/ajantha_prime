@@ -174,6 +174,12 @@ $(document).ready(function() {
       order: [[ 2, 'desc' ]],
     })
   }
+  else if ($('.bookings-wrapper').length > 0) {
+    table = $('.dataTable').DataTable({
+      columnDefs: [{ orderable: false, "targets": -1 }],
+      order: []
+    })
+  }
   else {
     table = $('.dataTable').DataTable();
   }

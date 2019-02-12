@@ -12,7 +12,7 @@ class BookingsController < ApplicationController
       flash[:error] = "You do not have access for this operation"
       redirect_to root_path
     else
-      @bookings = Booking.all
+      @bookings = Booking.where(on_date: Date.today..DateTime::Infinity.new)
       render action: 'index'
     end
   end
@@ -24,7 +24,9 @@ class BookingsController < ApplicationController
       @bookings_list.push({
         title: "#{booking.private? ? booking.member.login : 'Association'} - #{booking.reason}",
         start: booking.on_date.to_s+booking.start_time.strftime("T%T"),
-        end: booking.on_date.to_s+booking.end_time.strftime("T%T")
+        end: booking.on_date.to_s+booking.end_time.strftime("T%T"),
+        # url: booking_path(booking),
+        color: booking.color
       })
     end
   end
@@ -36,6 +38,7 @@ class BookingsController < ApplicationController
   # GET /bookings/new
   def new
     @booking = current_member.bookings.build
+    @booking.on_date = params[:on_date]
   end
 
   # GET /bookings/1/edit

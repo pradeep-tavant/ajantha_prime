@@ -5,6 +5,18 @@ class Booking < ApplicationRecord
 
   enum approved: ["Pending", "Approved", "Declined"]
 
+  default_scope { order(on_date: :asc) }
+
+  def color
+    if approved == 'Approved'
+      "green"
+    elsif approved == 'Declined'
+      "red"
+    else
+      "#999"
+    end
+  end
+
   private
 
   def check_booking_date_time

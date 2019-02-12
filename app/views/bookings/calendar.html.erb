@@ -11,11 +11,12 @@
         <div class="panel-heading">
           <h3>
               Booking Calendar
-            <%= link_to 'Book Party Hall', new_booking_path, class: "btn btn-default pull-right" %>
+            <%= link_to 'Book', new_booking_path, class: "btn btn-default pull-right" %>
           </h3>
         </div>
         <!-- /.panel-heading -->
         <div class="panel-body panel30 bookings-wrapper">
+          <p class="center">Click a date to begin your Party Hall Booking</p>
           <div id="calendar"></div>
         </div>
       </div>
@@ -48,8 +49,13 @@
       weekNumbers: false,
       navLinks: true,
       editable: false,
-      eventLimit: true, // allow "more" link when too many events
-      events: bookings_list
+      selectable: true,
+      selectHelper: false,
+      eventLimit: true,
+      events: bookings_list,
+      select: function(start) {
+        window.location.href = '/bookings/new?on_date='+start.format();
+      }
     });
   });
 </script>

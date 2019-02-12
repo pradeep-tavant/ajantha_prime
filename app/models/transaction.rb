@@ -5,7 +5,7 @@ class Transaction < ApplicationRecord
   validates_uniqueness_of :transaction_id, scope: %i[category member_id], message: "already exists"
 
   enum payment_mode: ["Online", "Cheque", "Cash"]
-  enum category: ["Maintenance", "PartyHall", "Penalty"]
+  enum category: ["Maintenance", "PartyHall", "CorpusFund", "Penalty"]
   enum status: ["NotVerified", "Verified", "NotReceived", "Failed"]
 
   def verified?
