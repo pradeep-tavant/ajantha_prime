@@ -1,11 +1,11 @@
 <%= form_with(model: vehicle, local: true, class: "form-horizontal") do |f| %>
   <%= resource_error_messages!(vehicle) %>
 
-  <% if current_member.admin? && params[:me].present? %>
+  <% if current_member.admin? %>
     <div class="form-group">
-      <%= f.label :name, "Flat *", class: "control-label col-sm-2" %>
+      <%= f.label :member_id, "Owned By *", class: "control-label col-sm-2" %>
       <div class="col-sm-10">
-        <%= f.select(:member_id, flats_list_with_id, {}, {class: "form-control"}) %>
+        <%= f.select(:member_id, flats_list_with_id, {prompt: 'Select'}, {class: "form-control"}) %>
       </div>
     </div>
   <% else %>

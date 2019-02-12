@@ -4,7 +4,7 @@
       <div class="panel-heading">
         <h3>
           Feedbacks
-          <%= link_to 'Add My Feedback', new_feedback_path, class: "btn btn-default pull-right" %>
+          <%= link_to 'Add Feedback', new_feedback_path, class: "btn btn-default pull-right" %>
         </h3>
       </div>
       <!-- /.panel-heading -->
@@ -15,6 +15,7 @@
               <th>Subject</th>
               <th>Sender</th>
               <th>Sent Date</th>
+              <th>Assignee</th>
               <th>Status</th>
               <th>Priority</th>
               <th>Actions</th>
@@ -24,8 +25,9 @@
             <% @feedbacks.each do |feedback| %>
               <tr>
                 <td><%= link_to feedback.subject, feedback %></td>
-                <td><%= link_to (feedback.member.name+"("+feedback.member.login+"}"), feedback.member %></td>
+                <td><%= link_to feedback.member.name_with_flat, feedback.member %></td>
                 <td><%= feedback.created_at.strftime("%d/%b/%Y") %></td>
+                <td><%= link_to feedback.member.name_with_flat, feedback.member %></td>
                 <td><%= feedback.status %></td>
                 <td><%= feedback.priority %></td>
                 <td>

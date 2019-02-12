@@ -8,8 +8,7 @@
           <% else %>
             My Vehicle(s)
           <% end %>
-          <%= link_to "Add Other's Vehicle", new_vehicle_path(me: false), class: "btn btn-default pull-right mleft10" if current_member.admin? %>
-          <%= link_to 'Add My Vehicle', new_vehicle_path, class: "btn btn-default pull-right" %>
+          <%= link_to 'Add Vehicle', new_vehicle_path, class: "btn btn-default pull-right" %>
         </h3>
       </div>
       <!-- /.panel-heading -->
@@ -38,7 +37,7 @@
                 <td><%= vehicle.category %></td>
                 <% if params[:all].present? %>
                   <td>
-                    <%= link_to (vehicle.member.name+"("+vehicle.member.login+")"), member_path(vehicle.member) %>
+                    <%= link_to vehicle.member.name_with_flat, member_path(vehicle.member) %>
                   </td>
                 <% end %>
                 

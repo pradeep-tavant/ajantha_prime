@@ -39,6 +39,7 @@ en:
         name: "Vehicle Name"
         number: "Reg Number"
         category: "Vehicle Type"
+        member: "Vehicle Owner"
       transaction:
         transaction_id: "Transaction ID"
         on_date: "Paid Date"

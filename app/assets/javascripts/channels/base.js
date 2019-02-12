@@ -171,7 +171,7 @@ $(document).ready(function() {
   else if ($('.feedbacks-wrapper').length > 0) {
     table = $('.dataTable').DataTable({
       columnDefs: [{ orderable: false, "targets": -1 }],
-      order: [[ 2, 'desc' ]],
+      order: [],
     })
   }
   else if ($('.bookings-wrapper').length > 0) {

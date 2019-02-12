@@ -17,15 +17,15 @@
         </dl>
         <dl class="dl-horizontal mtop20">
           <dt>Sender:</dt>
-          <dd><%= (@feedback.member.name+"("+@feedback.member.login+"}") %></dd>
+          <dd><%= @feedback.member.name_with_flat %></dd>
         </dl>
         <dl class="dl-horizontal mtop20">
           <dt>Sent Date:</dt>
           <dd><%= @feedback.created_at.strftime("%d/%b/%Y") %></dd>
         </dl>
         <dl class="dl-horizontal mtop20">
-          <dt>Assigned To:</dt>
-          <dd><%= (@feedback.assignee.name+"("+@feedback.assignee.login+"}") %></dd>
+          <dt>Assignee:</dt>
+          <dd><%= @feedback.assignee.name_with_flat %></dd>
         </dl>
         <dl class="dl-horizontal mtop20">
           <dt>Status:</dt>

@@ -40,7 +40,8 @@ module ApplicationHelper
         (1..last_flat).to_a.map{|x| ('%02d' % x)}.each do |flat|
           flat_str = (floor + flat + "-" + block)
           if registered.include?(flat_str)
-            available << [flat_str, Member.find_by_login(flat_str).id]
+            member = Member.find_by_login(flat_str)
+            available << [member.name_with_flat, member.id]
           end
         end
       end

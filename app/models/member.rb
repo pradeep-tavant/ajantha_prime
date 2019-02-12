@@ -25,6 +25,10 @@ class Member < ApplicationRecord
   validates :password_confirmation, presence: true, on: :create
   validates_uniqueness_of :flat, scope: %i[floor block], message: "is already registered"
 
+  def name_with_flat
+    "#{name} (#{login})"
+  end
+
   def voted_for?(poll)
     votes.any? {|v| v.vote_option.poll == poll}
   end

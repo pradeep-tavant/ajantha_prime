@@ -25,7 +25,7 @@ class FeedbacksController < ApplicationController
   def create
     @feedback = Feedback.new(feedback_params)
     @assignee = Member.find_by(email: "pmsdeva@gmail.com")
-    @feedback.assignee = @assignee
+    @feedback.assignee ||= @assignee
 
     if @feedback.save
       MemberMailer.with(member: current_member, feedback: @feedback, assignee: @assignee).assign_feedback.deliver_later
@@ -71,6 +71,6 @@ class FeedbacksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def feedback_params
-      params.require(:feedback).permit(:subject, :content, :status, :priority, :response, :member_id)
+      params.require(:feedback).permit(:subject, :content, :status, :priority, :response, :member_id, :assignee_id)
     end
 end

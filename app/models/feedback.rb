@@ -4,4 +4,6 @@ class Feedback < ApplicationRecord
   validates :subject, presence: true
   enum status: ["Open", "InProgress", "InAppropriate", "Duplicate", "Closed"]
   enum priority: ["None", "VeryLow", "Low", "Medium", "High", "VeryHigh"]
+
+  default_scope { order(created_at: :desc) }
 end
