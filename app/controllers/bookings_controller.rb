@@ -18,7 +18,7 @@ class BookingsController < ApplicationController
   end
 
   def calendar
-    @bookings = Booking.all
+    @bookings = Booking.where.not(approved: 'Declined')
     @bookings_list = []
     @bookings.each do |booking|
       @bookings_list.push({
