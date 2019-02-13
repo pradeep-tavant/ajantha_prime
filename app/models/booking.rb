@@ -29,7 +29,7 @@ class Booking < ApplicationRecord
     # same_datetime = same_date.where(start_time: start_time..end_time).or(same_date.where(end_time: start_time..end_time))
     same_datetime = same_date.where("(start_time > :start_time AND start_time < :end_time) OR (end_time > :start_time AND end_time < :end_time) OR (:start_time > start_time AND :start_time < end_time) OR (:end_time > start_time AND :end_time < end_time)", start_time: start_time.utc.strftime("%T"), end_time: end_time.utc.strftime("%T"))
     if same_datetime.count > 0
-      errors[:base] << "This slot is already booked by another Member"
+      errors[:base] << "Your function timings clashes with another Resident's booking on same day. Please check the Booking Calendar for available timings"
     end
   end
 end
