@@ -5,3 +5,22 @@ categories = ["Manager", "Security", "HouseKeeping", "STP", "WTP", "Lift", "Gym/
 categories.each do |category_name|
   Category.find_or_create_by(name: category_name)
 end
+
+year = Date.today.year
+settings = [
+  ["MAINTENANCE_#{year}_Q0_PER_MONTH", '2500'],
+  ["MAINTENANCE_#{year}_Q0_DUE_DATE", "31/Jan/#{year}"],
+  ["MAINTENANCE_#{year}_Q1_PER_MONTH", '3000'],
+  ["MAINTENANCE_#{year}_Q1_DUE_DATE", "15/Apr/#{year}"],
+  ["MAINTENANCE_#{year}_Q2_PER_MONTH", '3000'],
+  ["MAINTENANCE_#{year}_Q2_DUE_DATE", "15/Jul/#{year}"],
+  ["MAINTENANCE_#{year}_Q3_PER_MONTH", '3000'],
+  ["MAINTENANCE_#{year}_Q3_DUE_DATE", "15/Oct/#{year}"],
+  ['FEEDBACK_CONTACT', 'pmsdeva@gmail.com'],
+  ['PARTYHALL_CONTACT', 'pradeepkumar.2win@gmail.com']
+]
+settings.each do |setting_arr|
+  setting = Setting.find_or_initialize_by(name: setting_arr[0])
+  setting.value = setting_arr[1]
+  setting.save
+end

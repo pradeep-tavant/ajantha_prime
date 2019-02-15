@@ -4,14 +4,14 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3><%= @transaction.transaction_id %> - <%= @transaction.status %>
-            <% if !@transaction.verified? && (current_member.admin? || current_member == @transaction.member) %>
+            <% if !@transaction.Verified? && (current_member.admin? || current_member == @transaction.member) %>
               <span class="pull-right">
                 <%= link_to edit_transaction_path(@transaction), class: "btn btn-default" do %>
                   <i class="fa fa-pencil-square-o fa-fw" title="Edit"></i>Edit
                 <% end %>
               </span>
             <% end %>
-            <% if @transaction.verified? %>
+            <% if @transaction.Verified? %>
               <span class="pull-right">
                 <%= link_to download_receipt_transaction_path(@transaction, format: :pdf), class: "btn btn-default" do %>
                   <i class="fa fa-download fa-fw" title="Download Receipt"></i>Invoice
@@ -33,6 +33,10 @@
           <dd>Rs.<%= @transaction.amount_paid %></dd>
         </dl>
         <dl class="dl-horizontal mtop20">
+          <dt>Penalty:</dt>
+          <dd>Rs.<%= @transaction.penalty %></dd>
+        </dl>
+        <dl class="dl-horizontal mtop20">
           <dt>Date Paid:</dt>
           <dd><%= @transaction.on_date.strftime("%d/%b/%Y") %></dd>
         </dl>
@@ -40,6 +44,12 @@
           <dt>Category:</dt>
           <dd><%= @transaction.category %></dd>
         </dl>
+        <% if @transaction.Maintenance? %>
+          <dl class="dl-horizontal mtop20">
+            <dt>Duration:</dt>
+            <dd><%= @transaction.sub_category %></dd>
+          </dl>
+        <% end %>
         <dl class="dl-horizontal mtop20">
           <dt>Description:</dt>
           <dd><%= simple_format(@transaction.description) %></dd>

@@ -24,7 +24,7 @@ class FeedbacksController < ApplicationController
   # POST /feedbacks
   def create
     @feedback = Feedback.new(feedback_params)
-    @assignee = Member.find_by(email: "pmsdeva@gmail.com")
+    @assignee = Member.find_by(email: Setting.FEEDBACK_CONTACT)
     @feedback.assignee ||= @assignee
 
     if @feedback.save

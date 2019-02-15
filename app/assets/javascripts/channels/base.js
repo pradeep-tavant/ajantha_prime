@@ -320,6 +320,15 @@ $(document).ready(function() {
     }
   })
 
+  $('select[name="transaction[category]"]').on('change', function() {
+    if (this.value == 'Maintenance') {
+      $(".sub-category").slideDown();
+    }
+    else {
+      $(".sub-category").slideUp();
+    }
+  })
+
   $("select.start_time:first, select.end_time:first").on('change', function(){
     if (this.value == 22) { // No booking after 10PM
       $(this).siblings('select').val("00").attr('readonly', true).css('pointer-events','none');

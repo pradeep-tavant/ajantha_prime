@@ -10,7 +10,9 @@
         <td>
           Invoice #: <%= "%.4d" % @transaction.id %><br>
           Invoice Date: <%= @transaction.on_date.strftime("%d/%b/%Y") %><br>
-          Due Date: 31/Jan/2019
+          <% if @transaction.Maintenance? %>
+            Due Date: <%= @transaction.due_date %>
+          <% end %>
         </td>
       </tr>
     </table>
@@ -22,7 +24,7 @@
     Payment Method
   </td>
   <td>
-    <%= @transaction.payment_mode == "Cheque" ? "Cheque Number" : "Transaction #" %>
+    Transaction #
   </td>
 </tr>
 
@@ -49,7 +51,7 @@
     <%= transaction_reason(@transaction) %>
   </td>
   <td>
-    &#8377; <%= "%.2f" % transaction_amount(@transaction) %>
+    &#8377; <%= "%.2f" % @transaction.actual_paid %>
   </td>
 </tr>
 
@@ -58,7 +60,7 @@
     Penalty
   </td>
   <td>
-    &#8377; <%= "%.2f" % (@transaction.amount_paid - transaction_amount(@transaction)) %>
+    &#8377; <%= "%.2f" % @transaction.penalty %>
   </td>
 </tr>
 

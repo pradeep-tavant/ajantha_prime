@@ -3,7 +3,7 @@
 
   <% if current_member.admin? %>
     <div class="form-group">
-      <%= f.label :member_id, "Owned By *", class: "control-label col-sm-2" %>
+      <%= f.label :member_id, "# Owned By * #", class: "control-label col-sm-2" %>
       <div class="col-sm-10">
         <%= f.select(:member_id, flats_list_with_id, {prompt: 'Select'}, {class: "form-control"}) %>
       </div>

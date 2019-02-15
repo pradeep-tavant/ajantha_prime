@@ -1,7 +1,7 @@
 <%= form_with(model: transaction, local: true, class: "form-horizontal") do |f| %>
   <%= resource_error_messages!(transaction) %>
 
-  <% disabled = (transaction.verified? || (!transaction.new_record? && current_member != transaction.member)) %>
+  <% disabled = (transaction.Verified? || (!transaction.new_record? && current_member != transaction.member)) %>
 
   <%= f.hidden_field :member_id %>
 
@@ -43,16 +43,30 @@
     </div>
   </div>
 
+  <div class="form-group sub-category" style="<%=transaction.Maintenance? ? '' : 'display: none;'%>">
+    <%= label_tag :sub_category, "Duration *", class: "control-label col-sm-2" %>
+    <div class="col-sm-10">
+      <%= f.select(:sub_category, Transaction.sub_categories.keys, {prompt: 'Select'}, {class: "form-control", disabled: disabled}) %>
+    </div>
+  </div>
+
   <div class="form-group">
     <%= f.label :description, class: "control-label col-sm-2" %>
     <div class="col-sm-10">
-      <%= f.text_area :description, class: "form-control" %>
+      <%= f.text_area :description, class: "form-control", disabled: disabled %>
     </div>
   </div>
 
   <% if current_member.admin? %>
     <div class="form-group">
-      <%= f.label :status, "Payment Status", class: "control-label col-sm-2" %>
+      <%= f.label :penalty, "# Penalty #", class: "control-label col-sm-2" %>
+      <div class="col-sm-10">
+        <%= f.number_field :penalty, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :status, "# Payment Status #", class: "control-label col-sm-2" %>
       <div class="col-sm-10">
         <%= f.select(:status, Transaction.statuses.keys, {prompt: 'Select'}, {class: "form-control"}) %>
       </div>

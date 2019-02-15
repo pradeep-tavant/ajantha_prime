@@ -4,7 +4,7 @@ class Booking < ApplicationRecord
   validate :valid_on_date?
   validate :check_booking_date_time
 
-  enum approved: ["Pending", "Approved", "Declined"]
+  enum approved: {Pending: 0, Approved: 1, Declined: 2}
 
   default_scope { order(on_date: :asc) }
 

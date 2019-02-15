@@ -41,7 +41,7 @@
 
   <% if current_member.admin? %>
     <div class="form-group">
-      <%= f.label :active, "Status", class: "control-label col-sm-2" %>
+      <%= f.label :active, "# Status #", class: "control-label col-sm-2" %>
       <div class="col-sm-10">
         <%= f.select(:active, [["Open",true],["Close",false]], {}, {class: "form-control"}) %>
       </div>

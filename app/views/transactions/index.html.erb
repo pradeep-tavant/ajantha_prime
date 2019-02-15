@@ -47,7 +47,7 @@
                   <td><%= transaction.member.phone %></td>
                 <% end %>
                 <td>
-                  <% unless transaction.verified? %>
+                  <% unless transaction.Verified? %>
                     <%= link_to edit_transaction_path(transaction) do %>
                       <i class="fa fa-pencil fa-fw" title="Edit"></i>
                     <% end %>
