@@ -27,7 +27,7 @@
                 <td><%= link_to feedback.subject, feedback %></td>
                 <td><%= link_to feedback.member.name_with_flat, feedback.member %></td>
                 <td><%= feedback.created_at.strftime("%d/%b/%Y") %></td>
-                <td><%= link_to feedback.member.name_with_flat, feedback.member %></td>
+                <td><%= link_to feedback.assignee.name_with_flat, feedback.assignee %></td>
                 <td><%= feedback.status %></td>
                 <td><%= feedback.priority %></td>
                 <td>
