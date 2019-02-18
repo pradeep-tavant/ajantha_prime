@@ -52,7 +52,7 @@
         <% elsif @transaction.PartyHall? %>
           <dl class="dl-horizontal mtop20">
             <dt>Booking Date:</dt>
-            <dd><%= @transaction.for_date.strftime("%d/%b/%Y") %></dd>
+            <dd><%= @transaction.for_date.try(:strftime, "%d/%b/%Y").to_s %></dd>
           </dl>
         <% end %>
         <dl class="dl-horizontal mtop20">

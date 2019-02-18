@@ -59,6 +59,9 @@
       // }
       dayClick: function(date) {
         window.location.href = '/bookings/new?on_date='+date.format();
+      },
+      eventRender: function(event, element) {
+        $(element).addTouch();
       }
     });
   });

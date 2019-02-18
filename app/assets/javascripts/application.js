@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.touch
 //= require dataTables/jquery.dataTables
 //= require dataTables/extras/dataTables.responsive
 //= require cocoon
