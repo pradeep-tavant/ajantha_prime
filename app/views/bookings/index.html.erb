@@ -3,14 +3,20 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3>
-          <% if params[:action] == 'all' %>
-            Upcoming Party Hall Bookings
-          <% else %>
-            My Party Hall Booking(s)
-          <% end %>
-          <%= link_to booking_calendar_path, class: "mleft10 btn btn-default pull-right" do %>
-            <i class="fa fa-calendar fa-fw" title="Calendar"></i> Book Party Hall
-          <% end %>
+          <div class="row">
+            <div class='col-lg-10'>
+              <% if params[:action] == 'all' %>
+                Upcoming Party Hall Bookings
+              <% else %>
+                My Party Hall Booking(s)
+              <% end %>
+            </div>
+            <div class="col-lg-2">
+              <%= link_to booking_calendar_path, class: "btn btn-default" do %>
+                <i class="fa fa-calendar fa-fw" title="Calendar"></i> Book Party Hall
+              <% end %>
+            </div>
+          </div>
           <%#= link_to 'Book', new_booking_path, class: "btn btn-default pull-right" %>
         </h3>
       </div>

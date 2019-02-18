@@ -3,12 +3,18 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3>
-          <% if params[:action] == 'all' %>
-            Transactions
-          <% else %>
-            My Transaction(s)
-          <% end %>
-          <%= link_to 'Add My Transaction', new_transaction_path, class: "btn btn-default pull-right" %>
+          <div class="row">
+            <div class='col-lg-10'>
+              <% if params[:action] == 'all' %>
+                Transactions
+              <% else %>
+                My Transaction(s)
+              <% end %>
+            </div>
+            <div class="col-lg-2">
+              <%= link_to 'Add My Transaction', new_transaction_path, class: "btn btn-default" %>
+            </div>
+          </div>
         </h3>
       </div>
       <!-- /.panel-heading -->
