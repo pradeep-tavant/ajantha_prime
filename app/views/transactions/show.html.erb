@@ -49,6 +49,11 @@
             <dt>Duration:</dt>
             <dd><%= @transaction.sub_category %></dd>
           </dl>
+        <% elsif @transaction.PartyHall? %>
+          <dl class="dl-horizontal mtop20">
+            <dt>Booking Date:</dt>
+            <dd><%= @transaction.for_date.strftime("%d/%b/%Y") %></dd>
+          </dl>
         <% end %>
         <dl class="dl-horizontal mtop20">
           <dt>Description:</dt>

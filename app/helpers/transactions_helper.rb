@@ -3,7 +3,8 @@ module TransactionsHelper
     if transaction.category == "Maintenance"
       "Maintenance Charge #{transaction.sub_category} (&#8377; #{transaction.per_month_maintenace} x 3 months)"
     elsif transaction.category == "PartyHall"
-      "Party Hall Booking Charge"
+      date = transaction.for_date.try(:strftime, "%d/%b/%Y").to_s
+      "Party Hall Booking Charge #{date}"
     else
       transaction.category.titleize
     end.html_safe

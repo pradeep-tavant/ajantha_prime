@@ -6,7 +6,7 @@ categories.each do |category_name|
   Category.find_or_create_by(name: category_name)
 end
 
-year = Date.today.year
+year = Date.today.year  # 2019 - May vary next year
 settings = [
   ["MAINTENANCE_#{year}_Q0_PER_MONTH", '2500'],
   ["MAINTENANCE_#{year}_Q0_DUE_DATE", "31/Jan/#{year}"],

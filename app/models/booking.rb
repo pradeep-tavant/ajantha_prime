@@ -6,8 +6,6 @@ class Booking < ApplicationRecord
 
   enum approved: {Pending: 0, Approved: 1, Declined: 2}
 
-  default_scope { order(on_date: :asc) }
-
   def color
     if approved == 'Approved'
       "green"

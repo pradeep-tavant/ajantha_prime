@@ -5,6 +5,7 @@ class HomeController < ApplicationController
 
   def index
     @documents = Dir.entries("public/documents")
+    @transaction = current_member.transactions.Maintenance.last
   end
 
   def file_upload

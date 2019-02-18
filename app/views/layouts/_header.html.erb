@@ -1,99 +1,102 @@
 <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-  <div class="navbar-header">
-    <%= link_to "APOWA", root_path, class: "navbar-brand navbar-link", title: "Ajantha Prime Owners Welfare Association" %>
-  </div>
-  <!-- /.navbar-header -->
-
-  <% if current_member %>
-    <div>
-      <ul class = "nav navbar-nav">
-        <li>
-          <%= link_to "Members", members_path, class: "#{(controller_name=='members') ? 'active' : ''} navbar-link" %>
-        </li>
-        <li>
-          <%= link_to "Vehicles", vehicles_path(all: true), class: "#{(controller_name=='vehicles' && params[:all].present?) ? 'active' : ''} navbar-link" %>
-        </li>
-        <li>
-          <%= link_to "Contacts", facilities_path, class: "#{(controller_name=='facilities') ? 'active' : ''} navbar-link" %>
-        </li>
-        <% if current_member.admin? %>
-          <li class="dropdown">
-            <a href="<%= facilities_path %>" class="dropdown-toggle navbar-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><%= link_to "Transactions", all_transactions_path %></li>
-              <li><%= link_to "Party Hall Bookings", all_bookings_path %></li>
-              <li><%= link_to "Posts", posts_path %></li>
-              <li><%= link_to "Opinion Polls", polls_path %></li>
-              <li><%= link_to "Feedbacks", feedbacks_path %></li>
-              <% if current_member.admin_toggle? %>
-                <li><%= link_to "Contact Categories", categories_path %></li>
-                <li><%= link_to "Settings", settings_path %></li>
-              <% end %>
-            </ul>
-          </li>
-        <% end %>
-      </ul>
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <%= link_to "APOWA", root_path, class: "navbar-brand navbar-link", title: "Ajantha Prime Owners Welfare Association" %>
     </div>
-    <ul class="nav navbar-top-links navbar-right">
-      <li class="dropdown">
-        <a class="dropdown-toggle navbar-link" data-toggle="dropdown" href="#">
-          <b><%=current_member.name_with_flat %></b> <i class="fa fa-caret-down"></i>
-        </a>
-        <ul class="dropdown-menu dropdown-user">
+    <!-- /.navbar-header -->
+
+    <% if current_member %>
+      <div>
+        <ul class = "nav navbar-nav">
           <li>
-            <%= link_to member_path(current_member) do %>
-              <i class="fa fa-user fa-fw"></i>
-              My Profile
-            <% end %>
+            <%= link_to "Members", members_path, class: "#{(controller_name=='members') ? 'active' : ''} navbar-link" %>
           </li>
           <li>
-            <%= link_to vehicles_path do %>
-              <i class="fa fa-car fa-fw"></i>
-              My Vehicle(s)
-            <% end %>
+            <%= link_to "Vehicles", vehicles_path(all: true), class: "#{(controller_name=='vehicles' && params[:all].present?) ? 'active' : ''} navbar-link" %>
           </li>
           <li>
-            <%= link_to transactions_path do %>
-              <i class="fa fa-money fa-fw"></i>
-              My Transaction(s)
-            <% end %>
+            <%= link_to "Contacts", facilities_path, class: "#{(controller_name=='facilities') ? 'active' : ''} navbar-link" %>
           </li>
-          <li>
-            <%= link_to bookings_path do %>
-              <i class="fa fa-birthday-cake fa-fw"></i>
-              My Party Hall Booking(s)
-            <% end %>
-          </li>
-          <li>
-            <%= link_to change_password_path(current_member) do %>
-              <i class="fa fa-key fa-fw"></i>
-              Change Password
-            <% end %>
-          </li>
-          <li class="divider"></li>
-          <li>
-            <%= link_to destroy_member_session_path do %>
-              <i class="fa fa-sign-out fa-fw"></i>
-              Logout
-            <% end %>
-          </li>
+          <% if current_member.admin? %>
+            <li class="dropdown">
+              <a href="<%= facilities_path %>" class="dropdown-toggle navbar-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Transactions", all_transactions_path %></li>
+                <li><%= link_to "Party Hall Bookings", all_bookings_path %></li>
+                <li><%= link_to "Posts", posts_path %></li>
+                <li><%= link_to "Opinion Polls", polls_path %></li>
+                <li><%= link_to "Feedbacks", feedbacks_path %></li>
+                <% if current_member.admin_toggle? && current_member.admin? %>
+                  <li class="divider"></li>
+                  <li><%= link_to "Contact Categories", categories_path %></li>
+                  <li><%= link_to "Settings", settings_path %></li>
+                <% end %>
+              </ul>
+            </li>
+          <% end %>
         </ul>
-        <!-- /.dropdown-user -->
-      </li>
-      <!-- /.dropdown -->
-    </ul>
-    <!-- /.navbar-top-links -->
-    <% if current_member.admin_toggle? %>
-      <span class='fwhite pull-right mright20 mtop10' style="width: 85px;">
-        <b class="pull-left">Admin :</b> 
-        <%= form_tag(toggle_admin_path(current_member), method: :put) do %>
-          <label class="switch pull-right">
-            <%= hidden_field_tag "member[admin]", "0" %>
-            <%= check_box_tag "member[admin]", "1", current_member.admin?, onchange: "this.form.submit();" %>
-            <span class="slider round"></span>
-          </label>
-        <% end %>
-      </span>
+      </div>
+      <ul class="nav navbar-top-links navbar-right">
+        <li class="dropdown">
+          <a class="dropdown-toggle navbar-link" data-toggle="dropdown" href="#">
+            <b><%=current_member.name_with_flat %></b> <i class="fa fa-caret-down"></i>
+          </a>
+          <ul class="dropdown-menu dropdown-user">
+            <li>
+              <%= link_to member_path(current_member) do %>
+                <i class="fa fa-user fa-fw"></i>
+                My Profile
+              <% end %>
+            </li>
+            <li>
+              <%= link_to vehicles_path do %>
+                <i class="fa fa-car fa-fw"></i>
+                My Vehicle(s)
+              <% end %>
+            </li>
+            <li>
+              <%= link_to transactions_path do %>
+                <i class="fa fa-money fa-fw"></i>
+                My Transaction(s)
+              <% end %>
+            </li>
+            <li>
+              <%= link_to bookings_path do %>
+                <i class="fa fa-birthday-cake fa-fw"></i>
+                My Party Hall Booking(s)
+              <% end %>
+            </li>
+            <li>
+              <%= link_to change_password_path(current_member) do %>
+                <i class="fa fa-key fa-fw"></i>
+                Change Password
+              <% end %>
+            </li>
+            <li class="divider"></li>
+            <li>
+              <%= link_to destroy_member_session_path do %>
+                <i class="fa fa-sign-out fa-fw"></i>
+                Logout
+              <% end %>
+            </li>
+          </ul>
+          <!-- /.dropdown-user -->
+        </li>
+        <!-- /.dropdown -->
+      </ul>
+      <!-- /.navbar-top-links -->
+      <% if current_member.admin_toggle? %>
+        <span class='fwhite pull-right mright20 mtop10' style="width: 85px;">
+          <b class="pull-left">Admin :</b> 
+          <%= form_tag(toggle_admin_path(current_member), method: :put) do %>
+            <label class="switch pull-right">
+              <%= hidden_field_tag "member[admin]", "0" %>
+              <%= check_box_tag "member[admin]", "1", current_member.admin?, onchange: "this.form.submit();" %>
+              <span class="slider round"></span>
+            </label>
+          <% end %>
+        </span>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 </nav>

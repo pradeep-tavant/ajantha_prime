@@ -51,11 +51,11 @@
           <ul class="list-group">
             <li class="list-group-item">
               <span class="badge">NEW</span>
-              You can do a Party Hall Booking <%= link_to 'here', new_booking_path %>.
+              You can do a Party Hall Booking <%= link_to 'here', booking_calendar_path %>.
             </li>
             <li class="list-group-item">
-              <% if current_member.transactions.length > 0 %>
-                Thanks for your maintenance payment for <b>Jan-Mar'2019</b>. You can check the Payment Status or download the invoice <%= link_to 'here', transactions_path %>.
+              <% if @transaction.present? %>
+                Thanks for your maintenance payment for <b><%= @transaction.sub_category %></b>. You can check the Payment Status or download the invoice <%= link_to 'here', transactions_path %>.
               <% else %>
                 <span class="badge">Pending</span>
                 Kindly pay your maintenance charges for <b>Jan-Mar'2019</b>. If already paid, update the transaction details <%= link_to 'here', new_transaction_path %>.
@@ -79,14 +79,14 @@
           <h3 class="panel-title">Documents</h3>
         </div>
         <div class="panel-body">
-          <% if current_member.admin? && current_member.admin_toggle? %>
+          <!-- <%# if current_member.admin? && current_member.admin_toggle? %>
             <div style="text-align: right;" class="mbottom10">
-              <%= form_tag :file_upload, multipart: true, class: "form-horizontal" do |f| %>
-                <%= file_field_tag :my_file %>
-                <%= submit_tag "Upload", class: "btn btn-primary" %>
-              <% end %>
+              <%#= form_tag :file_upload, multipart: true, class: "form-horizontal" do |f| %>
+                <%#= file_field_tag :my_file %>
+                <%#= submit_tag "Upload", class: "btn btn-primary" %>
+              <%# end %>
             </div>
-          <% end %>
+          <%# end %> -->
           <ul class="list-group">
             <% @documents.each do |file_name| %>
               <% next if [".",".."].include?(file_name) %>

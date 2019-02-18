@@ -53,8 +53,12 @@
       selectHelper: false,
       eventLimit: true,
       events: bookings_list,
-      select: function(start) {
-        window.location.href = '/bookings/new?on_date='+start.format();
+      selectLongPressDelay: 25,
+      // select: function(start) {
+      //   window.location.href = '/bookings/new?on_date='+start.format();
+      // }
+      dayClick: function(date) {
+        window.location.href = '/bookings/new?on_date='+date.format();
       }
     });
   });

@@ -43,3 +43,4 @@ en:
       transaction:
         transaction_id: "Transaction ID"
         on_date: "Paid Date"
+        for_date: "Booking Date"

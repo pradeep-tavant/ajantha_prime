@@ -10,6 +10,37 @@
       </div>
       <!-- /.panel-heading -->
       <div class="panel-body panel30 members-wrapper">
+        <!-- <div class="row">
+          <form class="form-horizontal" style="text-align: right:">
+            <div class="">
+              <label class="control-label col-sm-1">
+                Floor:
+              </label>
+              <div class="col-sm-2">
+                <select class="form-control" id="floor">
+                  <option value="">All</option>
+                  <option>GF</option>
+                  <option>FF</option>
+                  <option>SF</option>
+                  <option>TF</option>
+                  <option>FOF</option>
+                </select>
+              </div>
+            </div>
+            <div class="">
+              <label class="control-label col-sm-1">
+                Block:
+              </label>
+              <div class="col-sm-2">
+                <select class="form-control" id="block">
+                  <option value="">All</option>
+                  <option>A</option>
+                  <option>B</option>
+                </select>
+              </div>
+            </div>
+          </form>
+        </div> -->
         <table class="dataTable table table-striped table-bordered table-hover <%= current_member.admin? ? 'admin-view' : '' %>" cellspacing="0" width="100%">
           <thead>
             <tr>
@@ -44,7 +75,7 @@
                     <%#= link_to member_path(member), method: :delete, data: {confirm: "Are you sure want to remove this member?"} do %>
                       <!-- <i class="fa fa-trash-o fa-fw" title="Delete"></i> -->
                     <%# end %>
-                    <% if current_member.admin_toggle? %>
+                    <% if current_member.admin_toggle? && current_member.admin? %>
                       <%= link_to reset_password_path(member), method: :put do %>
                         <i class="fa fa-refresh fa-fw" title="Reset Password"></i>
                       <% end %>

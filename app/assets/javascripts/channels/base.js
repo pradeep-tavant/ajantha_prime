@@ -30,7 +30,7 @@ $.fn.dataTable.ext.search.push(
     }
     else if ($('.feedbacks-wrapper').length > 0) {
       var status = $('#feedback_status').val();
-      if (status == undefined || status == "" || status == data[3]) {
+      if (status == undefined || status == "" || status == data[4]) {
         return true;
       }
     }
@@ -57,6 +57,7 @@ $(document).ready(function() {
   var table;
   if ($('.members-wrapper .admin-view').length > 0) {
     table = $('.dataTable').DataTable({
+      responsive: true,
       columnDefs: [{ orderable: false, "targets": -1 }],
       dom: 'lfBrtip',
       buttons: [
@@ -88,45 +89,53 @@ $(document).ready(function() {
   }
   else if ($('.posts-wrapper .admin-view').length > 0) {
     table = $('.dataTable').DataTable({
+      responsive: true,
       order: [[ 2, 'desc' ]],
       columnDefs: [{ orderable: false, "targets": -1 }]
     })
   }
   else if ($('.vehicles-wrapper').length > 0 && window.location.search == '') {
     table = $('.dataTable').DataTable({
+      responsive: true,
       columnDefs: [{ orderable: false, "targets": -1 }]
     })
   }
   else if ($('.vehicles-wrapper .admin-view').length > 0) {
     table = $('.dataTable').DataTable({
+      responsive: true,
       order: [[ 3, 'desc' ]],
       columnDefs: [{ orderable: false, "targets": -1 }]
     })
   }
   else if ($('.vehicles-wrapper').length > 0) {
     table = $('.dataTable').DataTable({
+      responsive: true,
       order: [[ 3, 'asc' ]]
     })
   }
   else if ($('.polls-wrapper .admin-view').length > 0) {
     table = $('.dataTable').DataTable({
+      responsive: true,
       order: [[ 2, 'desc' ]],
       columnDefs: [{ orderable: false, "targets": [-1,-2] }]
     })
   }
   else if ($('.polls-wrapper').length > 0) {
     table = $('.dataTable').DataTable({
+      responsive: true,
       order: [[ 2, 'desc' ]],
       columnDefs: [{ orderable: false, "targets": [-1] }]
     })
   }
   else if ($('.facilities-wrapper .admin-view').length > 0) {
     table = $('.dataTable').DataTable({
+      responsive: true,
       columnDefs: [{ orderable: false, "targets": -1 }]
     })
   }
   else if ($('.transactions-wrapper .admin-view').length > 0) {
     table = $('.dataTable').DataTable({
+      responsive: true,
       columnDefs: [{ orderable: false, "targets": -1 }],
       order: [[ 2, 'desc' ]],
       dom: 'lfBrtip',
@@ -159,29 +168,42 @@ $(document).ready(function() {
   }
   else if ($('.transactions-wrapper').length > 0) {
     table = $('.dataTable').DataTable({
+      responsive: true,
       columnDefs: [{ orderable: false, "targets": -1 }],
       order: [[ 2, 'desc' ]],
     })
   }
   else if ($('.categories-wrapper').length > 0) {
     table = $('.dataTable').DataTable({
+      responsive: true,
       columnDefs: [{ visible: false, searchable: false, "targets": 0 }]
     })
   }
   else if ($('.feedbacks-wrapper').length > 0) {
     table = $('.dataTable').DataTable({
+      responsive: true,
       columnDefs: [{ orderable: false, "targets": -1 }],
-      order: [],
+      order: [[ 2, 'desc' ]],
+    })
+  }
+  else if ($('.bookings-wrapper .admin-view').length > 0) {
+    table = $('.dataTable').DataTable({
+      responsive: true,
+      columnDefs: [{ orderable: false, "targets": -1 }],
+      order: [[ 2, 'desc' ]]
     })
   }
   else if ($('.bookings-wrapper').length > 0) {
     table = $('.dataTable').DataTable({
+      responsive: true,
       columnDefs: [{ orderable: false, "targets": -1 }],
-      order: []
+      order: [[ 1, 'desc' ]]
     })
   }
   else {
-    table = $('.dataTable').DataTable();
+    table = $('.dataTable').DataTable({
+      responsive: true
+    });
   }
   
   if ($(".members-wrapper").length > 0) {
@@ -326,6 +348,12 @@ $(document).ready(function() {
     }
     else {
       $(".sub-category").slideUp();
+    }
+    if (this.value == 'PartyHall') {
+      $(".for-date").slideDown();
+    }
+    else {
+      $(".for-date").slideUp();
     }
   })
 

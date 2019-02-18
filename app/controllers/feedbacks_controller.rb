@@ -44,6 +44,8 @@ class FeedbacksController < ApplicationController
     if @feedback.update(feedback_params)
       if params[:button] == 'Send'
         MemberMailer.with(member: @feedback.member, feedback: @feedback, assignee: @feedback.assignee).respond_feedback.deliver_later
+      elsif params[:button] == 'Assign'
+        MemberMailer.with(member: current_member, feedback: @feedback, assignee: @feedback.assignee).assign_feedback.deliver_later
       end
       redirect_to @feedback, notice: 'Feedback was successfully updated.'
     else
