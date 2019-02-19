@@ -53,11 +53,12 @@ $(document).ready(function() {
   });
   
   $('input[type=file]').bootstrapFileInput();
-
-  var table;
+  
   if ($('.members-wrapper .admin-view').length > 0) {
     table = $('.dataTable').DataTable({
       responsive: true,
+      lengthMenu: [[25, 50, -1], [25, 50, 'All']],
+      pageLength: 25,
       columnDefs: [{ orderable: false, "targets": -1 }],
       dom: 'lfBrtip',
       buttons: [
@@ -71,7 +72,7 @@ $(document).ready(function() {
             },
             {
                 extend: 'csvHtml5',
-                title: 'AjanthaPrime-Transactions-'+today,
+                title: 'AjanthaPrime-Members-'+today,
                 exportOptions: {
                     columns: ':visible'
                 }
@@ -85,6 +86,13 @@ $(document).ready(function() {
             },
             'colvis'
         ]
+    });
+  }
+  else if ($('.members-wrapper').length > 0) {
+    table = $('.dataTable').DataTable({
+      responsive: true,
+      lengthMenu: [[25, 50, -1], [25, 50, 'All']],
+      pageLength: 25
     });
   }
   else if ($('.posts-wrapper .admin-view').length > 0) {

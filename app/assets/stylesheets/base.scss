@@ -22,30 +22,6 @@ body {
     margin: 0 auto;
 }
 
-#header_section {
-  .navbar {
-    a.navbar-link {
-      color: #999 !important;
-      transition: ease-in-out color .15s;
-      &.active { color: #fff !important; }
-    }
-    a.navbar-link:hover {
-      color: #fff !important;
-      text-decoration: none;
-    }
-  }
-
-  .navbar-top-links {
-    margin-right: 0;
-  }
-
-  .navbar-default, .nav > li > a:hover, .nav > li > a:focus {
-    background-color: rgba(0, 0, 0, .85) !important;
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
-    backdrop-filter: saturate(180%) blur(20px);
-  }
-}
-
 .panel30 {
   padding: 30px;
 }
@@ -58,6 +34,7 @@ body {
 
 .mtop30 { margin-top: 30px; }
 .mtop20 { margin-top: 20px; }
+.mtop15 { margin-top: 15px; }
 .mtop10 { margin-top: 10px; }
 .mbottom10 { margin-bottom: 10px; }
 .mbottom20 { margin-bottom: 20px; }
@@ -201,4 +178,11 @@ input:checked + .slider:before {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+.dataTables_filter
+{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }

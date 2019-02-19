@@ -1,42 +1,47 @@
-<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+<nav class="navbar navbar-inverse" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
       <%= link_to "APOWA", root_path, class: "navbar-brand navbar-link", title: "Ajantha Prime Owners Welfare Association" %>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
     </div>
     <!-- /.navbar-header -->
 
     <% if current_member %>
-      <div>
-        <ul class = "nav navbar-nav">
-          <li>
-            <%= link_to "Members", members_path, class: "#{(controller_name=='members') ? 'active' : ''} navbar-link" %>
+      <div class="collapse navbar-collapse" id="navbar-collapse-1">
+      <ul class = "nav navbar-nav">
+        <li>
+          <%= link_to "Members", members_path, class: "#{(controller_name=='members') ? 'active' : ''} navbar-link" %>
+        </li>
+        <li>
+          <%= link_to "Vehicles", vehicles_path(all: true), class: "#{(controller_name=='vehicles' && params[:all].present?) ? 'active' : ''} navbar-link" %>
+        </li>
+        <li>
+          <%= link_to "Contacts", facilities_path, class: "#{(controller_name=='facilities') ? 'active' : ''} navbar-link" %>
+        </li>
+        <% if current_member.admin? %>
+          <li class="dropdown">
+            <a href="<%= facilities_path %>" class="dropdown-toggle navbar-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Transactions", all_transactions_path %></li>
+              <li><%= link_to "Party Hall Bookings", all_bookings_path %></li>
+              <li><%= link_to "Posts", posts_path %></li>
+              <li><%= link_to "Opinion Polls", polls_path %></li>
+              <li><%= link_to "Feedbacks", feedbacks_path %></li>
+              <% if current_member.admin_toggle? && current_member.admin? %>
+                <li class="divider"></li>
+                <li><%= link_to "Contact Categories", categories_path %></li>
+                <li><%= link_to "Settings", settings_path %></li>
+              <% end %>
+            </ul>
           </li>
-          <li>
-            <%= link_to "Vehicles", vehicles_path(all: true), class: "#{(controller_name=='vehicles' && params[:all].present?) ? 'active' : ''} navbar-link" %>
-          </li>
-          <li>
-            <%= link_to "Contacts", facilities_path, class: "#{(controller_name=='facilities') ? 'active' : ''} navbar-link" %>
-          </li>
-          <% if current_member.admin? %>
-            <li class="dropdown">
-              <a href="<%= facilities_path %>" class="dropdown-toggle navbar-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><%= link_to "Transactions", all_transactions_path %></li>
-                <li><%= link_to "Party Hall Bookings", all_bookings_path %></li>
-                <li><%= link_to "Posts", posts_path %></li>
-                <li><%= link_to "Opinion Polls", polls_path %></li>
-                <li><%= link_to "Feedbacks", feedbacks_path %></li>
-                <% if current_member.admin_toggle? && current_member.admin? %>
-                  <li class="divider"></li>
-                  <li><%= link_to "Contact Categories", categories_path %></li>
-                  <li><%= link_to "Settings", settings_path %></li>
-                <% end %>
-              </ul>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-      <ul class="nav navbar-top-links navbar-right">
+        <% end %>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a class="dropdown-toggle navbar-link" data-toggle="dropdown" href="#">
             <b><%=current_member.name_with_flat %></b> <i class="fa fa-caret-down"></i>
@@ -86,7 +91,7 @@
       </ul>
       <!-- /.navbar-top-links -->
       <% if current_member.admin_toggle? %>
-        <span class='fwhite pull-right mright20 mtop10' style="width: 85px;">
+        <span class='fwhite pull-right mright20 mtop15' style="width: 85px;">
           <b class="pull-left">Admin :</b> 
           <%= form_tag(toggle_admin_path(current_member), method: :put) do %>
             <label class="switch pull-right">
@@ -97,6 +102,7 @@
           <% end %>
         </span>
       <% end %>
+      </div>
     <% end %>
   </div>
 </nav>
