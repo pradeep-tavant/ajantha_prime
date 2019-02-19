@@ -2,10 +2,15 @@
   <div class="col-lg-12">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3>Opinon Polls
-          <% if current_member.admin? %>
-            <%= link_to 'Add New Poll', new_poll_path, class: "btn btn-default pull-right" %>
-          <% end %>
+        <h3>
+          <div class="flex-box">
+            Opinon Polls
+            <div class="col-lg-2">
+              <% if current_member.admin? %>
+                <%= link_to 'Add New Poll', new_poll_path, class: "btn btn-default" %>
+              <% end %>
+            </div>
+          </div>
         </h3>
       </div>
       <!-- /.panel-heading -->

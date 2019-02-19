@@ -3,42 +3,47 @@
     <div class="col-lg-12">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3><%= @feedback.subject %>
-            <span class="pull-right">
-              <%= link_to edit_feedback_path(@feedback), class: "btn btn-default" do %>
-                <i class="fa fa-pencil-square-o fa-fw" title="Edit"></i>Edit
-              <% end %>
-            </span>
+          <h3>
+            <div class="flex-box">
+              <%= @feedback.subject %>
+              <div class="col-lg-2">
+                <%= link_to edit_feedback_path(@feedback), class: "btn btn-default" do %>
+                  <i class="fa fa-pencil-square-o fa-fw" title="Edit"></i>Edit
+                <% end %>
+              </div>
+            </div>
           </h3>
         </div>
-        <dl class="dl-horizontal mtop20">
-          <dt>Content:</dt>
-          <dd><%= simple_format(@feedback.content) %></dd>
-        </dl>
-        <dl class="dl-horizontal mtop20">
-          <dt>Sender:</dt>
-          <dd><%= @feedback.member.name_with_flat %></dd>
-        </dl>
-        <dl class="dl-horizontal mtop20">
-          <dt>Sent Date:</dt>
-          <dd><%= @feedback.created_at.strftime("%d/%b/%Y") %></dd>
-        </dl>
-        <dl class="dl-horizontal mtop20">
-          <dt>Assignee:</dt>
-          <dd><%= @feedback.assignee.name_with_flat %></dd>
-        </dl>
-        <dl class="dl-horizontal mtop20">
-          <dt>Status:</dt>
-          <dd><%= @feedback.status %></dd>
-        </dl>
-        <dl class="dl-horizontal mtop20">
-          <dt>Priority:</dt>
-          <dd><%= @feedback.priority %></dd>
-        </dl>
-        <dl class="dl-horizontal mtop20">
-          <dt>Response:</dt>
-          <dd><%= simple_format(@feedback.response) %></dd>
-        </dl>
+        <div class="panel-body panel30">
+          <dl class="dl-horizontal mtop20">
+            <dt>Content:</dt>
+            <dd><%= simple_format(@feedback.content) %></dd>
+          </dl>
+          <dl class="dl-horizontal mtop20">
+            <dt>Sender:</dt>
+            <dd><%= @feedback.member.name_with_flat %></dd>
+          </dl>
+          <dl class="dl-horizontal mtop20">
+            <dt>Sent Date:</dt>
+            <dd><%= @feedback.created_at.strftime("%d/%b/%Y") %></dd>
+          </dl>
+          <dl class="dl-horizontal mtop20">
+            <dt>Assignee:</dt>
+            <dd><%= @feedback.assignee.name_with_flat %></dd>
+          </dl>
+          <dl class="dl-horizontal mtop20">
+            <dt>Status:</dt>
+            <dd><%= @feedback.status %></dd>
+          </dl>
+          <dl class="dl-horizontal mtop20">
+            <dt>Priority:</dt>
+            <dd><%= @feedback.priority %></dd>
+          </dl>
+          <dl class="dl-horizontal mtop20">
+            <dt>Response:</dt>
+            <dd><%= simple_format(@feedback.response) %></dd>
+          </dl>
+        </div>
       </div>
 
       <%= link_to '<< Feedbacks', feedbacks_path, class: "btn btn-default" %>

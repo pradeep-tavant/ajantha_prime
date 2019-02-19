@@ -45,18 +45,16 @@
     </div>
   </div>
 
-  <div>
-    <div class="col-sm-12" style="text-align: center;">
-      <%= link_to 'Cancel', :back, class: "btn btn-default" %>
-      <%= f.submit "Save", class: "mleft10 btn btn-primary" %>
-      <% unless feedback.new_record? %>
-        <%= button_tag type: 'submit', value: 'Assign', class: "mleft10 btn btn-primary" do %>
-          Assign<i class="fa fa-paper-plane-o fa-fw"></i>
-        <% end %>
-        <%= button_tag type: 'submit', value: 'Send', class: "mleft10 btn btn-primary" do %>
-          Save and Send Response<i class="fa fa-paper-plane-o fa-fw"></i>
-        <% end %>
+  <div class="col-sm-12 flex-buttons">
+    <%= link_to 'Cancel', :back, class: "mtop10 btn btn-default" %>
+    <%= f.submit "Save", class: "mleft10 mtop10 btn btn-primary" %>
+    <% unless feedback.new_record? %>
+      <%= button_tag type: 'submit', value: 'Assign', class: "mleft10 mtop10 btn btn-primary" do %>
+        Assign<i class="fa fa-paper-plane-o fa-fw"></i>
       <% end %>
-    </div>
+      <%= button_tag type: 'submit', value: 'Send', class: "mleft10 mtop10 btn btn-primary" do %>
+        Send<i class="fa fa-paper-plane-o fa-fw"></i>
+      <% end %>
+    <% end %>
   </div>
 <% end %>

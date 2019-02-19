@@ -1,8 +1,12 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-      <h2 class="page-header">Editing Post</h2>
-      <%= render 'form', post: @post %>
+      <div class="panel panel-default">
+        <div class="panel-heading"><h3>Editing Post</h3></div>
+        <div class="panel-body panel30">
+          <%= render 'form', post: @post %>
+        </div>
+      </div>
     </div>
 
     <%= link_to 'Back', posts_path, class: "btn btn-default" %>

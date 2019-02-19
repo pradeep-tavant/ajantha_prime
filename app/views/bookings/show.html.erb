@@ -3,56 +3,61 @@
     <div class="col-lg-12">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3><%= @booking.reason %> - <%= @booking.approved %>
-            <% if current_member.admin? || (current_member == @booking.member && @booking.approved != 'Approved' && @booking.on_date > Date.today) %>
-              <span class="pull-right">
-                <%= link_to edit_booking_path(@booking), class: "btn btn-default" do %>
-                  <i class="fa fa-pencil-square-o fa-fw" title="Edit"></i>Edit
-                <% end %>
-              </span>
-            <% end %>
+          <h3>
+            <div class="flex-box">
+              <%= @booking.reason %> - <%= @booking.approved %>
+              <% if current_member.admin? || (current_member == @booking.member && @booking.approved != 'Approved' && @booking.on_date > Date.today) %>
+                <div class="col-lg-2">
+                  <%= link_to edit_booking_path(@booking), class: "btn btn-default" do %>
+                    <i class="fa fa-pencil-square-o fa-fw" title="Edit"></i>Edit
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
           </h3>
         </div>
-        <% if current_member.admin? %>
+        <div class="panel-body panel30">
+          <% if current_member.admin? %>
+            <dl class="dl-horizontal mtop20">
+              <dt>Booked By:</dt>
+              <dd>
+                <% if @booking.private? %>
+                  <%= link_to (@booking.member.try(:name)+'('+@booking.member.try(:login)+')'), member_path(@booking.member) %>
+                <% else %>
+                  Association
+                <% end %>
+              </dd>
+            </dl>
+          <% end %>
           <dl class="dl-horizontal mtop20">
-            <dt>Booked By:</dt>
-            <dd>
-              <% if @booking.private? %>
-                <%= link_to (@booking.member.try(:name)+'('+@booking.member.try(:login)+')'), member_path(@booking.member) %>
-              <% else %>
-                Association
-              <% end %>
-            </dd>
+            <dt>Reason:</dt>
+            <dd><%= @booking.reason %></dd>
           </dl>
-        <% end %>
-        <dl class="dl-horizontal mtop20">
-          <dt>Reason:</dt>
-          <dd><%= @booking.reason %></dd>
-        </dl>
-        <dl class="dl-horizontal mtop20">
-          <dt>On Date:</dt>
-          <dd><%= @booking.on_date.strftime("%d/%b/%Y") %></dd>
-        </dl>
-        <dl class="dl-horizontal mtop20">
-          <dt>Start Time:</dt>
-          <dd><%= @booking.start_time.strftime("%l:%M %p") %></dd>
-        </dl>
-        <dl class="dl-horizontal mtop20">
-          <dt>End Time:</dt>
-          <dd><%= @booking.end_time.strftime("%l:%M %p") %></dd>
-        </dl>
-        <dl class="dl-horizontal mtop20">
-          <dt>Guests Count:</dt>
-          <dd><%= @booking.guest_count.to_i %></dd>
-        </dl>
-        <dl class="dl-horizontal mtop20">
-          <dt>Notes:</dt>
-          <dd><%= simple_format(@booking.notes) %></dd>
-        </dl>
-        <dl class="dl-horizontal mtop20">
-          <dt>Response:</dt>
-          <dd><%= simple_format(@booking.response) %></dd>
-        </dl>
+          <dl class="dl-horizontal mtop20">
+            <dt>On Date:</dt>
+            <dd><%= @booking.on_date.strftime("%d/%b/%Y") %></dd>
+          </dl>
+          <dl class="dl-horizontal mtop20">
+            <dt>Start Time:</dt>
+            <dd><%= @booking.start_time.strftime("%l:%M %p") %></dd>
+          </dl>
+          <dl class="dl-horizontal mtop20">
+            <dt>End Time:</dt>
+            <dd><%= @booking.end_time.strftime("%l:%M %p") %></dd>
+          </dl>
+          <dl class="dl-horizontal mtop20">
+            <dt>Guests Count:</dt>
+            <dd><%= @booking.guest_count.to_i %></dd>
+          </dl>
+          <dl class="dl-horizontal mtop20">
+            <dt>Notes:</dt>
+            <dd><%= simple_format(@booking.notes) %></dd>
+          </dl>
+          <dl class="dl-horizontal mtop20">
+            <dt>Response:</dt>
+            <dd><%= simple_format(@booking.response) %></dd>
+          </dl>
+        </div>
       </div>
 
       <%= link_to '<< Bookings', bookings_path, class: "btn btn-default" %>

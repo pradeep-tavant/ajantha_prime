@@ -83,10 +83,8 @@
     </div>
   <% end %>
 
-  <div>
-    <div class="col-sm-12" style="text-align: center;">
-      <%= link_to 'Cancel', :back, class: "btn btn-default" %>
-      <%= f.submit "Submit", class: "mleft10 btn btn-primary" %>
-    </div>
+  <div class="col-sm-12 flex-buttons">
+    <%= link_to 'Cancel', :back, class: "btn btn-default" %>
+    <%= f.submit "Submit", class: "mleft10 btn btn-primary" %>
   </div>
 <% end %>

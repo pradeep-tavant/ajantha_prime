@@ -3,8 +3,12 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3>
-          Categories
-          <%= link_to 'Add Category', new_category_path, class: "btn btn-default pull-right" %>
+          <div class="flex-box">
+            Categories
+            <div class="col-lg-2">
+              <%= link_to 'Add Category', new_category_path, class: "btn btn-default" %>
+            </div>
+          </div>
         </h3>
       </div>
       <!-- /.panel-heading -->

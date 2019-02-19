@@ -1,10 +1,14 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-      <h2 class="page-header">Editing Vehicle</h2>
-      <%= render 'form', vehicle: @vehicle %>
+      <div class="panel panel-default">
+        <div class="panel-heading"><h3>Editing Vehicle</h3></div>
+        <div class="panel-body panel30">
+          <%= render 'form', vehicle: @vehicle %>
+        </div>
+      </div>
     </div>
 
-    <%= link_to 'Back', vehicles_path, class: "btn btn-default" %>
+    <%= link_to '<< Vehicles', vehicles_path, class: "btn btn-default" %>
   </div>
 </div>

@@ -3,139 +3,90 @@
     <div class="col-lg-12">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3><%= @member.name %>
-            <% if current_member.admin? || current_member == @member %>
-              <span class="pull-right">
-                <%= link_to edit_member_path(@member), class: "btn btn-default mleft10" do %>
-                  <i class="fa fa-pencil-square-o fa-fw" title="Edit"></i>Edit
-                <% end %>
-              </span>
-            <% end %>
-            <% if current_member.admin? && current_member.admin_toggle? %>
-              <span class="pull-right">
-                <%= link_to reset_password_path(@member), method: :put, class: "btn btn-default" do %>
-                  <i class="fa fa-refresh fa-fw" title="Reset Password"></i>Reset Password
-                <% end %>
-              </span>
-            <% end %>
+          <h3>
+            <div class="flex-box">
+              <%= @member.name %>
+              <% if current_member.admin? || current_member == @member %>
+                <div class="col-lg-2">
+                  <%= link_to edit_member_path(@member), class: "btn btn-default mleft10" do %>
+                    <i class="fa fa-pencil-square-o fa-fw" title="Edit"></i>Edit
+                  <% end %>
+                </div>
+              <% end %>
+              <%# if current_member.admin? && current_member.admin_toggle? %>
+                <!-- <div class="col-lg-2">
+                  <%#= link_to reset_password_path(@member), method: :put, class: "btn btn-default" do %>
+                    <i class="fa fa-refresh fa-fw" title="Reset Password"></i>Reset Password
+                  <%# end %>
+                </div> -->
+              <%# end %>
+            </div>
           </h3>
         </div>
 
-        <dl class="dl-horizontal mtop20">
-          <dt>Name:</dt>
-          <dd><%= @member.name %></dd>
-        </dl>
-
-        <dl class="dl-horizontal">
-          <dt>Flat / Login:</dt>
-          <dd><%= @member.login %></dd>
-        </dl>
-
-        <!-- <dl class="dl-horizontal">
-          <dt>Owner?:</dt>
-          <dd><%#= @member.owner ? 'Yes' : 'No' %></dd>
-        </dl> -->
-
-        <dl class="dl-horizontal">
-          <dt>Available for Rent?:</dt>
-          <dd><%= @member.available_for_rent? ? 'Yes' : 'No' %></dd>
-        </dl>
-
-        <dl class="dl-horizontal">
-          <dt>Rented to someone?:</dt>
-          <dd><%= @member.rented? ? 'Yes' : 'No' %></dd>
-        </dl>
-
-        <% if @member.rented? %>
+        <div class="panel-body panel30">
           <dl class="dl-horizontal mtop20">
-            <dt>Tenant Name:</dt>
-            <dd><%= @tenant.try(:name) %></dd>
+            <dt>Name:</dt>
+            <dd><%= @member.name %></dd>
           </dl>
 
           <dl class="dl-horizontal">
-            <dt>Tenant Email:</dt>
-            <dd><%= @tenant.try(:email) %></dd>
+            <dt>Flat / Login:</dt>
+            <dd><%= @member.login %></dd>
+          </dl>
+
+          <!-- <dl class="dl-horizontal">
+            <dt>Owner?:</dt>
+            <dd><%#= @member.owner ? 'Yes' : 'No' %></dd>
+          </dl> -->
+
+          <dl class="dl-horizontal">
+            <dt>Available for Rent?:</dt>
+            <dd><%= @member.available_for_rent? ? 'Yes' : 'No' %></dd>
           </dl>
 
           <dl class="dl-horizontal">
-            <dt>Tenant Phone:</dt>
-            <dd><%= @tenant.try(:phone) %></dd>
+            <dt>Rented to someone?:</dt>
+            <dd><%= @member.rented? ? 'Yes' : 'No' %></dd>
           </dl>
-        <% end %>
 
-        <dl class="dl-horizontal">
-          <dt>Email:</dt>
-          <dd><%= @member.email %></dd>
-        </dl>
+          <% if @member.rented? %>
+            <dl class="dl-horizontal mtop20">
+              <dt>Tenant Name:</dt>
+              <dd><%= @tenant.try(:name) %></dd>
+            </dl>
 
-        <dl class="dl-horizontal">
-          <dt>Secondary Email:</dt>
-          <dd><%= @member.sec_email %></dd>
-        </dl>
-
-        <dl class="dl-horizontal">
-          <dt>Phone:</dt>
-          <dd><%= @member.phone %></dd>
-        </dl>
-
-        <dl class="dl-horizontal">
-          <dt>Secondary Phone:</dt>
-          <dd><%= @member.sec_phone %></dd>
-        </dl>
-
-        <% if @member.transactions.length > 0 %>
-          <div class="panel-heading mbottom20">
-            Transaction(s):
-          </div>
-          <% @member.transactions.each do |transaction| %>
-            <div class="bbottom5">
-              <dl class="dl-horizontal mtop10">
-                <dt>Transaction ID:</dt>
-                <dd><%= transaction.transaction_id %></dd>
-              </dl>
-              <dl class="dl-horizontal">
-                <dt>Amount Paid:</dt>
-                <dd>Rs.<%= transaction.amount_paid %></dd>
-              </dl>
-              <dl class="dl-horizontal">
-                <dt>Paid Date:</dt>
-                <dd><%= transaction.on_date.strftime("%d/%b/%Y") %></dd>
-              </dl>
-              <dl class="dl-horizontal">
-                <dt>Category:</dt>
-                <dd><%= transaction.category %></dd>
-              </dl>
-              <dl class="dl-horizontal">
-                <dt>Payment Status:</dt>
-                <dd><%= transaction.status %></dd>
-              </dl>
-            </div>
-          <% end %>
-        <% end %>
-
-        <% if @member.vehicles.length > 0 %>
-          <div class="panel-heading mbottom20">
-            Vehicle(s):
-          </div>
-          <% @member.vehicles.each do |vehicle| %>
             <dl class="dl-horizontal">
-              <dt><%= vehicle.category %>:</dt>
-              <dd><%= vehicle.name %> / <%= vehicle.number %></dd>
+              <dt>Tenant Email:</dt>
+              <dd><%= @tenant.try(:email) %></dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+              <dt>Tenant Phone:</dt>
+              <dd><%= @tenant.try(:phone) %></dd>
             </dl>
           <% end %>
-        <% end %>
 
-        <% if @member.votes.length > 0 %>
-          <div class="panel-heading mbottom20">
-            Participation in Opinion Polls:
-          </div>
-          <% @member.vote_options.each do |option| %>
-            <dl class="dl-horizontal">
-              <dt><%= link_to option.poll.topic, poll_path(option.poll) %></dt>
-              <dd><%= option.title %></dd>
-            </dl>
-          <% end %>
-        <% end %>
+          <dl class="dl-horizontal">
+            <dt>Email:</dt>
+            <dd><%= @member.email %></dd>
+          </dl>
+
+          <dl class="dl-horizontal">
+            <dt>Secondary Email:</dt>
+            <dd><%= @member.sec_email %></dd>
+          </dl>
+
+          <dl class="dl-horizontal">
+            <dt>Phone:</dt>
+            <dd><%= @member.phone %></dd>
+          </dl>
+
+          <dl class="dl-horizontal">
+            <dt>Secondary Phone:</dt>
+            <dd><%= @member.sec_phone %></dd>
+          </dl>
+        </div>
       </div>
 
       <%= link_to '<< Members', members_path, class: "btn btn-default" %>

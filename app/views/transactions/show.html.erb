@@ -3,62 +3,67 @@
     <div class="col-lg-12">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3><%= @transaction.transaction_id %> - <%= @transaction.status %>
-            <% if !@transaction.Verified? && (current_member.admin? || current_member == @transaction.member) %>
-              <span class="pull-right">
-                <%= link_to edit_transaction_path(@transaction), class: "btn btn-default" do %>
-                  <i class="fa fa-pencil-square-o fa-fw" title="Edit"></i>Edit
-                <% end %>
-              </span>
-            <% end %>
-            <% if @transaction.Verified? %>
-              <span class="pull-right">
-                <%= link_to download_receipt_transaction_path(@transaction, format: :pdf), class: "btn btn-default" do %>
-                  <i class="fa fa-download fa-fw" title="Download Receipt"></i>Invoice
-                <% end %>
-              </span>
-            <% end %>
+          <h3>
+            <div class="flex-box">
+              <%= @transaction.transaction_id %> - <%= @transaction.status %>
+              <% if !@transaction.Verified? && (current_member.admin? || current_member == @transaction.member) %>
+                <div class="col-lg-2">
+                  <%= link_to edit_transaction_path(@transaction), class: "btn btn-default" do %>
+                    <i class="fa fa-pencil-square-o fa-fw" title="Edit"></i>Edit
+                  <% end %>
+                </div>
+              <% end %>
+              <% if @transaction.Verified? %>
+                <div class="col-lg-2">
+                  <%= link_to download_receipt_transaction_path(@transaction, format: :pdf), class: "btn btn-default" do %>
+                    <i class="fa fa-download fa-fw" title="Download Receipt"></i>Invoice
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
           </h3>
         </div>
-        <dl class="dl-horizontal mtop20">
-          <dt>Transaction #:</dt>
-          <dd><%= @transaction.transaction_id %></dd>
-        </dl>
-        <dl class="dl-horizontal mtop20">
-          <dt>Payment Mode:</dt>
-          <dd><%= @transaction.payment_mode %></dd>
-        </dl>
-        <dl class="dl-horizontal mtop20">
-          <dt>Amount Paid:</dt>
-          <dd>Rs.<%= @transaction.amount_paid %></dd>
-        </dl>
-        <dl class="dl-horizontal mtop20">
-          <dt>Penalty:</dt>
-          <dd>Rs.<%= @transaction.penalty %></dd>
-        </dl>
-        <dl class="dl-horizontal mtop20">
-          <dt>Date Paid:</dt>
-          <dd><%= @transaction.on_date.strftime("%d/%b/%Y") %></dd>
-        </dl>
-        <dl class="dl-horizontal mtop20">
-          <dt>Category:</dt>
-          <dd><%= @transaction.category %></dd>
-        </dl>
-        <% if @transaction.Maintenance? %>
+        <div class="panel-body panel30">
           <dl class="dl-horizontal mtop20">
-            <dt>Duration:</dt>
-            <dd><%= @transaction.sub_category %></dd>
+            <dt>Transaction #:</dt>
+            <dd><%= @transaction.transaction_id %></dd>
           </dl>
-        <% elsif @transaction.PartyHall? %>
           <dl class="dl-horizontal mtop20">
-            <dt>Booking Date:</dt>
-            <dd><%= @transaction.for_date.try(:strftime, "%d/%b/%Y").to_s %></dd>
+            <dt>Payment Mode:</dt>
+            <dd><%= @transaction.payment_mode %></dd>
           </dl>
-        <% end %>
-        <dl class="dl-horizontal mtop20">
-          <dt>Description:</dt>
-          <dd><%= simple_format(@transaction.description) %></dd>
-        </dl>
+          <dl class="dl-horizontal mtop20">
+            <dt>Amount Paid:</dt>
+            <dd>Rs.<%= @transaction.amount_paid %></dd>
+          </dl>
+          <dl class="dl-horizontal mtop20">
+            <dt>Penalty:</dt>
+            <dd>Rs.<%= @transaction.penalty %></dd>
+          </dl>
+          <dl class="dl-horizontal mtop20">
+            <dt>Date Paid:</dt>
+            <dd><%= @transaction.on_date.strftime("%d/%b/%Y") %></dd>
+          </dl>
+          <dl class="dl-horizontal mtop20">
+            <dt>Category:</dt>
+            <dd><%= @transaction.category %></dd>
+          </dl>
+          <% if @transaction.Maintenance? %>
+            <dl class="dl-horizontal mtop20">
+              <dt>Duration:</dt>
+              <dd><%= @transaction.sub_category %></dd>
+            </dl>
+          <% elsif @transaction.PartyHall? %>
+            <dl class="dl-horizontal mtop20">
+              <dt>Booking Date:</dt>
+              <dd><%= @transaction.for_date.try(:strftime, "%d/%b/%Y").to_s %></dd>
+            </dl>
+          <% end %>
+          <dl class="dl-horizontal mtop20">
+            <dt>Description:</dt>
+            <dd><%= simple_format(@transaction.description) %></dd>
+          </dl>
+        </div>
       </div>
 
       <%= link_to '<< Transactions', transactions_path, class: "btn btn-default" %>

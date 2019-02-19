@@ -2,10 +2,15 @@
   <div class="col-lg-12">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3>Posts
-          <% if current_member.admin? %>
-            <%= link_to 'New Post', new_post_path, class: "btn btn-default pull-right" %>
-          <% end %>
+        <h3>
+          <div class="flex-box">
+            Posts
+            <div class="col-lg-2">
+              <% if current_member.admin? %>
+                <%= link_to 'New Post', new_post_path, class: "btn btn-default" %>
+              <% end %>
+            </div>
+          </div>
         </h3>
       </div>
       <!-- /.panel-heading -->
