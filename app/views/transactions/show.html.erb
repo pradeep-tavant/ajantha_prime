@@ -44,6 +44,16 @@
             <dt>Date Paid:</dt>
             <dd><%= @transaction.on_date.strftime("%d/%b/%Y") %></dd>
           </dl>
+          <% if current_member.admin? %>
+            <dl class="dl-horizontal mtop20">
+              <dt>Paid By:</dt>
+              <dd><%= link_to @transaction.member.name_with_flat, @transaction.member %></dd>
+            </dl>
+            <dl class="dl-horizontal mtop20">
+              <dt>Phone:</dt>
+              <dd><%= @transaction.member.phone %></dd>
+            </dl>
+          <% end %>
           <dl class="dl-horizontal mtop20">
             <dt>Category:</dt>
             <dd><%= @transaction.category %></dd>
@@ -66,8 +76,8 @@
         </div>
       </div>
 
-      <%= link_to '<< My Transaction(s)', transactions_path, class: "btn btn-default" %>
-      <%= link_to '<< All Transactions', all_transactions_path, class: "mleft10 btn btn-default" if current_member.admin? %>
+      <%= link_to '&#9664; My Transaction(s)'.html_safe, transactions_path, class: "btn btn-default" %>
+      <%= link_to '&#9664; All Transactions'.html_safe, all_transactions_path, class: "mleft10 btn btn-default" if current_member.admin? %>
     </div>
   </div>
 </div>

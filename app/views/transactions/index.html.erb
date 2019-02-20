@@ -28,8 +28,7 @@
               <th>Category</th>
               <th>Payment Status</th>
               <% if current_member.admin? %>
-                <th>Flat</th>
-                <th>Name</th>
+                <th>Paid By</th>
                 <th>Phone</th>
               <% end %>
               <th>Actions</th>
@@ -46,8 +45,9 @@
                 <td><%= transaction.category %></td>
                 <td><%= transaction.status %></td>
                 <% if current_member.admin? %>
-                  <td><%= link_to transaction.member.login, member_path(transaction.member) %></td>
-                  <td><%= transaction.member.name %></td>
+                  <td>
+                    <%= link_to transaction.member.name_with_flat, member_path(transaction.member) %>
+                  </td>
                   <td><%= transaction.member.phone %></td>
                 <% end %>
                 <td>

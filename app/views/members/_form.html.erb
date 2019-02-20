@@ -4,7 +4,7 @@
   <%= render 'form_fields', f: f, member: member %>
 
   <div class="col-sm-12 flex-buttons">
-    <%= link_to 'Cancel', members_path, class: "btn btn-default" %>
+    <%= link_to 'Cancel', member, class: "btn btn-default" %>
     <%= f.submit "Submit", class: "mleft10 btn btn-primary" %>
   </div>
 <% end %>

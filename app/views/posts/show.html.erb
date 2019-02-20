@@ -38,7 +38,7 @@
 
       <%= render partial: "comments/template", locals: {commentable: @post, new_comment: @new_comment} %>
 
-      <%= link_to '<< Posts', posts_path, class: "btn btn-default" %>
+      <%= link_to '&#9664; Posts'.html_safe, posts_path, class: "btn btn-default" %>
     </div>
   </div>
 </div>

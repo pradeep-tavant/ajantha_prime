@@ -42,7 +42,7 @@
                 <% if params[:action] == 'all' %>
                   <td>
                     <% if booking.private? %>
-                      <%= link_to (booking.member.try(:name)+'('+booking.member.try(:login)+')'), member_path(booking.member) %>
+                      <%= link_to (booking.member.name_with_flat), member_path(booking.member) %>
                     <% else %>
                       Association
                     <% end %>

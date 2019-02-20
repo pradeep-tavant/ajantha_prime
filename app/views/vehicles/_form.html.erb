@@ -34,7 +34,7 @@
   </div>
 
   <div class="col-sm-12 flex-buttons">
-    <%= link_to 'Cancel', vehicles_path, class: "btn btn-default" %>
+    <%= link_to 'Cancel', vehicles_path((current_member.admin? && (vehicle.new_record? || vehicle.member != current_member)) ? {all: true} : {}), class: "btn btn-default" %>
     <%= f.submit "Submit", class: "mleft10 btn btn-primary" %>
   </div>
 <% end %>
