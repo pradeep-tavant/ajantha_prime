@@ -53,7 +53,7 @@ $(document).ready(function() {
   });
   
   $('input[type=file]').bootstrapFileInput();
-  
+
   if ($('.members-wrapper .admin-view').length > 0) {
     table = $('.dataTable').DataTable({
       responsive: true,
@@ -215,7 +215,15 @@ $(document).ready(function() {
   }
   
   if ($(".members-wrapper").length > 0) {
-    $('<label class="pull-right mleft20">' +
+    $('<label class="mleft10">'+
+          'Block:&nbsp;&nbsp;'+
+          '<select class="form-control" id="block">'+
+          '<option value="">All</option>'+
+          '<option>A</option>'+
+          '<option>B</option>'+
+          '</select>'+
+          '</label>'+
+          '<label class="mleft10">' +
           'Floor:&nbsp;&nbsp;'+
           '<select class="form-control" id="floor">'+
           '<option value="">All</option>'+
@@ -224,14 +232,6 @@ $(document).ready(function() {
           '<option>SF</option>'+
           '<option>TF</option>'+
           '<option>FOF</option>'+
-          '</select>'+
-          '</label>'+
-          '<label class="pull-right mleft20">'+
-          'Block:&nbsp;&nbsp;'+
-          '<select class="form-control" id="block">'+
-          '<option value="">All</option>'+
-          '<option>A</option>'+
-          '<option>B</option>'+
           '</select>'+
           '</label>').appendTo(".members-wrapper .dataTables_wrapper .dataTables_filter");
   }
@@ -250,7 +250,7 @@ $(document).ready(function() {
   });
 
   if ($(".posts-wrapper").length > 0) {
-    $('<label class="pull-right mleft20">' +
+    $('<label class="mleft10">' +
           'Published?:&nbsp;&nbsp;'+
           '<select class="form-control" id="visible">'+
           '<option value="">All</option>'+
@@ -258,7 +258,7 @@ $(document).ready(function() {
           '<option value="No">Unpublished</option>'+
           '</select>'+
           '</label>'+
-          '<label class="pull-right mleft20">'+
+          '<label class="mleft10">'+
           'Status:&nbsp;&nbsp;'+
           '<select class="form-control" id="active">'+
           '<option value="">All</option>'+
@@ -279,7 +279,7 @@ $(document).ready(function() {
   });
 
   if ($(".vehicles-wrapper").length > 0) {
-    $('<label class="pull-right mleft20">'+
+    $('<label class="mleft10">'+
           'Category:&nbsp;&nbsp;'+
           '<select class="form-control" id="category">'+
           '<option value="">All</option>'+
@@ -294,7 +294,7 @@ $(document).ready(function() {
   });
 
   if ($(".transactions-wrapper").length > 0) {
-    $('<label class="pull-right mleft20">'+
+    $('<label class="mleft10">'+
           'Payment Status:&nbsp;&nbsp;'+
           '<select class="form-control" id="payment_status">'+
           '<option value="">All</option>'+
@@ -309,7 +309,7 @@ $(document).ready(function() {
   });
 
   if ($(".feedbacks-wrapper").length > 0) {
-    $('<label class="pull-right mleft20">'+
+    $('<label class="mleft10">'+
           'Status:&nbsp;&nbsp;'+
           '<select class="form-control" id="feedback_status">'+
           '<option value="">All</option>'+

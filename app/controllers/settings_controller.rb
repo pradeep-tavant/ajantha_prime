@@ -4,14 +4,8 @@ class SettingsController < ApplicationController
   before_action :set_setting, only: [:show, :edit, :update, :destroy]
 
   # GET /settings
-  # GET /settings.json
   def index
     @settings = Setting.all
-  end
-
-  # GET /settings/1
-  # GET /settings/1.json
-  def show
   end
 
   # GET /settings/new
@@ -24,28 +18,25 @@ class SettingsController < ApplicationController
   end
 
   # POST /settings
-  # POST /settings.json
   def create
     @setting = Setting.new(setting_params)
     if @setting.save
-      redirect_to @setting, notice: 'Setting was successfully created.'
+      redirect_to settings_path, notice: 'Setting was successfully created.'
     else
       render :new
     end
   end
 
   # PATCH/PUT /settings/1
-  # PATCH/PUT /settings/1.json
   def update
     if @setting.update(setting_params)
-      redirect_to @setting, notice: 'Setting was successfully updated.'
+      redirect_to settings_path, notice: 'Setting was successfully updated.'
     else
       render :edit
     end
   end
 
   # DELETE /settings/1
-  # DELETE /settings/1.json
   def destroy
     @setting.destroy
       redirect_to settings_url, notice: 'Setting was successfully removed.'

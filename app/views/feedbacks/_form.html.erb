@@ -46,7 +46,7 @@
   </div>
 
   <div class="col-sm-12 flex-buttons">
-    <%= link_to 'Cancel', :back, class: "mtop10 btn btn-default" %>
+    <%= link_to 'Cancel', feedback, class: "mtop10 btn btn-default" %>
     <%= f.submit "Save", class: "mleft10 mtop10 btn btn-primary" %>
     <% unless feedback.new_record? %>
       <%= button_tag type: 'submit', value: 'Assign', class: "mleft10 mtop10 btn btn-primary" do %>

@@ -3,7 +3,7 @@
 
   <% if current_member.admin? %>
     <div class="form-group">
-      <%= f.label :member_id, "# Owned By * #", class: "control-label col-sm-2" %>
+      <%= f.label :member_id, "Owned By *", class: "control-label col-sm-2 fadmin" %>
       <div class="col-sm-10">
         <%= f.select(:member_id, flats_list_with_id, {prompt: 'Select'}, {class: "form-control"}) %>
       </div>
@@ -34,7 +34,7 @@
   </div>
 
   <div class="col-sm-12 flex-buttons">
-    <%= link_to 'Cancel', :back, class: "btn btn-default" %>
+    <%= link_to 'Cancel', vehicles_path, class: "btn btn-default" %>
     <%= f.submit "Submit", class: "mleft10 btn btn-primary" %>
   </div>
 <% end %>

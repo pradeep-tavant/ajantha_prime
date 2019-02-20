@@ -66,7 +66,8 @@
         </div>
       </div>
 
-      <%= link_to '<< Transactions', transactions_path, class: "btn btn-default" %>
+      <%= link_to '<< My Transaction(s)', transactions_path, class: "btn btn-default" %>
+      <%= link_to '<< All Transactions', all_transactions_path, class: "mleft10 btn btn-default" if current_member.admin? %>
     </div>
   </div>
 </div>

@@ -36,7 +36,7 @@
 <div class="form-group">
   <%= f.label :available_for_rent, class: "control-label col-sm-2" do %>
     <span>
-      Available for Rent?:
+      Available for Rent?
       <i class="fa fa-lightbulb-o fa-fw" title="Tick this only when the flat is unoccupied or when tenant stays in notice period"></i>
     </span>
   <% end %>
@@ -48,7 +48,7 @@
 <div class="form-group">
   <%= f.label :rented, class: "control-label col-sm-2" do %>
   <span>
-    Rented to someone?:
+    Rented?
     <i class="fa fa-lightbulb-o fa-fw" title="Tick this only when the flat is occupied by tenant"></i>
   </span>
   <% end %>
@@ -136,7 +136,7 @@
 
 <% if current_member && current_member.admin_toggle? %>
   <div class="form-group">
-    <%= f.label :admin, "## Admin ##", class: "control-label col-sm-2" %>
+    <%= f.label :admin, "# Admin #", class: "control-label col-sm-2 fadmin" %>
     <div class="col-sm-10">
       <%= f.check_box :admin, class: "form-control", style: "width:34px" %>
     </div>

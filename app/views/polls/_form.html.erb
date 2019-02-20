@@ -30,7 +30,7 @@
 
   <% if current_member.admin? %>
     <div class="form-group">
-      <%= f.label :active, "# Status #", class: "control-label col-sm-2" %>
+      <%= f.label :active, "Status", class: "control-label col-sm-2 fadmin" %>
       <div class="col-sm-10">
         <%= f.select(:active, [["Open",true],["Close",false]], {}, {class: "form-control"}) %>
       </div>
@@ -53,6 +53,7 @@
   </div>
 
   <div class="col-sm-12 flex-buttons">
-    <%= f.submit 'Submit', class: 'btn btn-primary' %>
+    <%= link_to 'Cancel', @poll, class: "btn btn-default" %>
+    <%= f.submit 'Submit', class: 'mleft10 btn btn-primary' %>
   </div>
 <% end %>

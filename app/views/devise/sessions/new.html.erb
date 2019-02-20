@@ -1,30 +1,41 @@
-<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "form-signin"}) do |f| %>
-  <h2 class="page-header">Please Login</h2>
-  <div>
-    <%= f.label :login, "Flat / Login" %>
-    <%= f.text_field :login, autofocus: true, class: "form-control",placeholder: "eg. FOF03-B or tf11-a", autocomplete: :off, list: "flats-list" %>
-    <datalist id="flats-list">
-      <% flats_list.each do |flat| %>
-        <option value="<%= flat %>" />
-      <% end %>
-    </datalist> <br />
-  </div>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="panel panel-default">
+        <div class="panel-heading"><h3>Please Login</h3></div>
+        <div class="panel-body panel30">
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "form-signin"}) do |f| %>
+            <%= devise_error_messages! %>
+            <div class="form-group">
+              <%= f.label :login, "Flat", class: "control-label" %>
+              <%= f.text_field :login, autofocus: true, class: "form-control",placeholder: "eg. FOF03-B or tf11-a", autocomplete: :off, list: "flats-list" %>
+              <datalist id="flats-list">
+                <% flats_list.each do |flat| %>
+                  <option value="<%= flat %>" />
+                <% end %>
+              </datalist> <br />
+            </div>
 
-  <div>
-    <%= f.label :password %>
-    <%= f.password_field :password, class: "form-control" %>
-  </div>
+            <div class="form-group">
+              <%= f.label :password, class: "control-label" %>
+              <%= f.password_field :password, class: "form-control" %>
+            </div>
 
-  <% if devise_mapping.rememberable? -%>
-    <div class="checkbox">
-      <label>
-        <%= f.check_box :remember_me %> Remember me
-      </label>
+            <% if devise_mapping.rememberable? -%>
+              <div class="checkbox form-group">
+                <label>
+                  <%= f.check_box :remember_me %> Remember me
+                </label>
+              </div>
+            <% end -%>
+
+            <div class="actions flex-buttons">
+              <%= f.submit "Sign in", class: "btn btn-lg btn-primary btn-block" %>
+            </div>
+            <%= render "devise/shared/links" %>
+          <% end %>
+        </div>
+      </div>
     </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Sign in", class: "btn btn-lg btn-primary btn-block" %>
   </div>
-  <%= render "devise/shared/links" %>
-<% end %>
+</div>

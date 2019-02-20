@@ -1,18 +1,28 @@
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { class: "form-signin", method: :post }) do |f| %>
-  <h2 class="form-signin-heading">Forgot password?</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="panel panel-default">
+        <div class="panel-heading"><h3>Forgot password?</h3></div>
+        <div class="panel-body panel30">
+          <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { class: "form-signin", method: :post }) do |f| %>
 
-  <%= devise_error_messages! %>
+            <%= devise_error_messages! %>
 
-  <div>
-    <%= f.label :email %>
-    <%= f.email_field :email, autofocus: true, class: "form-control" %>
+            <div class="form-group">
+              <%= f.label :email, class: "control-label" %>
+              <%= f.email_field :email, autofocus: true, class: "form-control" %>
+            </div>
+
+            <div class="actions flex-buttons">
+              <%= f.submit "Send me reset password instructions", class: "btn btn-lg btn-primary btn-block" %>
+            </div>
+            <%= render "devise/shared/links" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="actions mtop20">
-    <%= f.submit "Send me reset password instructions", class: "btn btn-lg btn-primary btn-block" %>
-  </div>
-  <%= render "devise/shared/links" %>
-<% end %>
+</div>
 
 <!-- <div class="container">
   <div class="row">

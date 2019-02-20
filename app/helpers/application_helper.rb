@@ -1,8 +1,19 @@
 module ApplicationHelper
   def resource_error_messages!(resource)
-    return '' if resource.errors.empty?
+    login_error = []
+    clear_flag = false
+    flash.each do |key, value|
+      if value == "Invalid Flat or Password."
+        login_error.push(value)
+        clear_flag = true
+      end
+    end
+    flash.clear if clear_flag
 
-    messages = resource.errors.full_messages.map { |msg| content_tag(:li, msg) }.join
+    return '' if resource.errors.empty? && login_error.empty?
+
+    errors = resource.errors.empty? ? login_error : resource.errors.full_messages
+    messages = errors.map { |msg| content_tag(:li, msg) }.join
 
     html = <<-HTML
     <div class="alert alert-danger alert-block">

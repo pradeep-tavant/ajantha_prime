@@ -1,24 +1,34 @@
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { class: "form-signin", method: :put }) do |f| %>
-  <h2 class="form-signin-heading">Change password?</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="panel panel-default">
+        <div class="panel-heading"><h3>Change password?</h3></div>
+        <div class="panel-body panel30">
+          <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { class: "form-signin", method: :put }) do |f| %>
 
-  <%= devise_error_messages! %>
-  <%= f.hidden_field :reset_password_token %>
+            <%= devise_error_messages! %>
+            <%= f.hidden_field :reset_password_token %>
 
-  <div>
-    <%= f.label :password, "New password" %>
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %>
-    <%= f.password_field :password, autofocus: true, class: "form-control" %>
+            <div class="form-group">
+              <%= f.label :password, "New password" %>
+              <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
+              <% end %>
+              <%= f.password_field :password, autofocus: true, class: "form-control" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :password_confirmation, "Confirm new password" %>
+              <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+            </div>
+
+            <div class="actions flex-buttons">
+              <%= f.submit "Change my password", class: "btn btn-lg btn-primary btn-block" %>
+            </div>
+            <%= render "devise/shared/links" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div>
-    <%= f.label :password_confirmation, "Confirm new password" %>
-    <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
-  </div>
-
-  <div class="actions mtop20">
-    <%= f.submit "Change my password", class: "btn btn-lg btn-primary btn-block" %>
-  </div>
-  <%= render "devise/shared/links" %>
-<% end %>
+</div>

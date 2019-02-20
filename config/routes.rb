@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   end
   resources :bookings
   resources :feedbacks
-  resources :settings
+  resources :settings, except: [:show]
 
   match '/members/:id/change_password', to: 'members#change_password', via: :get, as: :change_password
   match '/members/:id/update_password', to: 'members#update_password', via: :put, as: :update_password
