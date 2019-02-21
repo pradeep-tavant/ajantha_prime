@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "APOWA Admin <pradeep.rubyonrails@gmail.com>"
+  default from: "APOWA Admin <noreply.ajanthaprime@gmail.com>"
   layout 'mailer'
 end

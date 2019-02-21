@@ -198,7 +198,7 @@ $(document).ready(function() {
     table = $('.dataTable').DataTable({
       responsive: true,
       columnDefs: [{ orderable: false, "targets": -1 }],
-      order: [[ 2, 'desc' ]]
+      order: [[ 2, 'asc' ]]
     })
   }
   else if ($('.bookings-wrapper').length > 0) {
