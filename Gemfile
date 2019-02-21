@@ -33,6 +33,9 @@ gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 gem 'acts_as_commentable_with_threading'
 gem "cocoon"
+gem 'carrierwave'
+gem 'cloudinary'
+gem 'mini_magick'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

@@ -2,6 +2,8 @@ class Member < ApplicationRecord
   extend FriendlyId
   friendly_id :custom_slug, use: [:slugged, :finders]
 
+  mount_uploader :photo, PhotoUploader
+
   has_one :tenant, dependent: :destroy
   has_many :vehicles, dependent: :destroy
   has_many :transactions, dependent: :destroy

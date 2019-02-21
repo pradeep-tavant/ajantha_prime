@@ -24,68 +24,80 @@
           </h3>
         </div>
 
-        <div class="panel-body panel30">
-          <dl class="dl-horizontal mtop20">
-            <dt>Name:</dt>
-            <dd><%= @member.name %></dd>
-          </dl>
-
-          <dl class="dl-horizontal">
-            <dt>Flat / Login:</dt>
-            <dd><%= @member.login %></dd>
-          </dl>
-
-          <!-- <dl class="dl-horizontal">
-            <dt>Owner?:</dt>
-            <dd><%#= @member.owner ? 'Yes' : 'No' %></dd>
-          </dl> -->
-
-          <dl class="dl-horizontal">
-            <dt>Available for Rent?:</dt>
-            <dd><%= @member.available_for_rent? ? 'Yes' : 'No' %></dd>
-          </dl>
-
-          <dl class="dl-horizontal">
-            <dt>Rented to someone?:</dt>
-            <dd><%= @member.rented? ? 'Yes' : 'No' %></dd>
-          </dl>
-
-          <% if @member.rented? %>
+        <div class="panel-body panel30 flex-buttons">
+          <div class="col-lg-8">
             <dl class="dl-horizontal mtop20">
-              <dt>Tenant Name:</dt>
-              <dd><%= @tenant.try(:name) %></dd>
+              <dt>Name:</dt>
+              <dd><%= @member.name %></dd>
             </dl>
 
             <dl class="dl-horizontal">
-              <dt>Tenant Email:</dt>
-              <dd><%= @tenant.try(:email) %></dd>
+              <dt>Flat / Login:</dt>
+              <dd><%= @member.login %></dd>
+            </dl>
+
+            <!-- <dl class="dl-horizontal">
+              <dt>Owner?:</dt>
+              <dd><%#= @member.owner ? 'Yes' : 'No' %></dd>
+            </dl> -->
+
+            <dl class="dl-horizontal">
+              <dt>Available for Rent?:</dt>
+              <dd><%= @member.available_for_rent? ? 'Yes' : 'No' %></dd>
             </dl>
 
             <dl class="dl-horizontal">
-              <dt>Tenant Phone:</dt>
-              <dd><%= @tenant.try(:phone) %></dd>
+              <dt>Rented to someone?:</dt>
+              <dd><%= @member.rented? ? 'Yes' : 'No' %></dd>
             </dl>
-          <% end %>
 
-          <dl class="dl-horizontal">
-            <dt>Email:</dt>
-            <dd><%= @member.email %></dd>
-          </dl>
+            <% if @member.rented? %>
+              <dl class="dl-horizontal mtop20">
+                <dt>Tenant Name:</dt>
+                <dd><%= @tenant.try(:name) %></dd>
+              </dl>
 
-          <dl class="dl-horizontal">
-            <dt>Secondary Email:</dt>
-            <dd><%= @member.sec_email %></dd>
-          </dl>
+              <dl class="dl-horizontal">
+                <dt>Tenant Email:</dt>
+                <dd><%= @tenant.try(:email) %></dd>
+              </dl>
 
-          <dl class="dl-horizontal">
-            <dt>Phone:</dt>
-            <dd><%= @member.phone %></dd>
-          </dl>
+              <dl class="dl-horizontal">
+                <dt>Tenant Phone:</dt>
+                <dd><%= @tenant.try(:phone) %></dd>
+              </dl>
+            <% end %>
 
-          <dl class="dl-horizontal">
-            <dt>Secondary Phone:</dt>
-            <dd><%= @member.sec_phone %></dd>
-          </dl>
+            <dl class="dl-horizontal">
+              <dt>Email:</dt>
+              <dd><%= @member.email %></dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+              <dt>Secondary Email:</dt>
+              <dd><%= @member.sec_email %></dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+              <dt>Phone:</dt>
+              <dd><%= @member.phone %></dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+              <dt>Secondary Phone:</dt>
+              <dd><%= @member.sec_phone %></dd>
+            </dl>
+          </div>
+          <div>
+            <% if @member.photo.present? %>
+              <div class="thumbnail">
+                <div class="caption">
+                  <p>My/Family Picture:</p>
+                </div>
+                <%= image_tag @member.photo_url(:thumb) %>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
 
