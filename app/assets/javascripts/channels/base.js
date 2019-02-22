@@ -41,6 +41,13 @@ $.fn.dataTable.ext.search.push(
   }
 );
 
+$(window).load(function() {
+  $(".loader").fadeOut("slow");
+});
+$(window).bind('beforeunload', function(){
+  $(".loader").fadeIn();
+});
+
 $(document).ready(function() {
 
   var today = new Date().toLocaleDateString().replace(/\//g,'-');
