@@ -207,7 +207,6 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child:before, table
   background-color: #101010;
 }
 
-
 .thumbnail {
   .caption {
     padding: 3px;
@@ -215,4 +214,8 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child:before, table
       margin-bottom: 0px;
     }
   }
+}
+
+.nav-divider {
+  border-bottom: 1px solid #CCC;
 }

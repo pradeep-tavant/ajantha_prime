@@ -4,9 +4,9 @@
     <%= display_meta_tags site: 'Ajantha Prime',
                 title: 'APOWA',
                 description: 'Lavakusha Nagar, Konappana Agrahara, Beratana Agrahara, Electronic City, Bangalore, Bengaluru, Karnataka - 560100',
-                keywords: 'APOWA, Portal, Apartment, Association, near Metro, near PES, Ajantha Royal',
+                keywords: 'Ajantha Prime, APOWA, Portal, Apartment, Association, near Metro, near PES, Ajantha Royal',
                 icon: asset_path('favicon.ico'),
-                image_src: asset_url('Ajantha-logo.png') %>
+                image_src: asset_url('Ajantha-logo-medium.png') %>
     <%= csrf_meta_tags %>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -53,7 +53,7 @@
       </div>
       <div class="container text-center">
         <span class="text-muted">© <%= Date.today.year %> Copyright:
-          <a href="https://ajanthaprime.herokuapp.com"> ajanthaprime.herokuapp.com</a>
+          <%= link_to root_url, root_url %>
         </span>
       </div>
     </footer>
