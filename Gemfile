@@ -21,7 +21,7 @@ gem 'jquery-datatables-rails', '~> 3.4.0'
 gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '>= 3.4.1'
 gem 'font-awesome-sass', '~> 4.7.0'
 gem 'bootstrap-datepicker-rails'
 gem 'fullcalendar-rails'
