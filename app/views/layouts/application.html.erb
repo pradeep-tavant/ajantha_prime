@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>AjanthaPrime</title>
+    <%= display_meta_tags site: 'Ajantha Prime',
+                title: 'APOWA',
+                description: 'Lavakusha Nagar, Konappana Agrahara, Beratana Agrahara, Electronic City, Bangalore, Bengaluru, Karnataka - 560100',
+                keywords: 'APOWA, Portal, Apartment, Association, near Metro, near PES, Ajantha Royal',
+                icon: asset_path('favicon.ico'),
+                image_src: asset_url('Ajantha-logo.png') %>
     <%= csrf_meta_tags %>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <%= favicon_link_tag asset_path('favicon.ico'), :rel => 'icon', :type => "image/x-icon" %>
+    <%#= favicon_link_tag asset_path('favicon.ico'), :rel => 'icon', :type => "image/x-icon" %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>

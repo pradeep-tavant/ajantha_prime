@@ -36,6 +36,7 @@ gem "cocoon"
 gem 'carrierwave'
 gem 'cloudinary'
 gem 'mini_magick'
+gem 'meta-tags'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
