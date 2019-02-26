@@ -14,7 +14,7 @@ body {
 }
 
 .brand-logo {
-  margin-top: -5px;
+  margin-top: -8px;
   width: 60px;
   @media only screen and (max-width: 767px) {
     width: 30px !important;
@@ -223,8 +223,4 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child:before, table
       margin-bottom: 0px;
     }
   }
-}
-
-.nav-divider {
-  border-bottom: 1px solid #CCC;
 }
