@@ -1,8 +1,9 @@
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-inverse" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
       <%= link_to root_path, class: "navbar-brand navbar-link", title: "Ajantha Prime Owners Welfare Association" do %>
-        <%= image_tag(asset_path("Ajantha-brand-small.png"), style: "width: 130px;") %>
+        <%= image_tag(asset_path("Ajantha-tree-small.png"), class: "pull-left brand-logo") %>
+        <span class="brand-text pull-right">APOWA</span>
       <% end %>
       <% if current_member %>
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
