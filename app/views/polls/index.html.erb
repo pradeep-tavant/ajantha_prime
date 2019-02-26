@@ -32,7 +32,7 @@
           <tbody>
             <% @polls.each do |poll| %>
               <tr>
-                <td><%= poll.topic %></td>
+                <td><%= link_to poll.topic, poll_path(poll) %></td>
                 <td><%= poll.votes_summary %></td>
                 <td><%= poll.start_date.strftime("%d/%b/%Y") %></td>
                 <td><%= poll.end_date.strftime("%d/%b/%Y") %></td>
@@ -42,7 +42,11 @@
                   <% elsif !poll.active? %>
                     Inactive
                   <% else %>
-                    <%= link_to (current_member.voted_for?(poll) ? 'Voted' : 'Participate!'), poll_path(poll), class: 'btn btn-default' %>
+                    <% if current_member.voted_for?(poll) %>
+                      Voted
+                    <% else %>
+                      <%= link_to "Vote", poll_path(poll), class: 'btn btn-primary' %>
+                    <% end %>
                   <% end %>
                 </td>
                 <% if current_member.admin? %>
