@@ -1,12 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <%= display_meta_tags site: 'Ajantha Prime',
-                title: 'APOWA',
-                description: 'Lavakusha Nagar, Konappana Agrahara, Beratana Agrahara, Electronic City, Bangalore, Bengaluru, Karnataka - 560100',
-                keywords: 'Ajantha Prime, APOWA, Portal, Apartment, Association, near Metro, near PES, Ajantha Royal',
-                icon: asset_path('favicon.ico'),
-                image_src: asset_url('Ajantha-logo-medium.png') %>
+    <%= display_meta_tags(default_meta_tags) %>
     <%= csrf_meta_tags %>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
