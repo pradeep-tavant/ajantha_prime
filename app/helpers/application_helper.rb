@@ -75,7 +75,7 @@ module ApplicationHelper
         description: description,
         type: 'apartment',
         url: root_url,
-        site_name: root_url,
+        site_name: title,
         image: [asset_url("Ajantha-logo-medium.png"), asset_url("Ajantha-logo-round-small.jpg")]
       }
     }

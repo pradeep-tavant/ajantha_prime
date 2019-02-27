@@ -99,11 +99,11 @@
                 <%= link_to (root_url + "documents/#{URI.escape(file_name)}"), target: '_blank' do %>
                   <i class="fa fa-download fa-fw" title="Download"></i>
                 <% end %>
-                <% if current_member.admin? %>
-                  <%= link_to file_remove_path(my_file: file_name), method: :delete, data: {confirm: "Are you sure?"} do %>
-                    <i class="fa fa-trash-o fa-fw" title="Delete"></i>
-                  <% end %>
-                <% end %>
+                <%# if current_member.admin? %>
+                  <%#= link_to file_remove_path(my_file: file_name), method: :delete, data: {confirm: "Are you sure?"} do %>
+                    <!-- <i class="fa fa-trash-o fa-fw" title="Delete"></i> -->
+                  <%# end %>
+                <%# end %>
               </li>
             <% end %>
           </ul>
