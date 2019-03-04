@@ -61,10 +61,11 @@ module ApplicationHelper
   end
 
   def default_meta_tags
-    title = 'Ajantha Prime | APOWA'
+    site = 'Ajantha Prime'
+    title = 'APOWA'
     description = 'Lavakusha Nagar, Konappana Agrahara, Beratana Agrahara, Electronic City Phase 1, Bangalore, Bengaluru, Karnataka - 560100'
     {
-      site: 'Ajantha Prime',
+      site: site,
       title: title,
       description: description,
       keywords: 'Ajantha Prime, APOWA, Portal, Apartment, Association, near Metro, near PES, Ajantha Royal',
@@ -75,7 +76,7 @@ module ApplicationHelper
         description: description,
         type: 'apartment',
         url: root_url,
-        site_name: title,
+        site_name: site,
         image: [asset_url("Ajantha-logo-medium.png"), asset_url("Ajantha-logo-round-small.jpg")]
       }
     }
