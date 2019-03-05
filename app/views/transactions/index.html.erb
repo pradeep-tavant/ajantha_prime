@@ -14,6 +14,17 @@
             </div>
           </div>
         </h3>
+        <ul class="nav nav-tabs">
+          <li class="<%= (params[:filter]=='pending' || params[:filter].blank?) ? 'active' : '' %>">
+            <%= link_to "Pending", all_transactions_path(filter: 'pending') %>
+          </li>
+          <li class="<%= (params[:filter]=='verified') ? 'active' : '' %>">
+            <%= link_to "Verified", all_transactions_path(filter: 'verified') %>
+          </li>
+          <li class="<%= (params[:filter]=='all') ? 'active' : '' %>">
+            <%= link_to "All", all_transactions_path(filter: 'all') %>
+          </li>
+        </ul>
       </div>
       <!-- /.panel-heading -->
 

@@ -12,7 +12,13 @@ class TransactionsController < ApplicationController
       flash[:error] = "You do not have access for this operation"
       redirect_to root_path
     else
-      @transactions = Transaction.all
+      @transactions = if params[:filter] == 'pending' || params[:filter].blank?
+        Transaction.where(status: 'NotVerified')
+      elsif params[:filter] == 'verified'
+        Transaction.where(status: 'Verified')
+      else
+        Transaction.all
+      end
       render action: 'index'
     end
   end

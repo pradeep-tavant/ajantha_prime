@@ -300,7 +300,7 @@ $(document).ready(function() {
     table.draw();
   });
 
-  if ($(".transactions-wrapper").length > 0) {
+  if ($(".transactions-wrapper").length > 0 && window.location.pathname == "/all_transactions" && window.location.search == "?filter=all") {
     $('<label class="mleft10">'+
           'Payment Status:&nbsp;&nbsp;'+
           '<select class="form-control" id="payment_status">'+
