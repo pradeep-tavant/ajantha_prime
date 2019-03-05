@@ -12,7 +12,13 @@ class BookingsController < ApplicationController
       flash[:error] = "You do not have access for this operation"
       redirect_to root_path
     else
-      @bookings = Booking.where(on_date: Date.today..DateTime::Infinity.new)
+      @bookings = if params[:filter] == 'upcoming' || params[:filter].blank?
+        Booking.where(on_date: Date.today..DateTime::Infinity.new)
+      elsif params[:filter] == 'past'
+        Booking.where("on_date < '#{Date.today}'")
+      else
+        Booking.all
+      end
       render action: 'index'
     end
   end

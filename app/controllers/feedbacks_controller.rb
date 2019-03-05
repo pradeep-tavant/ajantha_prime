@@ -5,7 +5,13 @@ class FeedbacksController < ApplicationController
 
   # GET /feedbacks
   def index
-    @feedbacks = Feedback.all
+    @feedbacks = if params[:filter] == 'active' || params[:filter].blank?
+      Feedback.where(status: ['Open', 'InProgress'])
+    elsif params[:filter] == 'closed'
+      Feedback.where(status: 'Closed')
+    else
+      Feedback.all
+    end
   end
 
   # GET /feedbacks/1

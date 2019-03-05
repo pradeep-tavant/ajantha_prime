@@ -10,6 +10,17 @@
             </div>
           </div>
         </h3>
+        <ul class="nav nav-tabs">
+          <li class="<%= (params[:filter]=='active' || params[:filter].blank?) ? 'active' : '' %>">
+            <%= link_to "Active", feedbacks_path(filter: 'active') %>
+          </li>
+          <li class="<%= (params[:filter]=='closed') ? 'active' : '' %>">
+            <%= link_to "Closed", feedbacks_path(filter: 'closed') %>
+          </li>
+          <li class="<%= (params[:filter]=='all') ? 'active' : '' %>">
+            <%= link_to "All", feedbacks_path(filter: 'all') %>
+          </li>
+        </ul>
       </div>
       <!-- /.panel-heading -->
       <div class="panel-body panel30 feedbacks-wrapper">

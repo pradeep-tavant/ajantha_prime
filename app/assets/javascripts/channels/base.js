@@ -315,7 +315,7 @@ $(document).ready(function() {
     table.draw();
   });
 
-  if ($(".feedbacks-wrapper").length > 0) {
+  if ($(".feedbacks-wrapper").length > 0 && window.location.search == "?filter=all") {
     $('<label class="mleft10">'+
           'Status:&nbsp;&nbsp;'+
           '<select class="form-control" id="feedback_status">'+

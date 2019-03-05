@@ -5,7 +5,7 @@
         <h3>
           <div class="flex-box">
             <% if params[:action] == 'all' %>
-              Upcoming Party Hall Bookings
+              Party Hall Bookings
             <% else %>
               My Party Hall Booking(s)
             <% end %>
@@ -16,6 +16,19 @@
             </div>
           </div>
         </h3>
+        <% if params[:action] == 'all' %>
+          <ul class="nav nav-tabs">
+            <li class="<%= (params[:filter]=='upcoming' || params[:filter].blank?) ? 'active' : '' %>">
+              <%= link_to "Upcoming", all_bookings_path(filter: 'upcoming') %>
+            </li>
+            <li class="<%= (params[:filter]=='past') ? 'active' : '' %>">
+              <%= link_to "Past", all_bookings_path(filter: 'past') %>
+            </li>
+            <li class="<%= (params[:filter]=='all') ? 'active' : '' %>">
+              <%= link_to "All", all_bookings_path(filter: 'all') %>
+            </li>
+          </ul>
+        <% end %>
       </div>
       <!-- /.panel-heading -->
 
