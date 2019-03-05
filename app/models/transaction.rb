@@ -25,7 +25,7 @@ class Transaction < ApplicationRecord
       counter += 1
     end
   end
-  enum sub_category: sub_category_hash.select{|k,v| v==0}
+  enum sub_category: sub_category_hash.select{|k,v| [0,1].include?(v)}
   # ----Enum sub_category END---- #
 
 
