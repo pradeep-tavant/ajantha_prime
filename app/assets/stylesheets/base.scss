@@ -21,6 +21,13 @@ body {
   }
 }
 
+@media only screen and (max-width: 767px) {
+  .navbar-nav .open .dropdown-menu {
+    border: 1px solid #2F4F4F;
+    margin: 0 10px;
+  }
+}
+
 .loader {
   position: fixed;
   left: 0px;

@@ -152,7 +152,7 @@ $(document).ready(function() {
     table = $('.dataTable').DataTable({
       responsive: true,
       columnDefs: [{ orderable: false, "targets": -1 }],
-      order: [[ 2, 'desc' ]],
+      order: [[ 3, 'desc' ]],
       dom: 'lfBrtip',
       buttons: [
             {
@@ -185,7 +185,7 @@ $(document).ready(function() {
     table = $('.dataTable').DataTable({
       responsive: true,
       columnDefs: [{ orderable: false, "targets": -1 }],
-      order: [[ 2, 'desc' ]],
+      order: [[ 3, 'desc' ]],
     })
   }
   else if ($('.categories-wrapper').length > 0) {
@@ -369,6 +369,15 @@ $(document).ready(function() {
     }
     else {
       $(".for-date").slideUp();
+    }
+  })
+
+  $(".sub-category select").on('change', function() {
+    if (this.value == 'Jan-Mar 2019') {
+      $('input[name="transaction[amount_paid]"]').val('7500');
+    }
+    else if (this.value == 'Apr-Jun 2019') {
+      $('input[name="transaction[amount_paid]"]').val('8700');
     }
   })
 

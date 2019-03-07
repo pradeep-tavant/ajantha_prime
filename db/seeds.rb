@@ -10,8 +10,8 @@ year = Date.today.year  # 2019 - May vary next year
 settings = [
   ["MAINTENANCE_#{year}_Q0_PER_MONTH", '2500'],
   ["MAINTENANCE_#{year}_Q0_DUE_DATE", "31/Jan/#{year}"],
-  ["MAINTENANCE_#{year}_Q1_PER_MONTH", '3000'],
-  ["MAINTENANCE_#{year}_Q1_DUE_DATE", "15/Apr/#{year}"],
+  ["MAINTENANCE_#{year}_Q1_PER_MONTH", '2900'],
+  ["MAINTENANCE_#{year}_Q1_DUE_DATE", "25/Mar/#{year}"],
   ["MAINTENANCE_#{year}_Q2_PER_MONTH", '3000'],
   ["MAINTENANCE_#{year}_Q2_DUE_DATE", "15/Jul/#{year}"],
   ["MAINTENANCE_#{year}_Q3_PER_MONTH", '3000'],
