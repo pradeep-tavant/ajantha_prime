@@ -224,11 +224,47 @@ $(document).ready(function() {
     })
   }
   else if ($('.accounts-wrapper').length > 0) {
+    if (window.location.search == "")
+    {
+      month = new Date().toLocaleString("en", { month: "short"  }) + '-' + new Date().getFullYear();
+    }
+    else {
+      month = window.location.search.split('=')[1];
+    }
     table = $('.dataTable').DataTable({
       responsive: true,
       columnDefs: [{ orderable: false, "targets": -1 }],
-      order: [[ 2, 'asc' ]],
-      paging: false
+      order: [[ 2, 'desc' ]],
+      paging: false,
+      dom: 'lfBrtip',
+      buttons: [
+          {
+              extend: 'excelHtml5',
+              autoFilter: true,
+              footer: true,
+              title: 'AjanthaPrime-Accounts-'+month+'-'+today,
+              exportOptions: {
+                  columns: ':visible'
+              }
+          },
+          {
+              extend: 'csvHtml5',
+              footer: true,
+              title: 'AjanthaPrime-Accounts-'+month+'-'+today,
+              exportOptions: {
+                  columns: ':visible'
+              }
+          },
+          {
+              extend: 'pdfHtml5',
+              footer: true,
+              title: 'AjanthaPrime-Accounts-'+month+'-'+today,
+              exportOptions: {
+                  columns: ':visible'
+              }
+          },
+          'colvis'
+      ]
     })
   }
   else {
