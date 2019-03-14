@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3>
+            <div class="flex-box">
+              <%= @account.title %>
+              <div class="col-lg-2">
+                <%= link_to edit_account_path(@account), class: "btn btn-default" do %>
+                  <i class="fa fa-pencil-square-o fa-fw" title="Edit"></i>Edit
+                <% end %>
+              </div>
+            </div>
+          </h3>
+        </div>
+        <div class="panel-body panel30">
+          <dl class="dl-horizontal mtop20">
+            <dt>Account Type:</dt>
+            <dd><%= @account.account_type %></dd>
+          </dl>
+
+          <dl class="dl-horizontal mtop20">
+            <dt>Amount:</dt>
+            <dd>&#8377; <%= @account.amount %></dd>
+          </dl>
+
+          <dl class="dl-horizontal mtop20">
+            <dt>Payment Mode:</dt>
+            <dd><%= @account.payment_mode %></dd>
+          </dl>
+
+          <dl class="dl-horizontal mtop20">
+            <dt>Invoice/Bill #:</dt>
+            <dd><%= @account.invoice_id %></dd>
+          </dl>
+
+          <dl class="dl-horizontal mtop20">
+            <dt>Payment By:</dt>
+            <dd><%= link_to @account.member.name_with_flat, @account.member %></dd>
+          </dl>
+
+          <dl class="dl-horizontal mtop20">
+            <dt>Payment Date:</dt>
+            <dd><%= @account.on_date %></dd>
+          </dl>
+
+          <dl class="dl-horizontal mtop20">
+            <dt>Month:</dt>
+            <dd><%= @account.for_month %></dd>
+          </dl>
+
+          <dl class="dl-horizontal mtop20">
+            <dt>Description:</dt>
+            <dd><%= simple_format(@account.description) %></dd>
+          </dl>
+        </div>
+      </div>
+      <%= link_to '&#9664; Accounts'.html_safe, accounts_path, class: "btn btn-default" %>
+    </div>
+  </div>
+</div>

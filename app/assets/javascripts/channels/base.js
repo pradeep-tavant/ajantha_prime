@@ -58,6 +58,14 @@ $(document).ready(function() {
     orientation: "bottom left"
     // startDate: new Date()
   });
+
+  $('.monthpicker').datepicker({
+    autoclose: true,
+    format: "M-yyyy",
+    startView: "months", 
+    minViewMode: "months",
+    orientation: "bottom left"
+  });
   
   $('input[type=file]').bootstrapFileInput();
 
@@ -213,6 +221,14 @@ $(document).ready(function() {
       responsive: true,
       columnDefs: [{ orderable: false, "targets": -1 }],
       order: [[ 1, 'desc' ]]
+    })
+  }
+  else if ($('.accounts-wrapper').length > 0) {
+    table = $('.dataTable').DataTable({
+      responsive: true,
+      columnDefs: [{ orderable: false, "targets": -1 }],
+      order: [[ 2, 'asc' ]],
+      paging: false
     })
   }
   else {
@@ -388,6 +404,10 @@ $(document).ready(function() {
     else {
       $(this).siblings('select').attr('readonly', false).css('pointer-events','auto');
     }
+  })
+
+  $("select#for_month").on('change', function(){
+    window.location.search = "?filter="+this.value;
   })
 
 });

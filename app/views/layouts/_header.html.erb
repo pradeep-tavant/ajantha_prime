@@ -39,6 +39,7 @@
                 <li><%= link_to "Feedbacks", feedbacks_path %></li>
                 <% if current_member.admin_toggle? %>
                   <li class="divider"></li>
+                  <li><%= link_to "Accounts", accounts_path %></li>
                   <li><%= link_to "Contact Categories", categories_path %></li>
                   <li><%= link_to "Settings", settings_path %></li>
                 <% end %>

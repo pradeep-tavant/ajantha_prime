@@ -44,3 +44,8 @@ en:
         transaction_id: "Transaction ID"
         on_date: "Paid Date"
         for_date: "Booking Date"
+      account:
+        on_date: "Payment Date"
+        for_month: "Month"
+        member: "Payment By"
+

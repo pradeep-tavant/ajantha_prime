@@ -10,10 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_21_092559) do
+ActiveRecord::Schema.define(version: 2019_03_12_060749) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accounts", force: :cascade do |t|
+    t.string "title"
+    t.integer "account_type", default: 0
+    t.string "invoice_id"
+    t.float "amount", default: 0.0
+    t.integer "payment_mode", default: 0
+    t.date "on_date", default: "2019-03-14"
+    t.string "for_month", default: "Mar-2019"
+    t.text "description"
+    t.bigint "member_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id"], name: "index_accounts_on_member_id"
+  end
 
   create_table "bookings", force: :cascade do |t|
     t.bigint "member_id"
