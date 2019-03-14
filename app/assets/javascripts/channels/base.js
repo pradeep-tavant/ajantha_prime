@@ -233,9 +233,8 @@ $(document).ready(function() {
     }
     table = $('.dataTable').DataTable({
       responsive: true,
-      columnDefs: [{ orderable: false, "targets": -1 }],
-      order: [[ 2, 'desc' ]],
       paging: false,
+      ordering: false,
       dom: 'lfBrtip',
       buttons: [
           {

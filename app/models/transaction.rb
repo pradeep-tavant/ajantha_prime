@@ -2,6 +2,7 @@ class Transaction < ApplicationRecord
   belongs_to :member
 
   validates :payment_mode, :transaction_id, :amount_paid, :on_date, :category, presence: true
+  validates :amount_paid, numericality: {greater_than: 0}
   validates :sub_category, presence: true, if: -> { self.Maintenance? }
   validates :for_date, presence: true, if: -> { self.PartyHall? }
   validates_uniqueness_of :transaction_id, scope: %i[category member_id], message: "already exists"

@@ -45,7 +45,7 @@
     <div class="col-lg-9 mtop10">
       <div class="panel panel-info">
         <div class="panel-heading">
-          <h3 class="panel-title">News Feed</h3>
+          <h3 class="panel-title">Notice Board</h3>
         </div>
         <div class="panel-body">
           <ul class="list-group">
@@ -59,10 +59,10 @@
             </li>
             <li class="list-group-item">
               <% if @transaction.present? %>
-                Thanks for your maintenance payment for <b><%= @transaction.sub_category %></b>. You can check the Payment Status or download the invoice <%= link_to 'here', transactions_path %>.
+                Thanks for your maintenance payment for <b><%= @duration %></b>. You can check the Payment Status or download the invoice <%= link_to 'here', transactions_path %>.
               <% else %>
                 <span class="badge">Pending</span>
-                Kindly pay your maintenance charges for <b>Jan-Mar'2019</b>. If already paid, update the transaction details <%= link_to 'here', new_transaction_path %>.
+                Kindly pay your maintenance charges for <b><%= @duration %></b>. If already paid, update the transaction details <%= link_to 'here', new_transaction_path %>.
               <% end %>
             </li>
             <li class="list-group-item">

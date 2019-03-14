@@ -5,7 +5,8 @@ class HomeController < ApplicationController
 
   def index
     @documents = Dir.entries("public/documents")
-    @transaction = current_member.transactions.Maintenance.last
+    @duration = Transaction.sub_categories.to_a.last[0]
+    @transaction = current_member.transactions.Maintenance.where(sub_category: @duration).first
   end
 
   def file_upload
