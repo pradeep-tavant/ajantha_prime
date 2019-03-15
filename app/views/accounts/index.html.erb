@@ -1,18 +1,30 @@
 <div class="row">
   <div class="col-lg-12">
     <div class="panel panel-default">
-      <div class="panel-heading">
+      <div class="panel-heading bbnone">
         <h3>
           <div class="flex-box">
-            Accounts
+            <div>
+              Accounts
+              <%= select_tag "for_month", options_for_select(month_year_list, (params[:month] || Date.today.strftime("%b-%Y"))), class: "form-control", style: "width: 130px;display: inline;" %>
+            </div>
             <div class="col-lg-2">
               <%= link_to 'Add Account Entry', new_account_path, class: "btn btn-default" %>
             </div>
           </div>
         </h3>
-        <div>
-          <%= select_tag "for_month", options_for_select(month_year_list, (params[:filter] || Date.today.strftime("%b-%Y"))), class: "form-control", style: "width: 130px;" %>
-        </div>
+        
+        <ul class="nav nav-tabs">
+          <li class="<%= (params[:filter]=='all' || params[:filter].blank?) ? 'active' : '' %>">
+            <%= link_to "All", accounts_path(month: params[:month], filter: 'all') %>
+          </li>
+          <li class="<%= (params[:filter]=='expense') ? 'active' : '' %>">
+            <%= link_to "Expense", accounts_path(month: params[:month], filter: 'expense') %>
+          </li>
+          <li class="<%= (params[:filter]=='income') ? 'active' : '' %>">
+            <%= link_to "Income", accounts_path(month: params[:month], filter: 'income') %>
+          </li>
+        </ul>
       </div>
       <!-- /.panel-heading -->
       <div class='text-center'><small>Rows can be dragged & dropped to reorder.</small></div>
@@ -35,7 +47,7 @@
               <tr id="<%= sortable_id %>">
                 <td><%= link_to account.title, account %></td>
                 <td><%= account.payment_mode %></td>
-                <td><%= account.on_date %></td>
+                <td><%= account.on_date.strftime("%d/%b/%Y") %></td>
                 <td>
                   <%= link_to account.member.name_with_flat, member_path(account.member) %>
                 </td>
@@ -54,31 +66,34 @@
               </tr>
             <% end %>
           </tbody>
-          <tbody>
-            <tr>
-              <td>Maintenance Charges</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td><%= @maintenance_income %></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>PartyHall Charges</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td><%= @party_hall_income %></td>
-              <td></td>
-            </tr>
-          </tbody>
+          <% unless params[:filter]=='expense' %>
+            <tbody>
+              <tr>
+                <td>Maintenance Charges</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><%= @maintenance_income %></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>PartyHall Charges</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><%= @party_hall_income %></td>
+                <td></td>
+              </tr>
+            </tbody>
+            <% total = total + @maintenance_income + @party_hall_income %>
+          <% end %>
           <tfoot>
             <tr>
               <th></th>
               <th></th>
               <th></th>
               <th style="text-align: right;">Total (&#8377;)</th>
-              <th><%= total + @maintenance_income + @party_hall_income %></th>
+              <th><%= total %></th>
               <th></th>
             </tr>
           </tfoot>

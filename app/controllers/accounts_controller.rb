@@ -6,13 +6,19 @@ class AccountsController < ApplicationController
   # GET /accounts
   # GET /accounts.json
   def index
-    filter = if params[:filter].blank?
+    duration = if params[:month].blank?
       Date.today.strftime("%b-%Y")
     else
-      params[:filter]
+      params[:month]
     end
-    month, year = filter.split('-')
-    @accounts = Account.where(for_month: filter).order(:sort)
+    month, year = duration.split('-')
+    @accounts = if params[:filter] == 'expense'
+      Account.Expense
+    elsif params[:filter] == 'income'
+      Account.Income
+    else
+      Account
+    end.where(for_month: duration).order(:sort)
     transactions = Transaction.where('extract(month from on_date) = ? AND extract(year from on_date) = ?', Date::ABBR_MONTHNAMES.index(month), year).Verified
     @maintenance_income = transactions.Maintenance.sum(&:amount_paid)
     @party_hall_income = transactions.PartyHall.sum(&:amount_paid)

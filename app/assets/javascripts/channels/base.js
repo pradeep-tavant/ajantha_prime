@@ -266,6 +266,8 @@ $(document).ready(function() {
           'colvis'
       ]
     })
+    // To hide the No Data text in DataTable
+    $(".dataTables_empty").hide();
   }
   else {
     table = $('.dataTable').DataTable({
@@ -443,7 +445,7 @@ $(document).ready(function() {
   })
 
   $("select#for_month").on('change', function(){
-    window.location.search = "?filter="+this.value;
+    window.location.search = "?month="+this.value;
   })
 
 });
