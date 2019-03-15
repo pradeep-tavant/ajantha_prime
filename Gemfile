@@ -16,6 +16,8 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
 gem 'jquery-datatables-rails', '~> 3.4.0'
+gem 'jquery-ui-rails'
+gem 'rails_sortable'
 
 # gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'

@@ -15,6 +15,7 @@
         </div>
       </div>
       <!-- /.panel-heading -->
+      <div class='text-center'><small>Rows can be dragged & dropped to reorder.</small></div>
 
       <div class="panel-body panel30 accounts-wrapper">
         <table class="dataTable table table-striped table-bordered table-hover" cellspacing="0" width="100%">
@@ -28,12 +29,12 @@
               <th>Actions</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody class="sortable">
             <% total = 0 %>
-            <% @accounts.each do |account| %>
-              <tr>
+            <% @accounts.each_with_sortable_id do |account, sortable_id| %>
+              <tr id="<%= sortable_id %>">
                 <td><%= link_to account.title, account %></td>
-                <td><%= account.payment_mode %> (<%= account.invoice_id %>)</td>
+                <td><%= account.payment_mode %></td>
                 <td><%= account.on_date %></td>
                 <td>
                   <%= link_to account.member.name_with_flat, member_path(account.member) %>
@@ -52,6 +53,8 @@
                 </td>
               </tr>
             <% end %>
+          </tbody>
+          <tbody>
             <tr>
               <td>Maintenance Charges</td>
               <td></td>

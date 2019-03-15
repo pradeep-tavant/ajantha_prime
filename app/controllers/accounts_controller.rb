@@ -12,7 +12,7 @@ class AccountsController < ApplicationController
       params[:filter]
     end
     month, year = filter.split('-')
-    @accounts = Account.where(for_month: filter)
+    @accounts = Account.where(for_month: filter).order(:sort)
     transactions = Transaction.where('extract(month from on_date) = ? AND extract(year from on_date) = ?', Date::ABBR_MONTHNAMES.index(month), year).Verified
     @maintenance_income = transactions.Maintenance.sum(&:amount_paid)
     @party_hall_income = transactions.PartyHall.sum(&:amount_paid)

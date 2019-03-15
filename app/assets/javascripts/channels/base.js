@@ -224,6 +224,7 @@ $(document).ready(function() {
     })
   }
   else if ($('.accounts-wrapper').length > 0) {
+    $('.sortable').railsSortable();
     if (window.location.search == "")
     {
       month = new Date().toLocaleString("en", { month: "short"  }) + '-' + new Date().getFullYear();

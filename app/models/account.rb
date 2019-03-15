@@ -1,4 +1,7 @@
 class Account < ApplicationRecord
+  include RailsSortable::Model
+  set_sortable :sort, without_updating_timestamps: true
+  
   belongs_to :member
 
   validates :title, :account_type, :payment_mode, :amount, :on_date, :for_month, presence: true

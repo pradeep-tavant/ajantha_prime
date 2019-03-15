@@ -19,6 +19,8 @@
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require dataTables.buttons.min
+//= require jquery-ui/widgets/sortable
+//= require rails_sortable
 //= require bootstrap-datepicker
 //= require buttons.flash.min
 //= require jszip.min
