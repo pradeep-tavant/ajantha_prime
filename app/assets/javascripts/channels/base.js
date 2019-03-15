@@ -266,8 +266,8 @@ $(document).ready(function() {
           'colvis'
       ]
     })
-    // To hide the No Data text in DataTable
-    $(".dataTables_empty").hide();
+    // To hide the No Data text & Row count bottom text in DataTable
+    $(".dataTables_empty, .dataTables_info").hide();
   }
   else {
     table = $('.dataTable').DataTable({
