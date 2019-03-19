@@ -22,8 +22,8 @@ $.fn.dataTable.ext.search.push(
         return true;
       }
     }
-    else if ($('.transactions-wrapper').length > 0) {
-      var status = $('#payment_status').val();
+    else if ($('.transactions-wrapper .admin-view').length > 0) {
+      var status = $('#tr_sub_category').val();
       if (status == undefined || status == "" || status == data[5]) {
         return true;
       }
@@ -159,7 +159,10 @@ $(document).ready(function() {
   else if ($('.transactions-wrapper .admin-view').length > 0) {
     table = $('.dataTable').DataTable({
       responsive: true,
-      columnDefs: [{ orderable: false, "targets": -1 }],
+      columnDefs: [
+                    { orderable: false, "targets": -1 },
+                    { targets: [ 5 ], visible: false }
+                  ],
       order: [[ 3, 'desc' ]],
       dom: 'lfBrtip',
       buttons: [
@@ -354,18 +357,18 @@ $(document).ready(function() {
     table.draw();
   });
 
-  if ($(".transactions-wrapper").length > 0 && window.location.pathname == "/all_transactions" && window.location.search == "?filter=all") {
+  if ($('.transactions-wrapper .admin-view').length > 0 && window.location.search.match("category=Maintenance")) {
     $('<label class="mleft10">'+
-          'Payment Status:&nbsp;&nbsp;'+
-          '<select class="form-control" id="payment_status">'+
+          'Duration:&nbsp;&nbsp;'+
+          '<select class="form-control" id="tr_sub_category">'+
           '<option value="">All</option>'+
-          '<option>Verified</option>'+
-          '<option>NotVerified</option>'+
+          '<option>Jan-Mar 2019</option>'+
+          '<option>Apr-Jun 2019</option>'+
           '</select>'+
           '</label>').appendTo(".transactions-wrapper .dataTables_wrapper .dataTables_filter");
   }
 
-  $('#payment_status').change( function() {
+  $('#tr_sub_category').change( function() {
     table.draw();
   });
 
@@ -446,6 +449,10 @@ $(document).ready(function() {
 
   $("select#for_month").on('change', function(){
     window.location.search = "?month="+this.value;
+  })
+
+  $("select#tr_category").on('change', function(){
+    window.location.search = "?category="+this.value;
   })
 
 });

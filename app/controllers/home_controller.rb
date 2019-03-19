@@ -5,7 +5,8 @@ class HomeController < ApplicationController
 
   def index
     @documents = Dir.entries("public/documents")
-    @duration = Transaction.sub_categories.to_a.last[0]
+    @duration = Transaction.sub_categories.keys.last
+    @due_date = Transaction.new(sub_category: @duration).due_date
     @transaction = current_member.transactions.Maintenance.where(sub_category: @duration).first
   end
 

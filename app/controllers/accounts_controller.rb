@@ -12,10 +12,8 @@ class AccountsController < ApplicationController
       params[:month]
     end
     month, year = duration.split('-')
-    @accounts = if params[:filter] == 'expense'
-      Account.Expense
-    elsif params[:filter] == 'income'
-      Account.Income
+    @accounts = if params[:filter].present? && params[:filter] != 'all'
+      Account.send(params[:filter].titleize)
     else
       Account
     end.where(for_month: duration).order(:sort)

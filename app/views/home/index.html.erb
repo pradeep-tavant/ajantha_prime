@@ -50,20 +50,20 @@
         <div class="panel-body">
           <ul class="list-group">
             <li class="list-group-item">
+              <% if @transaction.present? %>
+                Thanks for your maintenance payment for <b><%= @duration %></b>. You can check the Payment Status or download the invoice <%= link_to 'here', transaction_path(@transaction) %>.
+              <% else %>
+                <span class="badge">Pending</span>
+                Kindly pay your maintenance charges for <b><%= @duration %></b> on or before <b><%= @due_date %></b> to avoid late payment charges. If already paid, update the transaction details <%= link_to 'here', new_transaction_path %>.
+              <% end %>
+            </li>
+            <li class="list-group-item">
               <span class="badge">NEW</span>
               You can upload your Profile picture <%= link_to 'here', (edit_member_path(current_member)+"#avatar") %>.
             </li>
             <li class="list-group-item">
               <span class="badge">NEW</span>
               You can do a Party Hall Booking <%= link_to 'here', booking_calendar_path %>.
-            </li>
-            <li class="list-group-item">
-              <% if @transaction.present? %>
-                Thanks for your maintenance payment for <b><%= @duration %></b>. You can check the Payment Status or download the invoice <%= link_to 'here', transactions_path %>.
-              <% else %>
-                <span class="badge">Pending</span>
-                Kindly pay your maintenance charges for <b><%= @duration %></b>. If already paid, update the transaction details <%= link_to 'here', new_transaction_path %>.
-              <% end %>
             </li>
             <li class="list-group-item">
               <% if current_member.vehicles.length > 0 %>

@@ -12,13 +12,14 @@ class TransactionsController < ApplicationController
       flash[:error] = "You do not have access for this operation"
       redirect_to root_path
     else
+      category_hash = params[:category].blank? ? {} : {category: params[:category]}
       @transactions = if params[:filter] == 'pending' || params[:filter].blank?
-        Transaction.where(status: 'NotVerified')
+        Transaction.where.not(status: 'Verified')
       elsif params[:filter] == 'verified'
         Transaction.where(status: 'Verified')
       else
-        Transaction.all
-      end
+        Transaction
+      end.where(category_hash)
       render action: 'index'
     end
   end

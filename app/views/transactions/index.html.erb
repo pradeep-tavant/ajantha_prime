@@ -4,11 +4,14 @@
       <div class="panel-heading bbnone">
         <h3>
           <div class="flex-box">
-            <% if params[:action] == 'all' %>
-              All Transactions
-            <% else %>
-              My Transaction(s)
-            <% end %>
+            <div>
+              <% if params[:action] == 'all' %>
+                Transactions
+                <%= select_tag "tr_category", options_for_select(Transaction.categories.keys, (params[:category])), prompt: 'All', class: "form-control", style: "width: 120px;display: inline;" %>
+              <% else %>
+                My Transaction(s)
+              <% end %>
+            </div>
             <div class="col-lg-2">
               <%= link_to 'Add My Transaction', new_transaction_path, class: "btn btn-default" %>
             </div>
@@ -16,13 +19,13 @@
         </h3>
         <ul class="nav nav-tabs">
           <li class="<%= (params[:filter]=='pending' || params[:filter].blank?) ? 'active' : '' %>">
-            <%= link_to "Pending", all_transactions_path(filter: 'pending') %>
+            <%= link_to "Pending", all_transactions_path(category: params[:category], filter: 'pending') %>
           </li>
           <li class="<%= (params[:filter]=='verified') ? 'active' : '' %>">
-            <%= link_to "Verified", all_transactions_path(filter: 'verified') %>
+            <%= link_to "Verified", all_transactions_path(category: params[:category], filter: 'verified') %>
           </li>
           <li class="<%= (params[:filter]=='all') ? 'active' : '' %>">
-            <%= link_to "All", all_transactions_path(filter: 'all') %>
+            <%= link_to "All", all_transactions_path(category: params[:category], filter: 'all') %>
           </li>
         </ul>
       </div>
@@ -37,6 +40,7 @@
               <th>Amount Paid (&#8377;)</th>
               <th>Date Paid</th>
               <th>Category</th>
+              <th>SubCategory</th>
               <th>Payment Status</th>
               <% if current_member.admin? %>
                 <th>Paid By</th>
@@ -54,6 +58,7 @@
                 <td><%= transaction.amount_paid %></td>
                 <td><%= transaction.on_date.strftime("%d/%b/%Y") %></td>
                 <td><%= transaction.category %></td>
+                <td><%= transaction.sub_category %></td>
                 <td><%= transaction.status %></td>
                 <% if current_member.admin? %>
                   <td>
