@@ -4,7 +4,7 @@ class HomeController < ApplicationController
   before_action :check_admin, only: [:file_upload, :file_remove]
 
   def index
-    @documents = Dir.entries("public/documents")
+    @documents = DOCUMENTS_LINKS # Dir.entries("public/documents")
     @duration = Transaction.sub_categories.keys.last
     @due_date = Transaction.new(sub_category: @duration).due_date
     @transaction = current_member.transactions.Maintenance.where(sub_category: @duration).first
