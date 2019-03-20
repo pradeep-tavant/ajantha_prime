@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   require 'fileutils'
-  before_action :authenticate_member!
+  before_action :authenticate_member!, except: [:location]
   before_action :check_admin, only: [:file_upload, :file_remove]
 
   def index
@@ -27,6 +27,9 @@ class HomeController < ApplicationController
     FileUtils.rm file
     flash[:notice] = "Document removed successfully."
     redirect_to root_path
+  end
+
+  def location
   end
 
   private

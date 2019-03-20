@@ -29,7 +29,7 @@ gem 'bootstrap-datepicker-rails'
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 
-gem 'devise'
+gem "devise", ">= 4.6.0"
 gem 'friendly_id', '~> 5.2.0'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'

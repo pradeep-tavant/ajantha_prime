@@ -41,14 +41,20 @@
     <% end %>
 
     <!-- Footer -->
-    <footer class="footer">
-      <div class="container text-center">
+    <footer class="footer text-center">
+      <div class="container">
         <%= image_tag(asset_path("Ajantha-logo-small.png")) %>
-      </div>
-      <div class="container text-center">
-        <span class="text-muted">© <%= Date.today.year %> Copyright:
+        <p class="text-muted mbottom0">© <%= Date.today.year %> Copyright:
           <%= link_to root_url, root_url %>
-        </span>
+        </p>
+        <ul class="list-inline">
+          <li class="list-inline-item">
+            <%= link_to location_path do %>
+              <i class="fa fa-map-marker fa-fw" title="Location Map"></i>
+              Location Map
+            <% end %>
+          </li>
+        </ul>
       </div>
     </footer>
     <!-- Footer -->

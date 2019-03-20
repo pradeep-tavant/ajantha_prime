@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   match '/booking_calendar', to: 'bookings#calendar', via: :get, as: :booking_calendar
   match '/file_upload', to: 'home#file_upload', via: :post, as: :file_upload
   match '/file_remove', to: 'home#file_remove', via: :delete, as: :file_remove
+  get '/location', to: 'home#location'
 
   root to: 'home#index'
 

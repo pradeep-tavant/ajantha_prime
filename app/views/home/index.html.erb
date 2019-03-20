@@ -92,12 +92,12 @@
             </div> -->
           <%# end %>
           <ul class="list-group">
-            <% @documents.each do |file_name, file_url| %>
+            <% @documents.each do |file_name, file_path| %>
               <%# next if [".",".."].include?(file_name) %>
               <li class="list-group-item">
                 <%= file_name %>
                 <%#= link_to (root_url + "documents/#{URI.escape(file_name)}"), target: '_blank' do %>
-                <%= link_to file_url, target: '_blank' do %>
+                <%= link_to (file_path + file_name), target: '_blank' do %>
                   <i class="fa fa-download fa-fw" title="Download"></i>
                 <% end %>
                 <%# if current_member.admin? %>
