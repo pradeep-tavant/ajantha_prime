@@ -69,6 +69,8 @@ $(document).ready(function() {
   
   $('input[type=file]').bootstrapFileInput();
 
+  $('.autocomplete').dropdown();
+
   if ($('.members-wrapper .admin-view').length > 0) {
     table = $('.dataTable').DataTable({
       responsive: true,

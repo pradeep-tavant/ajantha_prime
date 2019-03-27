@@ -19,8 +19,8 @@
 
   <div class="form-group">
     <%= f.label :assignee_id, "Assignee *", class: "control-label col-sm-2" %>
-    <div class="col-sm-10">
-      <%= f.select(:assignee_id, flats_list_with_id, {prompt: 'Select'}, {class: "form-control"}) %>
+    <div class="col-sm-10 autocomplete">
+      <%= f.select(:assignee_id, flats_list_with_id, {prompt: 'Select'}, {class: "form-control", style: "display: none;"}) %>
     </div>
   </div>
 
