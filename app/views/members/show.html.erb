@@ -99,8 +99,49 @@
             <% end %>
           </div>
         </div>
+        <% if @member.admin? %>
+          <% if @member.transactions.length > 0 %>
+            <div class="panel-heading mbottom20">
+              Transaction(s):
+            </div>
+            <% @member.transactions.each do |transaction| %>
+              <div class="bbottom5">
+                <dl class="dl-horizontal mtop10">
+                  <dt>Transaction ID:</dt>
+                  <dd><%= link_to transaction.transaction_id, transaction %></dd>
+                </dl>
+                <dl class="dl-horizontal">
+                  <dt>Amount Paid:</dt>
+                  <dd>Rs.<%= transaction.amount_paid %></dd>
+                </dl>
+                <dl class="dl-horizontal">
+                  <dt>Paid Date:</dt>
+                  <dd><%= transaction.on_date.strftime("%d/%b/%Y") %></dd>
+                </dl>
+                <dl class="dl-horizontal">
+                  <dt>Category:</dt>
+                  <dd><%= transaction.category %></dd>
+                </dl>
+                <dl class="dl-horizontal">
+                  <dt>Payment Status:</dt>
+                  <dd><%= transaction.status %></dd>
+                </dl>
+              </div>
+            <% end %>
+          <% end %>
+          <% if @member.vehicles.length > 0 %>
+            <div class="panel-heading mbottom20">
+              Vehicle(s):
+            </div>
+            <% @member.vehicles.each do |vehicle| %>
+              <dl class="dl-horizontal">
+                <dt><%= vehicle.category %>:</dt>
+                <dd><%= vehicle.name %> / <%= vehicle.number %></dd>
+              </dl>
+            <% end %>
+          <% end %>
+        <% end %>
       </div>
-
       <%= link_to '&#9664; Members'.html_safe, members_path, class: "btn btn-default" %>
     </div>
   </div>
