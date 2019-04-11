@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_15_063016) do
+ActiveRecord::Schema.define(version: 2019_04_11_070157) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,6 +105,20 @@ ActiveRecord::Schema.define(version: 2019_03_15_063016) do
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  end
+
+  create_table "inventories", force: :cascade do |t|
+    t.string "name"
+    t.bigint "category_id"
+    t.integer "quantity", default: 1
+    t.float "amount", default: 0.0
+    t.date "purchase_date", default: "2019-04-11"
+    t.float "warranty", default: 0.0
+    t.string "invoice"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_inventories_on_category_id"
   end
 
   create_table "members", force: :cascade do |t|
@@ -235,6 +249,7 @@ ActiveRecord::Schema.define(version: 2019_03_15_063016) do
     t.index ["vote_option_id"], name: "index_votes_on_vote_option_id"
   end
 
+  add_foreign_key "inventories", "categories"
   add_foreign_key "vote_options", "polls"
   add_foreign_key "votes", "members"
   add_foreign_key "votes", "vote_options"

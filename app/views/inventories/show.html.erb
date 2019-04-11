@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3>
+            <div class="flex-box">
+              <%= @inventory.name %>
+              <div class="col-lg-3">
+                <%= link_to edit_inventory_path(@inventory), class: "btn btn-default" do %>
+                  <i class="fa fa-pencil-square-o fa-fw" title="Edit"></i>Edit
+                <% end %>
+                <% if @inventory.invoice.present? %>
+                  <%= link_to @inventory.invoice_url, target: '_blank', class: "btn btn-default" do %>
+                    <i class="fa fa-download fa-fw" title="Download Invoice"></i>Invoice
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </h3>
+        </div>
+        <div class="panel-body panel30">
+          <dl class="dl-horizontal mtop20">
+            <dt>Category:</dt>
+            <dd><%= @inventory.category.try(:name) %></dd>
+          </dl>
+
+          <dl class="dl-horizontal mtop20">
+            <dt>Quantity:</dt>
+            <dd><%= @inventory.quantity %></dd>
+          </dl>
+
+          <dl class="dl-horizontal mtop20">
+            <dt>Total Amount:</dt>
+            <dd>&#8377; <%= @inventory.amount %></dd>
+          </dl>
+
+          <dl class="dl-horizontal mtop20">
+            <dt>Purchase date:</dt>
+            <dd><%= @inventory.purchase_date.strftime("%d/%b/%Y") %></dd>
+          </dl>
+
+          <dl class="dl-horizontal mtop20">
+            <dt>Warranty (years):</dt>
+            <dd><%= (@inventory.warranty.divmod 1)[1].zero? ? @inventory.warranty.to_i : @inventory.warranty %></dd>
+          </dl>
+
+          <dl class="dl-horizontal mtop20">
+            <dt>Description:</dt>
+            <dd><%= simple_format(@inventory.description) %></dd>
+          </dl>
+        </div>
+      </div>
+      <%= link_to '&#9664; Inventory'.html_safe, inventories_path, class: "btn btn-default" %>
+    </div>
+  </div>
+</div>

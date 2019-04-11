@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>
+          <div class="flex-box">
+            Inventory
+            <div class="col-lg-2">
+              <% if current_member.admin? %>
+                <%= link_to 'Add New Item', new_inventory_path, class: "btn btn-default" %>
+              <% end %>
+            </div>
+          </div>
+        </h3>
+      </div>
+      <!-- /.panel-heading -->
+      <div class="panel-body panel30 inventories-wrapper">
+        <table class="dataTable table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Quantity</th>
+              <th>Amount (&#8377;)</th>
+              <th>Purchase Date</th>
+              <th>Warranty (Years)</th>
+              <% if current_member.admin? %>
+                <th>Actions</th>
+              <% end %>
+            </tr>
+          </thead>
+          <tbody>
+            <% @inventories.each do |inventory| %>
+              <tr>
+                <td><%= link_to inventory.name, inventory %></td>
+                <td><%= inventory.category.try(:name) %></td>
+                <td><%= inventory.quantity %></td>
+                <td><%= inventory.amount %></td>
+                <td><%= inventory.purchase_date.strftime("%d/%b/%Y") %></td>
+                <td><%= (inventory.warranty.divmod 1)[1].zero? ? inventory.warranty.to_i : inventory.warranty %></td>
+                <td>
+                  <%= link_to inventory.invoice_url, target: '_blank' do %>
+                    <i class="fa fa-download fa-fw" title="Download Invoice"></i>
+                  <% end if inventory.invoice.present? %>
+                  <%= link_to edit_inventory_path(inventory) do %>
+                    <i class="fa fa-pencil fa-fw" title="Edit"></i>
+                  <% end %>
+                  <%= link_to inventory, method: :delete, data: { confirm: 'Are you sure want to remove this Item?' } do %>
+                    <i class="fa fa-trash-o fa-fw" title="Delete"></i>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
