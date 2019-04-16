@@ -14,11 +14,14 @@
   <div class="form-group">
     <%= label_tag :content, "Content *",  class: "control-label col-sm-2" %>
     <div class="col-sm-10">
-      <%= text_area_tag :content, params[:content], class: "form-control", rows: 8, required: true %>
+      <%#= text_area_tag :content, params[:content], class: "form-control", rows: 8, required: true, as: :trix_editor %>
+      <input id="content" name="content" value="<%= params[:content] %>" type="hidden" name="content" class="form-control" rows="8" />
+      <trix-editor input="content" class="trix-content"></trix-editor>
     </div>
   </div>
   <div class="col-sm-12 flex-buttons">
-    <%= button_tag type: 'submit', value: 'Send', class: "mtop10 btn btn-primary" do %>
+    <%= link_to 'Cancel', root_path, class: "mtop10 btn btn-default" %>
+    <%= button_tag type: 'submit', value: 'Send', class: "mleft10 mtop10 btn btn-primary" do %>
       Send<i class="fa fa-paper-plane-o fa-fw"></i>
     <% end %>
   </div>

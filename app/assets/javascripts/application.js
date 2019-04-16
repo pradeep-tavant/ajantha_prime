@@ -33,4 +33,5 @@
 //= require moment 
 //= require fullcalendar
 //= require fullcalendar/locale-all
+//= require trix
 //= require_tree .

@@ -39,7 +39,7 @@ class HomeController < ApplicationController
     error = []
     err_index = 1
     if params[:recipients].blank?
-      error << "#{err_index}. Kindly add one or more Recipients"
+      error << "#{err_index}. Kindly add one or more recipients"
       err_index += 1
     end
     if params[:subject].blank?
@@ -48,17 +48,16 @@ class HomeController < ApplicationController
     end
     if params[:content].blank?
       error << "#{err_index}. Content can't be blank"
-      err_index += 1
     end
     unless error.empty?
-      flash[:error] = error.join(";&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;").html_safe
+      flash.now[:error] = error.join(";&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;").html_safe
       render :compose_mail
     else
       @members = Member.where(id: params[:recipients])
       @members.each do |member|
         MemberMailer.with(member: member, subject: params[:subject], content: params[:content]).notify_members.deliver_later
       end
-      flash[:notoce] = "Mail sent successfully."
+      flash[:notice] = "Mail sent successfully."
       redirect_to compose_mail_path
     end
   end

@@ -39,6 +39,7 @@ gem 'carrierwave'
 gem 'cloudinary'
 gem 'mini_magick'
 gem 'meta-tags'
+gem 'trix'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
