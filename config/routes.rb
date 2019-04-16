@@ -33,6 +33,8 @@ Rails.application.routes.draw do
   match '/file_upload', to: 'home#file_upload', via: :post, as: :file_upload
   match '/file_remove', to: 'home#file_remove', via: :delete, as: :file_remove
   get '/location', to: 'home#location'
+  get '/compose_mail', to: 'home#compose_mail'
+  post '/notify_mail', to: 'home#notify_mail'
 
   root to: 'home#index'
 

@@ -18,4 +18,11 @@ class MemberMailer < ApplicationMailer
     @booking = params[:booking]
     mail(to: @member.email, subject: "Ajantha Prime Party Hall Booking - #{@booking.reason}")
   end
+
+  def notify_members
+    @member = params[:member]
+    @subject = params[:subject]
+    @content = params[:content]
+    mail(to: @member.email, subject: "Ajantha Prime - #{@subject}")
+  end
 end
