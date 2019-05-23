@@ -241,3 +241,9 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child:before, table
 trix-editor {
   min-height: 250px;
 }
+
+.trix-button-row { 
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}

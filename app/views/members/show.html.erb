@@ -87,6 +87,16 @@
               <dt>Secondary Phone:</dt>
               <dd><%= @member.sec_phone %></dd>
             </dl>
+
+            <dl class="dl-horizontal">
+              <dt>RR Number:</dt>
+              <dd><%= @member.rr_number %></dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+              <dt>Family Size:</dt>
+              <dd><%= @member.family_size %></dd>
+            </dl>
           </div>
           <div>
             <% if @member.photo.present? %>

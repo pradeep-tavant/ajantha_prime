@@ -53,6 +53,7 @@
               <th>Flat / Login</th>
               <th>Phone</th>
               <th>Email</th>
+              <th>RR Number</th>
               <th>Rented?</th>
               <th>Available for Rent?</th>
               <% if current_member.admin? %>
@@ -67,6 +68,7 @@
                 <td><%= member.login %></td>
                 <td><%= member.phone %></td>
                 <td><%= member.email %></td>
+                <td><%= member.rr_number %></td>
                 <td><%= member.rented? ? 'Yes' : 'No' %></td>
                 <td><%= member.available_for_rent? ? 'Yes' : 'No' %></td>
                 <% if current_member.admin? %>
