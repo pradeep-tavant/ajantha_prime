@@ -5,7 +5,7 @@ Cloudinary.config do |config|
 end
 
 DOCUMENTS_LINKS = [
-  ["APOWA_MOM_GBM_2_Jun_2019.docx", "https://res.cloudinary.com/ajanthaprime/raw/upload/v1560535132/Documents/"],
+  ["APOWA_MOM_GBM_2_Jun_2019.docx", "https://res.cloudinary.com/ajanthaprime/raw/upload/v1560572555/Documents/"],
   # ["APOWA_Expense_Report.xlsx", "https://res.cloudinary.com/ajanthaprime/raw/upload/v1553239907/Documents/"],
   ["Waste_Segregation_Chart.pdf", "https://res.cloudinary.com/ajanthaprime/image/upload/v1552982070/Documents/"],
   ["Ajantha_Prime_OC.pdf", "https://res.cloudinary.com/ajanthaprime/image/upload/v1552982068/Documents/"],
