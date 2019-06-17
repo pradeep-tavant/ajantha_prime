@@ -417,14 +417,21 @@ $(document).ready(function() {
   })
 
   $('select[name="transaction[category]"]').on('change', function() {
-    if (this.value == 'Maintenance') {
+    if (this.value == 'Maintenance' || this.value == 'CorpusFund') {
       $(".sub-category").slideDown();
+      if (this.value == 'CorpusFund') {
+        $('input[name="transaction[amount_paid]"]').val('2500');
+      }
+      else {
+        $('input[name="transaction[amount_paid]"]').val('');
+      }
     }
     else {
       $(".sub-category").slideUp();
     }
     if (this.value == 'PartyHall') {
       $(".for-date").slideDown();
+      $('input[name="transaction[amount_paid]"]').val('500');
     }
     else {
       $(".for-date").slideUp();
@@ -432,11 +439,14 @@ $(document).ready(function() {
   })
 
   $(".sub-category select").on('change', function() {
-    if (this.value == 'Jan-Mar 2019') {
-      $('input[name="transaction[amount_paid]"]').val('7500');
-    }
-    else if (this.value == 'Apr-Jun 2019') {
-      $('input[name="transaction[amount_paid]"]').val('8700');
+    var category = $('.category select').val();
+    if (category == 'Maintenance') {
+      if (this.value == 'Jan-Mar 2019') {
+        $('input[name="transaction[amount_paid]"]').val('7500');
+      }
+      else {
+        $('input[name="transaction[amount_paid]"]').val('8700');
+      }
     }
   })
 

@@ -58,7 +58,7 @@
             <dt>Category:</dt>
             <dd><%= @transaction.category %></dd>
           </dl>
-          <% if @transaction.Maintenance? %>
+          <% if @transaction.Maintenance? || @transaction.CorpusFund? %>
             <dl class="dl-horizontal mtop20">
               <dt>Duration:</dt>
               <dd><%= @transaction.sub_category %></dd>

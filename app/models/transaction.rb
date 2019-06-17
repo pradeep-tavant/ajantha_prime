@@ -3,12 +3,12 @@ class Transaction < ApplicationRecord
 
   validates :payment_mode, :transaction_id, :amount_paid, :on_date, :category, presence: true
   validates :amount_paid, numericality: {greater_than: 0}
-  validates :sub_category, presence: true, if: -> { self.Maintenance? }
+  validates :sub_category, presence: true, if: -> { self.Maintenance? || self.CorpusFund? }
   validates :for_date, presence: true, if: -> { self.PartyHall? }
   validates_uniqueness_of :transaction_id, scope: %i[category member_id], message: "already exists"
 
   before_save do
-    self.sub_category = nil unless self.Maintenance?
+    self.sub_category = nil if (!self.Maintenance? && !self.CorpusFund?)
     self.for_date = nil unless self.PartyHall?
   end
 
@@ -26,7 +26,7 @@ class Transaction < ApplicationRecord
       counter += 1
     end
   end
-  enum sub_category: sub_category_hash.select{|k,v| [0,1].include?(v)}
+  enum sub_category: sub_category_hash.select{|k,v| [0,1,2].include?(v)}
   # ----Enum sub_category END---- #
 
 
