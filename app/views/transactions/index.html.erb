@@ -17,17 +17,19 @@
             </div>
           </div>
         </h3>
-        <ul class="nav nav-tabs">
-          <li class="<%= (params[:filter]=='pending' || params[:filter].blank?) ? 'active' : '' %>">
-            <%= link_to "Pending", all_transactions_path(category: params[:category], filter: 'pending') %>
-          </li>
-          <li class="<%= (params[:filter]=='verified') ? 'active' : '' %>">
-            <%= link_to "Verified", all_transactions_path(category: params[:category], filter: 'verified') %>
-          </li>
-          <li class="<%= (params[:filter]=='all') ? 'active' : '' %>">
-            <%= link_to "All", all_transactions_path(category: params[:category], filter: 'all') %>
-          </li>
-        </ul>
+        <% if params[:action] == 'all' %>
+          <ul class="nav nav-tabs">
+            <li class="<%= (params[:filter]=='pending' || params[:filter].blank?) ? 'active' : '' %>">
+              <%= link_to "Pending", all_transactions_path(category: params[:category], filter: 'pending') %>
+            </li>
+            <li class="<%= (params[:filter]=='verified') ? 'active' : '' %>">
+              <%= link_to "Verified", all_transactions_path(category: params[:category], filter: 'verified') %>
+            </li>
+            <li class="<%= (params[:filter]=='all') ? 'active' : '' %>">
+              <%= link_to "All", all_transactions_path(category: params[:category], filter: 'all') %>
+            </li>
+          </ul>
+        <% end %>
       </div>
       <!-- /.panel-heading -->
 
@@ -40,7 +42,7 @@
               <th>Amount Paid (&#8377;)</th>
               <th>Date Paid</th>
               <th>Category</th>
-              <th>SubCategory</th>
+              <th>Duration</th>
               <th>Payment Status</th>
               <% if current_member.admin? %>
                 <th>Paid By</th>
