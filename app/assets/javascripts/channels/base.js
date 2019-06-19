@@ -359,7 +359,7 @@ $(document).ready(function() {
     table.draw();
   });
 
-  if ($('.transactions-wrapper .admin-view').length > 0 && window.location.search.match("category=Maintenance")) {
+  if ($('.transactions-wrapper .admin-view').length > 0 && (window.location.search.match("category=Maintenance") || window.location.search.match("category=CorpusFund"))) {
     $('<label class="mleft10">'+
           'Duration:&nbsp;&nbsp;'+
           '<select class="form-control" id="tr_sub_category">'+

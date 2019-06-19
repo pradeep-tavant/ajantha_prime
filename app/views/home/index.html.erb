@@ -1,113 +1,210 @@
 <div class="row">
   <div class="col-lg-12">
     <h3 class="lpad20">Welcome <%= current_member.name %> <span class="label label-default">(<%= current_member.login %>)</span></h3>
-    <div class="col-lg-3 mtop10">
-      <div class="panel panel-info">
-        <div class="panel-heading">
-          <h3 class="panel-title">Quick Links</h3>
-        </div>
-        <div class="panel-body">
-          <ul class="nav nav-pills nav-stacked">
-            <li>
-              <%= link_to member_path(current_member) do %>
-                <i class="fa fa-user fa-fw"></i>
-                My Profile
-              <% end %>
-            </li>
-            <li>
-              <%= link_to vehicles_path do %>
-                <i class="fa fa-car fa-fw"></i>
-                My Vehicle(s)
-              <% end %>
-            </li>
-            <li>
-              <%= link_to transactions_path do %>
-                <i class="fa fa-money fa-fw"></i>
-                My Transaction(s)
-              <% end %>
-            </li>
-            <li>
-              <%= link_to bookings_path do %>
-                <i class="fa fa-birthday-cake fa-fw"></i>
-                My Party Hall Booking(s)
-              <% end %>
-            </li>
-            <li>
-              <%= link_to change_password_path(current_member) do %>
-                <i class="fa fa-key fa-fw"></i>
-                Change Password
-              <% end %>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-9 mtop10">
-      <div class="panel panel-info">
-        <div class="panel-heading">
-          <h3 class="panel-title">Notice Board</h3>
-        </div>
-        <div class="panel-body">
-          <ul class="list-group">
-            <li class="list-group-item">
-              <% if @transaction.present? %>
-                Thanks for your maintenance payment for <b><%= @duration %></b>. You can check the Payment Status or download the invoice <%= link_to 'here', transaction_path(@transaction) %>.
-              <% else %>
-                <span class="badge">Pending</span>
-                Kindly pay your maintenance charges for <b><%= @duration %></b> on or before <b><%= @due_date %></b> to avoid late payment charges. If already paid, update the transaction details <%= link_to 'here', new_transaction_path %>.
-              <% end %>
-            </li>
-            <li class="list-group-item">
-              <span class="badge">NEW</span>
-              You can upload your Profile picture <%= link_to 'here', (edit_member_path(current_member)+"#avatar") %>.
-            </li>
-            <li class="list-group-item">
-              <span class="badge">NEW</span>
-              You can do a Party Hall Booking <%= link_to 'here', booking_calendar_path %>.
-            </li>
-            <li class="list-group-item">
-              <% if current_member.vehicles.length > 0 %>
-                Thanks for updating your Vehicle(s) information.
-              <% else %>
-                <span class="badge">Pending</span>
-                Kindly add your Vehicle(s) details <%= link_to 'here', new_vehicle_path %>.
-              <% end %>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-9 mtop10">
-      <div class="panel panel-info">
-        <div class="panel-heading">
-          <h3 class="panel-title">Documents</h3>
-        </div>
-        <div class="panel-body">
-          <%# if current_member.admin? && current_member.admin_toggle? %>
-            <!-- <div style="text-align: right;" class="mbottom10">
-              <%#= form_tag :file_upload, multipart: true, class: "form-horizontal" do |f| %>
-                <%#= file_field_tag :my_file %>
-                <%#= submit_tag "Upload", class: "btn btn-primary" %>
-              <%# end %>
-            </div> -->
-          <%# end %>
-          <ul class="list-group">
-            <% @documents.each do |file_name, file_path| %>
-              <%# next if [".",".."].include?(file_name) %>
-              <li class="list-group-item">
-                <%= file_name %>
-                <%#= link_to (root_url + "documents/#{URI.escape(file_name)}"), target: '_blank' do %>
-                <%= link_to (file_path + file_name), target: '_blank' do %>
-                  <i class="fa fa-download fa-fw" title="Download"></i>
+    <div class="row">
+      <div class="col-lg-3 mtop10">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title">Quick Links</h3>
+          </div>
+          <div class="panel-body">
+            <ul class="nav nav-pills nav-stacked">
+              <li>
+                <%= link_to member_path(current_member) do %>
+                  <i class="fa fa-user fa-fw"></i>
+                  My Profile
                 <% end %>
-                <%# if current_member.admin? %>
-                  <%#= link_to file_remove_path(my_file: file_name), method: :delete, data: {confirm: "Are you sure?"} do %>
-                    <!-- <i class="fa fa-trash-o fa-fw" title="Delete"></i> -->
-                  <%# end %>
-                <%# end %>
               </li>
-            <% end %>
-          </ul>
+              <li>
+                <%= link_to vehicles_path do %>
+                  <i class="fa fa-car fa-fw"></i>
+                  My Vehicle(s)
+                <% end %>
+              </li>
+              <li>
+                <%= link_to transactions_path do %>
+                  <i class="fa fa-money fa-fw"></i>
+                  My Transaction(s)
+                <% end %>
+              </li>
+              <li>
+                <%= link_to bookings_path do %>
+                  <i class="fa fa-birthday-cake fa-fw"></i>
+                  My Party Hall Booking(s)
+                <% end %>
+              </li>
+              <li>
+                <%= link_to change_password_path(current_member) do %>
+                  <i class="fa fa-key fa-fw"></i>
+                  Change Password
+                <% end %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-9 mtop10">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title">Notice Board</h3>
+          </div>
+          <div class="panel-body">
+            <ul class="list-group">
+              <li class="list-group-item">
+                <% if @transaction.present? %>
+                  Thanks for your maintenance payment for <b><%= @duration %></b>. You can check the Payment Status or download the invoice <%= link_to 'here', transaction_path(@transaction) %>.
+                <% else %>
+                  <span class="badge">Pending</span>
+                  Kindly pay your maintenance charges for <b><%= @duration %></b> on or before <b><%= @due_date %></b> to avoid late payment charges. If already paid, update the transaction details <%= link_to 'here', new_transaction_path %>.
+                <% end %>
+              </li>
+              <li class="list-group-item">
+                <span class="badge">NEW</span>
+                You can upload your Profile picture <%= link_to 'here', (edit_member_path(current_member)+"#avatar") %>.
+              </li>
+              <li class="list-group-item">
+                <span class="badge">NEW</span>
+                You can do a Party Hall Booking <%= link_to 'here', booking_calendar_path %>.
+              </li>
+              <li class="list-group-item">
+                <% if current_member.vehicles.length > 0 %>
+                  Thanks for updating your Vehicle(s) information.
+                <% else %>
+                  <span class="badge">Pending</span>
+                  Kindly add your Vehicle(s) details <%= link_to 'here', new_vehicle_path %>.
+                <% end %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-3 mtop10">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title">Bank Account Details</h3>
+          </div>
+          <div class="panel-body">
+            <ul class="nav nav-pills nav-stacked">
+              <li>
+                <div class="modal fade" id="maintenanceAccountDetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                          <h2>APOWA Maintenance Account Details:</h2>
+                        </div>
+                        <div class="panel-body panel30">
+                          <dl class="dl-horizontal mtop20">
+                            <dt>Account Name:</dt>
+                            <dd>Ajantha Prime Owners Welfare Association</dd>
+                          </dl>
+                          <dl class="dl-horizontal mtop20">
+                            <dt>Account Number:</dt>
+                            <dd>04941010004961</dd>
+                          </dl>
+                          <dl class="dl-horizontal mtop20">
+                            <dt>IFSC Code:</dt>
+                            <dd>SYNB0000494</dd>
+                          </dl>
+                          <dl class="dl-horizontal mtop20">
+                            <dt>Bank:</dt>
+                            <dd>SYNDICATE BANK</dd>
+                          </dl>
+                          <dl class="dl-horizontal mtop20">
+                            <dt>Branch:</dt>
+                            <dd>Electronic City</dd>
+                          </dl>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal fade" id="corpusfundAccountDetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                          <h2>APOWA CorpusFund Account Details:</h2>
+                        </div>
+                        <div class="panel-body panel30">
+                          <dl class="dl-horizontal mtop20">
+                            <dt>Account Name:</dt>
+                            <dd>Corpus Fund Ajantha Prime Apartment</dd>
+                          </dl>
+                          <dl class="dl-horizontal mtop20">
+                            <dt>Account Number:</dt>
+                            <dd>04942010083655</dd>
+                          </dl>
+                          <dl class="dl-horizontal mtop20">
+                            <dt>IFSC Code:</dt>
+                            <dd>SYNB0000494</dd>
+                          </dl>
+                          <dl class="dl-horizontal mtop20">
+                            <dt>Bank:</dt>
+                            <dd>SYNDICATE BANK</dd>
+                          </dl>
+                          <dl class="dl-horizontal mtop20">
+                            <dt>Branch:</dt>
+                            <dd>Electronic City</dd>
+                          </dl>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <a href="javascript:void(0);" data-toggle="modal" data-target="#maintenanceAccountDetails">
+                  <i class="fa fa-user fa-fw"></i>
+                  APOWA Maintenace Account
+                </a>
+                <a href="javascript:void(0);" data-toggle="modal" data-target="#corpusfundAccountDetails">
+                  <i class="fa fa-user fa-fw"></i>
+                  APOWA CorpusFund Account
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-9 mtop10">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title">Documents</h3>
+          </div>
+          <div class="panel-body">
+            <%# if current_member.admin? && current_member.admin_toggle? %>
+              <!-- <div style="text-align: right;" class="mbottom10">
+                <%#= form_tag :file_upload, multipart: true, class: "form-horizontal" do |f| %>
+                  <%#= file_field_tag :my_file %>
+                  <%#= submit_tag "Upload", class: "btn btn-primary" %>
+                <%# end %>
+              </div> -->
+            <%# end %>
+            <ul class="list-group">
+              <% @documents.each do |file_name, file_path| %>
+                <%# next if [".",".."].include?(file_name) %>
+                <li class="list-group-item">
+                  <%= file_name %>
+                  <%#= link_to (root_url + "documents/#{URI.escape(file_name)}"), target: '_blank' do %>
+                  <%= link_to (file_path + file_name), target: '_blank' do %>
+                    <i class="fa fa-download fa-fw" title="Download"></i>
+                  <% end %>
+                  <%# if current_member.admin? %>
+                    <%#= link_to file_remove_path(my_file: file_name), method: :delete, data: {confirm: "Are you sure?"} do %>
+                      <!-- <i class="fa fa-trash-o fa-fw" title="Delete"></i> -->
+                    <%# end %>
+                  <%# end %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
