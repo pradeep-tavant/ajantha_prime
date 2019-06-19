@@ -5,9 +5,12 @@ class HomeController < ApplicationController
 
   def index
     @documents = DOCUMENTS_LINKS # Dir.entries("public/documents")
-    @duration = Transaction.sub_categories.keys.last
-    @due_date = Transaction.new(sub_category: @duration).due_date
+    @duration = Transaction.sub_categories.keys[-1]
+    @duration_cf = Transaction.sub_categories.values[-2]
+    @due_date = Transaction.new(category: 'Maintenance', sub_category: @duration).due_date
+    @due_date_cf = Transaction.new(category: 'CorpusFund', sub_category: @duration_cf).due_date
     @transaction = current_member.transactions.Maintenance.where(sub_category: @duration).first
+    @transaction_cf = current_member.transactions.CorpusFund.where(sub_category: @duration_cf).first
   end
 
   def file_upload

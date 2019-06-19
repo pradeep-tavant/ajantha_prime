@@ -58,10 +58,15 @@
             <dt>Category:</dt>
             <dd><%= @transaction.category %></dd>
           </dl>
-          <% if @transaction.Maintenance? || @transaction.CorpusFund? %>
+          <% if @transaction.Maintenance? %>
             <dl class="dl-horizontal mtop20">
               <dt>Duration:</dt>
               <dd><%= @transaction.sub_category %></dd>
+            </dl>
+          <% elsif @transaction.CorpusFund? %>
+            <dl class="dl-horizontal mtop20">
+              <dt>Duration:</dt>
+              <dd>Installment-<%= Transaction.sub_categories[@transaction.sub_category] %> (<%= @transaction.sub_category %>)</dd>
             </dl>
           <% elsif @transaction.PartyHall? %>
             <dl class="dl-horizontal mtop20">

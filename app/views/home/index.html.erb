@@ -59,6 +59,14 @@
                 <% end %>
               </li>
               <li class="list-group-item">
+                <% if @transaction_cf.present? %>
+                  Thanks for your corpus fund payment for <b>Installment-<%= @duration_cf %></b>. You can check the Payment Status or download the invoice <%= link_to 'here', transaction_path(@transaction_cf) %>.
+                <% else %>
+                  <span class="badge">Pending</span>
+                  Kindly pay your corpus fund for <b>Installment-<%= @duration_cf %></b> on or before <b><%= @due_date_cf %></b> to avoid late payment charges. If already paid, update the transaction details <%= link_to 'here', new_transaction_path %>.
+                <% end %>
+              </li>
+              <li class="list-group-item">
                 <span class="badge">NEW</span>
                 You can upload your Profile picture <%= link_to 'here', (edit_member_path(current_member)+"#avatar") %>.
               </li>
@@ -96,7 +104,7 @@
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
-                          <h2>APOWA Maintenance Account Details:</h2>
+                          <h2>APOWA Maintenance Account Details</h2>
                         </div>
                         <div class="panel-body panel30">
                           <dl class="dl-horizontal mtop20">
@@ -132,7 +140,7 @@
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
-                          <h2>APOWA CorpusFund Account Details:</h2>
+                          <h2>APOWA CorpusFund Account Details</h2>
                         </div>
                         <div class="panel-body panel30">
                           <dl class="dl-horizontal mtop20">
@@ -161,11 +169,11 @@
                   </div>
                 </div>
                 <a href="javascript:void(0);" data-toggle="modal" data-target="#maintenanceAccountDetails">
-                  <i class="fa fa-user fa-fw"></i>
+                  <i class="fa fa-address-card fa-fw"></i>
                   APOWA Maintenace Account
                 </a>
                 <a href="javascript:void(0);" data-toggle="modal" data-target="#corpusfundAccountDetails">
-                  <i class="fa fa-user fa-fw"></i>
+                  <i class="fa fa-address-card fa-fw"></i>
                   APOWA CorpusFund Account
                 </a>
               </li>

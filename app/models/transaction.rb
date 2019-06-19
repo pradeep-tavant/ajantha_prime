@@ -47,6 +47,10 @@ class Transaction < ApplicationRecord
   end
 
   def due_date
-    Setting.send("MAINTENANCE_#{year}_Q#{q_num}_DUE_DATE")
+    if self.Maintenance?
+      Setting.send("MAINTENANCE_#{year}_Q#{q_num}_DUE_DATE")
+    elsif self.CorpusFund?
+      Setting.send("CORPUSFUND_#{year}_Q#{q_num-1}_DUE_DATE")
+    end
   end
 end

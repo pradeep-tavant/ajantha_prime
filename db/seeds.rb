@@ -11,12 +11,16 @@ settings = [
   ["MAINTENANCE_#{year}_Q0_PER_MONTH", '2500'],
   ["MAINTENANCE_#{year}_Q0_DUE_DATE", "31/Jan/#{year}"],
   ["MAINTENANCE_#{year}_Q1_PER_MONTH", '2900'],
-  ["MAINTENANCE_#{year}_Q1_DUE_DATE", "25/Mar/#{year}"],
-  ["MAINTENANCE_#{year}_Q2_PER_MONTH", '3000'],
-  ["MAINTENANCE_#{year}_Q2_DUE_DATE", "15/Jul/#{year}"],
-  ["MAINTENANCE_#{year}_Q3_PER_MONTH", '3000'],
-  ["MAINTENANCE_#{year}_Q3_DUE_DATE", "15/Oct/#{year}"],
-  ['FEEDBACK_CONTACT', 'pmsdeva@gmail.com'],
+  ["MAINTENANCE_#{year}_Q1_DUE_DATE", "10/Apr/#{year}"],
+  ["MAINTENANCE_#{year}_Q2_PER_MONTH", '2900'],
+  ["MAINTENANCE_#{year}_Q2_DUE_DATE", "30/Jun/#{year}"],
+  ["MAINTENANCE_#{year}_Q3_PER_MONTH", '2900'],
+  ["MAINTENANCE_#{year}_Q3_DUE_DATE", "30/Sep/#{year}"],
+  ["CORPUSFUND_#{year}_Q0_DUE_DATE", "30/Jun/#{year}"],
+  ["CORPUSFUND_#{year}_Q1_DUE_DATE", "10/Aug/#{year}"],
+  ["CORPUSFUND_#{year}_Q2_DUE_DATE", "10/Nov/#{year}"],
+  ["CORPUSFUND_#{year}_Q3_DUE_DATE", "10/Feb/#{year}"],
+  ['FEEDBACK_CONTACT', 'pradeepkumar.2win@gmail.com'],
   ['PARTYHALL_CONTACT', 'pradeepkumar.2win@gmail.com']
 ]
 settings.each do |setting_arr|

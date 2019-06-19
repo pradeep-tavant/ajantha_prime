@@ -366,6 +366,7 @@ $(document).ready(function() {
           '<option value="">All</option>'+
           '<option>Jan-Mar 2019</option>'+
           '<option>Apr-Jun 2019</option>'+
+          '<option>Jul-Sep 2019</option>'+
           '</select>'+
           '</label>').appendTo(".transactions-wrapper .dataTables_wrapper .dataTables_filter");
   }
@@ -420,9 +421,11 @@ $(document).ready(function() {
     if (this.value == 'Maintenance' || this.value == 'CorpusFund') {
       $(".sub-category").slideDown();
       if (this.value == 'CorpusFund') {
+        $(".sub-category select option")[1].style.display = 'none';
         $('input[name="transaction[amount_paid]"]').val('2500');
       }
       else {
+        $(".sub-category select option")[1].style.display = '';
         $('input[name="transaction[amount_paid]"]').val('');
       }
     }

@@ -10,7 +10,7 @@
         <td>
           Invoice #: <%= "%.4d" % @transaction.id %><br>
           Invoice Date: <%= @transaction.on_date.strftime("%d/%b/%Y") %><br>
-          <% if @transaction.Maintenance? %>
+          <% if @transaction.Maintenance? || @transaction.CorpusFund? %>
             Due Date: <%= @transaction.due_date %>
           <% end %>
         </td>
