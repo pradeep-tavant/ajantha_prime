@@ -1,0 +1,36 @@
+<p>Hello <%= @member.name %>,</p>
+<p>
+  Please find the status of your transaction below:<br>
+</p>
+
+<table>
+  <tr>
+    <th>Transaction #:</th>
+    <td><%= @transaction.transaction_id %></td>
+  <tr>
+    <th>Payment Mode:</th>
+    <td><%= @transaction.payment_mode %></td>
+  </tr>
+  <tr>
+    <th>Amount Paid:</th>
+    <td><b><%= @transaction.penalty %></b></td>
+  </tr>
+  <tr>
+    <th>Penalty:</th>
+    <td>&#8377; <%= @transaction.penalty %></td>
+  </tr>
+  <tr>
+    <th>Date Paid:</th>
+    <td><%= @transaction.on_date.strftime("%d/%b/%Y") %></td>
+  </tr>
+  <tr>
+    <th>Category:</th>
+    <td><%= @transaction.category %></td>
+  </tr>
+  <tr>
+    <th>Status:</th>
+    <td><b><%= @transaction.status %></b></td>
+  </tr>
+</table>
+
+<p>Thanks for booking.</p>

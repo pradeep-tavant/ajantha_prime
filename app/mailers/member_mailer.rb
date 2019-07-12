@@ -25,4 +25,10 @@ class MemberMailer < ApplicationMailer
     @content = params[:content]
     mail(to: @member.email, subject: "Ajantha Prime - #{@subject}")
   end
+
+  def verify_payment
+    @transaction = params[:transaction]
+    @member = @transaction.member
+    mail(to: @member.email, subject: "Ajantha Prime - Transaction #{@transaction.status}")
+  end
 end

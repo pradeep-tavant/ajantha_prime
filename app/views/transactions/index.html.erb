@@ -73,6 +73,9 @@
                     <%= link_to edit_transaction_path(transaction) do %>
                       <i class="fa fa-pencil fa-fw" title="Edit"></i>
                     <% end %>
+                    <%= link_to verify_payment_transaction_path(transaction), method: :put do %>
+                      <i class="fa fa-check fa-fw" title="Verify"></i>
+                    <% end %>
                   <% else %>
                     <%= link_to download_receipt_transaction_path(transaction, format: :pdf) do %>
                       <i class="fa fa-download fa-fw" title="Download Receipt"></i>

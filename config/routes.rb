@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :transactions do
     member do
       get 'download_receipt'
+      put 'verify_payment'
     end
   end
   resources :bookings

@@ -1,6 +1,6 @@
 class TransactionsController < ApplicationController
   before_action :authenticate_member!
-  before_action :set_transaction, only: [:show, :edit, :update, :destroy, :download_receipt]
+  before_action :set_transaction, only: [:show, :edit, :update, :destroy, :download_receipt, :verify_payment]
 
   # GET /transactions
   def index
@@ -51,6 +51,9 @@ class TransactionsController < ApplicationController
   # PATCH/PUT /transactions/1
   def update
     if @transaction.update(transaction_params)
+      if @transaction.Verified?
+        MemberMailer.with(transaction: @transaction).verify_payment.deliver_later
+      end
       redirect_to @transaction, notice: 'Transaction was successfully updated.'
     else
       render :edit
@@ -61,6 +64,12 @@ class TransactionsController < ApplicationController
   def destroy
     @transaction.destroy
     redirect_to transactions_url, notice: 'Transaction was successfully destroyed.'
+  end
+
+  def verify_payment
+    @transaction.Verified!
+    MemberMailer.with(transaction: @transaction).verify_payment.deliver_later
+    redirect_to all_transactions_path, notice: "Transaction was successfully verified."
   end
 
   def download_receipt
