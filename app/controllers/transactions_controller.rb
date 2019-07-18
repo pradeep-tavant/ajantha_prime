@@ -67,8 +67,10 @@ class TransactionsController < ApplicationController
   end
 
   def verify_payment
-    @transaction.Verified!
-    MemberMailer.with(transaction: @transaction).verify_payment.deliver_later
+    if current_member.admin?
+      @transaction.Verified!
+      MemberMailer.with(transaction: @transaction).verify_payment.deliver_later
+    end
     redirect_to all_transactions_path, notice: "Transaction was successfully verified."
   end
 
