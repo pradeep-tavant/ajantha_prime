@@ -13,6 +13,13 @@ class MemberMailer < ApplicationMailer
     mail(to: @member.email, subject: "Ajantha Prime Feedback - #{@feedback.subject}")
   end
 
+  def notify_partyhall_booking
+    @member = params[:member]
+    @booking = params[:booking]
+    @assignee = params[:assignee]
+    mail(to: @assignee, subject: "Ajantha Prime New Party Hall Booking - #{@booking.on_date.strftime('%d/%b/%Y')}")
+  end
+
   def respond_booking
     @member = params[:member]
     @booking = params[:booking]

@@ -55,6 +55,7 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     if @booking.save
+      MemberMailer.with(member: current_member, booking: @booking, assignee: Setting.PARTYHALL_CONTACT).notify_partyhall_booking.deliver_later
       redirect_to @booking, notice: 'Booking was successfully created.'
     else
       render :new

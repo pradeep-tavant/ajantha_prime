@@ -21,7 +21,7 @@ settings = [
   ["CORPUSFUND_#{year}_Q2_DUE_DATE", "10/Nov/#{year}"],
   ["CORPUSFUND_#{year}_Q3_DUE_DATE", "10/Feb/#{year}"],
   ['FEEDBACK_CONTACT', 'pradeepkumar.2win@gmail.com'],
-  ['PARTYHALL_CONTACT', 'pradeepkumar.2win@gmail.com']
+  ['PARTYHALL_CONTACT', 'apowa-ec@googlegroups.com']
 ]
 settings.each do |setting_arr|
   setting = Setting.find_or_initialize_by(name: setting_arr[0])

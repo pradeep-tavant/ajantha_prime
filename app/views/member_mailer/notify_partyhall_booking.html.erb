@@ -1,0 +1,7 @@
+<p>Hello EC Team,</p>
+<p>
+  A new party hall booking is done by: <%= @member.name %>(<%= @member.login %>) for the date <%= @booking.on_date.strftime("%d/%b/%Y") %> between <%= @booking.start_time.strftime("%l:%M %p") %> and <%= @booking.end_time.strftime("%l:%M %p") %>.<br>
+</p>
+<p>
+  To visit kindly login to the site and follow this link: <%= booking_url(@booking) %>.
+</p>
