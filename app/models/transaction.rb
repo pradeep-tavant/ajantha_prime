@@ -13,7 +13,7 @@ class Transaction < ApplicationRecord
   end
 
   enum payment_mode: {Online: 0, Cheque: 1, Cash: 2}
-  enum category: {Maintenance: 0, PartyHall: 1, CorpusFund: 2, Penalty: 3}
+  enum category: {Maintenance: 0, PartyHall: 1, CorpusFund: 2, Penalty: 3, Shifting: 4}
   enum status: {NotVerified: 0, Verified: 1, NotReceived: 2, Failed: 3}
   
   # ----Enum sub_category START---- #
