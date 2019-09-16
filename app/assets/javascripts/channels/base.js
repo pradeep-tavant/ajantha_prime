@@ -367,6 +367,7 @@ $(document).ready(function() {
           '<option>Jan-Mar 2019</option>'+
           '<option>Apr-Jun 2019</option>'+
           '<option>Jul-Sep 2019</option>'+
+          '<option>Oct-Dec 2019</option>'+
           '</select>'+
           '</label>').appendTo(".transactions-wrapper .dataTables_wrapper .dataTables_filter");
   }
