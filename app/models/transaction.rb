@@ -58,7 +58,7 @@ class Transaction < ApplicationRecord
     duration = Transaction.sub_categories.keys[-1]
     paid_user_ids = Transaction.Maintenance.where(sub_category: duration).map(&:user_id)
     all_user_ids = Member.all.map(&:id)
-    unpaid_user_ids = all_user_ids - paid_user_ids
+    unpaid_user_ids = [1] # all_user_ids - paid_user_ids
     members = Member.where(id: unpaid_user_ids)
     members.each do |member|
       MemberMailer.with(member: member, duration: duration).maintenance_reminder.deliver_later
