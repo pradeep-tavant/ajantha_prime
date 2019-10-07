@@ -43,7 +43,7 @@ class Transaction < ApplicationRecord
   end
 
   def per_month_maintenace
-    Setting.send("MAINTENANCE_#{year}_Q#{q_num}_PER_MONTH")
+    Setting.send("MAINTENANCE_#{year}_Q#{q_num}_PER_MONTH").to_i
   end
 
   def due_date
@@ -52,5 +52,17 @@ class Transaction < ApplicationRecord
     elsif self.CorpusFund?
       Setting.send("CORPUSFUND_#{year}_Q#{q_num-1}_DUE_DATE")
     end
+  end
+
+  def self.send_maintenance_reminder
+    duration = Transaction.sub_categories.keys[-1]
+    paid_user_ids = Transaction.Maintenance.where(sub_category: duration).map(&:user_id)
+    all_user_ids = Member.all.map(&:id)
+    unpaid_user_ids = all_user_ids - paid_user_ids
+    members = Member.where(id: unpaid_user_ids)
+    members.each do |member|
+      MemberMailer.with(member: member, duration: duration).maintenance_reminder.deliver_later
+    end
+    members.map(&:email)
   end
 end
