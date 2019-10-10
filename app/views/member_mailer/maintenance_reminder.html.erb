@@ -1,6 +1,6 @@
 <p>Hello <%= @member.name %>,</p>
 <p>
-  Pay your Maintenace due of <b>&#8377; <%= @amount %>/-</b> for <b><%= @duration %></b> by <b>today(<%= @due_date %>)</b> to avoid late payment charges.<br>
+  Pay your Maintenace due of <b>&#8377; <%= @amount %>/-</b> for <b><%= @duration %></b> on or before <%= @due_date %> to avoid late payment charges.<br>
 </p>
 <p>
   If paid, we request you to update the transaction details in the website by following this link: <%= new_transaction_url %>
