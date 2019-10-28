@@ -65,4 +65,16 @@ class Transaction < ApplicationRecord
     end
     members.map(&:email)
   end
+
+  def self.send_corpusfund_reminder
+    duration = Transaction.sub_categories.values[-1]
+    paid_user_ids = Transaction.CorpusFund.where(sub_category: duration).map(&:member_id)
+    all_user_ids = Member.all.map(&:id)
+    unpaid_user_ids = all_user_ids - paid_user_ids
+    members = Member.where(id: unpaid_user_ids)
+    members.each do |member|
+      MemberMailer.with(member: member, duration: "Installment #{duration}").maintenance_reminder.deliver_later
+    end
+    members.map(&:email)
+  end
 end

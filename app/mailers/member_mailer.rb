@@ -42,6 +42,15 @@ class MemberMailer < ApplicationMailer
     mail(to: @member.email, subject: "Ajantha Prime - Reminder for Maintenance payment #{@duration}")
   end
 
+  def corpusfund_reminder
+    @member = params[:member]
+    @duration = params[:duration]
+    transaction = Transaction.new(category: 'CorpusFund', sub_category: @duration)
+    @due_date = transaction.due_date
+    @amount = 2500
+    mail(to: @member.email, subject: "Ajantha Prime - Reminder for CorpusFund payment #{@duration}")
+  end
+
   def verify_payment
     @transaction = params[:transaction]
     @member = @transaction.member
