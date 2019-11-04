@@ -73,7 +73,9 @@ class Transaction < ApplicationRecord
     unpaid_user_ids = all_user_ids - paid_user_ids
     members = Member.where(id: unpaid_user_ids)
     members.each do |member|
-      MemberMailer.with(member: member, duration: "Installment #{duration}").maintenance_reminder.deliver_later
+      if member.transactions.CorpusFund.sum(:amount_paid) < 7500
+        MemberMailer.with(member: member, duration: "Installment #{duration}").corpusfund_reminder.deliver_later
+      end
     end
     members.map(&:email)
   end
