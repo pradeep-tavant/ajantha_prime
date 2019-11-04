@@ -48,7 +48,7 @@ class MemberMailer < ApplicationMailer
     transaction = Transaction.new(category: 'CorpusFund', sub_category: @duration)
     @due_date = transaction.due_date
     @amount = 2500
-    mail(to: @member.email, subject: "Ajantha Prime - Reminder for CorpusFund payment #{@duration}")
+    mail(to: @member.email, subject: "Ajantha Prime - Reminder for CorpusFund payment Installment-#{@duration}")
   end
 
   def verify_payment
