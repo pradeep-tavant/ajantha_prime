@@ -13,6 +13,10 @@ class HomeController < ApplicationController
     @transaction_cf = current_member.transactions.CorpusFund.where(sub_category: @duration_cf).first
   end
 
+  def financial_reports
+    @documents = FINANCIAL_REPORTS
+  end
+
   def file_upload
     if params[:my_file].present?
       tmp = params[:my_file].tempfile

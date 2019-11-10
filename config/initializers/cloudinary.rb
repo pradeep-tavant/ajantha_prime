@@ -12,3 +12,15 @@ DOCUMENTS_LINKS = [
   ["Party_Hall_Booking_Rules.pdf", "https://res.cloudinary.com/ajanthaprime/image/upload/v1552982044/Documents/"],
   ["Ajantha_Prime_Membership_Form.pdf", "https://res.cloudinary.com/ajanthaprime/image/upload/v1552982020/Documents/"]
 ]
+
+FINANCIAL_REPORTS = [
+  ["APOWA-Finacial-Report-Jan-2019.pdf", "https://res.cloudinary.com/ajanthaprime/image/upload/v1573379317/financial_reports/"],
+  ["APOWA-Finacial-Report-Feb-2019.pdf", "https://res.cloudinary.com/ajanthaprime/image/upload/v1573379354/financial_reports/"],
+  ["APOWA-Finacial-Report-Mar-2019.pdf", "https://res.cloudinary.com/ajanthaprime/image/upload/v1573379354/financial_reports/"],
+  ["APOWA-Finacial-Report-Apr-2019.pdf", "https://res.cloudinary.com/ajanthaprime/image/upload/v1573379354/financial_reports/"],
+  ["APOWA-Finacial-Report-May-2019.pdf", "https://res.cloudinary.com/ajanthaprime/image/upload/v1573379355/financial_reports/"],
+  ["APOWA-Finacial-Report-Jun-2019.pdf", "https://res.cloudinary.com/ajanthaprime/image/upload/v1573379354/financial_reports/"],
+  ["APOWA-Finacial-Report-Jul-2019.pdf", "https://res.cloudinary.com/ajanthaprime/image/upload/v1573379354/financial_reports/"],
+  ["APOWA-Finacial-Report-Aug-2019.pdf", "https://res.cloudinary.com/ajanthaprime/image/upload/v1573379354/financial_reports/"],
+  ["APOWA-Finacial-Report-Sep-2019.pdf", "https://res.cloudinary.com/ajanthaprime/image/upload/v1573379355/financial_reports/"]
+]
