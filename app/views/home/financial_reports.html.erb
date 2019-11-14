@@ -13,9 +13,9 @@
         <ul class="list-group">
           <% @documents.each do |file_name, file_path| %>
             <li class="list-group-item">
-              <%= file_name %>
               <%= link_to (file_path + file_name), target: '_blank' do %>
-                <i class="fa fa-download fa-fw" title="Download"></i>
+                <%= file_name %>
+                <i class="fa fa-file-pdf-o fa-fw" title="View"></i>
               <% end %>
             </li>
           <% end %>
